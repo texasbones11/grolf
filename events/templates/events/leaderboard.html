@@ -1,0 +1,40 @@
+{% extends 'events/layout.html' %}
+
+{% block content %}
+<div>
+{{event.title}}
+{{event.date}}
+	<table class="table table-striped">
+		<thread>
+			<tr>
+				<th>Hole</th>
+				<th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                                <th>6</th>
+                                <th>7</th>
+                                <th>8</th>
+				<th>9</th>
+				<th>OUT</th>
+			</tr>
+		</thread>
+		<tbody>
+			<tr>
+                                <td>Par</td>
+                                <td>4</td>
+                        </tr>
+			<tr>
+                                <td>Handicap</td>
+                                <td>18</td>
+                        </tr>
+			<tr>
+				<td>player here</td>
+				<td>3</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<a href="/events" class="btn btn-outline-dark" role="button">Go Back</a>
+{% endblock %}
