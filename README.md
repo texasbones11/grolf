@@ -1,5 +1,6 @@
 # grolf
-#install Django on Ubuntu 18.04
+## install Django on Ubuntu 18.04
+```
 apt-get install python-django
 
 cd /var
@@ -18,7 +19,10 @@ apt-get install build-essential python-dev libmysqlclient-dev
 python manage.py migrate
 
 python manage.py createsuperuser --username=wjones --email=XXXXXX
-#create a password
+```
+### create a password
 
-# server is on port 8000
+### server is on port 8000
+```
 python manage.py runserver
+```
