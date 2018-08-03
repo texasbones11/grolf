@@ -1,4 +1,4 @@
-{% extends 'events/layout.html' %}
+layout.html' %}
 
 {% block content %}
 <div>
@@ -23,16 +23,42 @@
 		<tbody>
 			<tr>
                                 <td>Par</td>
-                                <td>4</td>
+				<td>{{golfcourse.hole1par}}</td>
+				<td>{{golfcourse.hole2par}}</td>
+				<td>{{golfcourse.hole3par}}</td>
+				<td>{{golfcourse.hole4par}}</td>
+				<td>{{golfcourse.hole5par}}</td>
+				<td>{{golfcourse.hole6par}}</td>
+				<td>{{golfcourse.hole7par}}</td>
+				<td>{{golfcourse.hole8par}}</td>
+				<td>{{golfcourse.hole9par}}</td>
                         </tr>
 			<tr>
                                 <td>Handicap</td>
-                                <td>18</td>
+				<td>{{golfcourse.hole1handicap}}</td>
+				<td>{{golfcourse.hole2handicap}}</td>
+				<td>{{golfcourse.hole3handicap}}</td>
+				<td>{{golfcourse.hole4handicap}}</td>
+				<td>{{golfcourse.hole5handicap}}</td>
+				<td>{{golfcourse.hole6handicap}}</td>
+				<td>{{golfcourse.hole7handicap}}</td>
+				<td>{{golfcourse.hole8handicap}}</td>
+				<td>{{golfcourse.hole9handicap}}</td>
                         </tr>
+			{% for leaderboard in leaderboard %}
 			<tr>
-				<td>player here</td>
-				<td>3</td>
+				<td>{{leaderboard.name}}</td>
+				<td>{{leaderboard.hole1score}}</td>
+				<td>{{leaderboard.hole2score}}</td>
+				<td>{{leaderboard.hole3score}}</td>
+				<td>{{leaderboard.hole4score}}</td>
+				<td>{{leaderboard.hole5score}}</td>
+				<td>{{leaderboard.hole6score}}</td>
+				<td>{{leaderboard.hole7score}}</td>
+				<td>{{leaderboard.hole8score}}</td>
+				<td>{{leaderboard.hole9score}}</td>
 			</tr>
+			{% endfor %}
 		</tbody>
 	</table>
 </div>
