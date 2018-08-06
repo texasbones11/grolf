@@ -12,11 +12,11 @@ def index(request):
 
 def leaderboard(request, id):
     event = Events.objects.get(id=id)
-    golfcourse = GolfCourse.objects.all()[0]
-    leaderboard = Leaderboard.objects.all()
+    golfcourse = event.title
+    leaderboard = Leaderboard.objects.filter(event__id=id)
     context = {
             'event': event,
             'leaderboard': leaderboard,
-            'golfcourse': golfcourse
+            'golfcourse': golfcourse,
     }
     return render(request, 'events/leaderboard.html', context)

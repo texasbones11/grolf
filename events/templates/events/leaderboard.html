@@ -18,6 +18,17 @@
                                 <th>8</th>
 				<th>9</th>
 				<th>OUT</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                                <th>6</th>
+                                <th>7</th>
+                                <th>8</th>
+                                <th>9</th>
+                                <th>IN</th>
+				<th>TOTAL</th>
 			</tr>
 		</thread>
 		<tbody>
@@ -32,6 +43,18 @@
 				<td>{{golfcourse.hole7par}}</td>
 				<td>{{golfcourse.hole8par}}</td>
 				<td>{{golfcourse.hole9par}}</td>
+				<td></td>
+				<td>{{golfcourse.hole10par}}</td>
+				<td>{{golfcourse.hole11par}}</td>
+                                <td>{{golfcourse.hole12par}}</td>
+                                <td>{{golfcourse.hole13par}}</td>
+                                <td>{{golfcourse.hole14par}}</td>
+                                <td>{{golfcourse.hole15par}}</td>
+                                <td>{{golfcourse.hole16par}}</td>
+                                <td>{{golfcourse.hole17par}}</td>
+                                <td>{{golfcourse.hole18par}}</td>
+                                <td></td>
+                                <td></td>
                         </tr>
 			<tr>
                                 <td>Handicap</td>
@@ -44,6 +67,18 @@
 				<td>{{golfcourse.hole7handicap}}</td>
 				<td>{{golfcourse.hole8handicap}}</td>
 				<td>{{golfcourse.hole9handicap}}</td>
+                                <td></td>
+				<td>{{golfcourse.hole10handicap}}</td>
+				<td>{{golfcourse.hole11handicap}}</td>
+                                <td>{{golfcourse.hole12handicap}}</td>
+                                <td>{{golfcourse.hole13handicap}}</td>
+                                <td>{{golfcourse.hole14handicap}}</td>
+                                <td>{{golfcourse.hole15handicap}}</td>
+                                <td>{{golfcourse.hole16handicap}}</td>
+                                <td>{{golfcourse.hole17handicap}}</td>
+                                <td>{{golfcourse.hole18handicap}}</td>
+				<td></td>
+                                <td></td>
                         </tr>
 			{% for leaderboard in leaderboard %}
 			<tr>
@@ -57,6 +92,18 @@
 				<td>{{leaderboard.hole7score}}</td>
 				<td>{{leaderboard.hole8score}}</td>
 				<td>{{leaderboard.hole9score}}</td>
+				<td>{{ out }} </td>
+			        <td>{{leaderboard.hole10score}}</td>
+                                <td>{{leaderboard.hole11score}}</td>
+                                <td>{{leaderboard.hole12score}}</td>
+                                <td>{{leaderboard.hole13score}}</td>
+                                <td>{{leaderboard.hole14score}}</td>
+                                <td>{{leaderboard.hole15score}}</td>
+                                <td>{{leaderboard.hole16score}}</td>
+                                <td>{{leaderboard.hole17score}}</td>
+                                <td>{{leaderboard.hole18score}}</td>
+                                <td></td>
+                                <td></td>
 			</tr>
 			{% endfor %}
 		</tbody>
