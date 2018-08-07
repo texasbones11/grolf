@@ -43,7 +43,7 @@
 				<td>{{golfcourse.hole7par}}</td>
 				<td>{{golfcourse.hole8par}}</td>
 				<td>{{golfcourse.hole9par}}</td>
-				<td></td>
+				<td>{{front_par}}</td>
 				<td>{{golfcourse.hole10par}}</td>
 				<td>{{golfcourse.hole11par}}</td>
                                 <td>{{golfcourse.hole12par}}</td>
@@ -53,8 +53,8 @@
                                 <td>{{golfcourse.hole16par}}</td>
                                 <td>{{golfcourse.hole17par}}</td>
                                 <td>{{golfcourse.hole18par}}</td>
-                                <td></td>
-                                <td></td>
+				<td>{{back_par}}</td>
+				<td>{{total_par}}</td>
                         </tr>
 			<tr>
                                 <td>Handicap</td>
@@ -80,32 +80,9 @@
 				<td></td>
                                 <td></td>
                         </tr>
-			{% for leaderboard in leaderboard %}
 			<tr>
-				<td>{{leaderboard.name}}</td>
-				<td>{{leaderboard.hole1score}}</td>
-				<td>{{leaderboard.hole2score}}</td>
-				<td>{{leaderboard.hole3score}}</td>
-				<td>{{leaderboard.hole4score}}</td>
-				<td>{{leaderboard.hole5score}}</td>
-				<td>{{leaderboard.hole6score}}</td>
-				<td>{{leaderboard.hole7score}}</td>
-				<td>{{leaderboard.hole8score}}</td>
-				<td>{{leaderboard.hole9score}}</td>
-				<td>{{ out }} </td>
-			        <td>{{leaderboard.hole10score}}</td>
-                                <td>{{leaderboard.hole11score}}</td>
-                                <td>{{leaderboard.hole12score}}</td>
-                                <td>{{leaderboard.hole13score}}</td>
-                                <td>{{leaderboard.hole14score}}</td>
-                                <td>{{leaderboard.hole15score}}</td>
-                                <td>{{leaderboard.hole16score}}</td>
-                                <td>{{leaderboard.hole17score}}</td>
-                                <td>{{leaderboard.hole18score}}</td>
-                                <td></td>
-                                <td></td>
-			</tr>
-			{% endfor %}
+				{{output|safe}}
+		</tr>
 		</tbody>
 	</table>
 </div>
