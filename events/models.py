@@ -96,6 +96,6 @@ class Leaderboard(models.Model):
     hole18score = models.SmallIntegerField(blank=True,default=0)
     tee = models.ForeignKey(Tee, on_delete=models.CASCADE)
     def __str__(self):
-        return str(self.event)
+        return str(self.event) + " - " + str(self.name)
     class Meta:
         verbose_name_plural = "Leaderboards"
