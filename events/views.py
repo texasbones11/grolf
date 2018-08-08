@@ -14,6 +14,7 @@ def leaderboard(request, id):
     event = Events.objects.get(id=id)
     golfcourse = event.title
     leaderboard = Leaderboard.objects.filter(event__id=id)
+    #player = leaderboard.name
     output = ''
     front_par = golfcourse.hole1par + golfcourse.hole2par + golfcourse.hole3par + golfcourse.hole4par + golfcourse.hole5par + golfcourse.hole6par + golfcourse.hole7par + golfcourse.hole8par + golfcourse.hole9par
     back_par = golfcourse.hole10par + golfcourse.hole11par + golfcourse.hole12par + golfcourse.hole13par + golfcourse.hole14par + golfcourse.hole15par + golfcourse.hole16par + golfcourse.hole17par + golfcourse.hole18par
@@ -197,7 +198,10 @@ def leaderboard(request, id):
         in_score = cell_start + str(in_total) + cell_end
         back = hole10 + hole11 + hole12 + hole13 + hole14 + hole15 + hole16 + hole17 + hole18 + in_score
         total = cell_start + str(out_total + in_total) + cell_end
-        row = "<tr>" + name + front + back + total + "</tr>"
+        hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
+        hdcp = cell_start + str(hdcp_adj) + cell_end
+        net = cell_start + str(out_total + in_total - hdcp_adj) + cell_end
+        row = "<tr>" + name + front + back + total + hdcp + net + "</tr>"
         arr.append([in_total + out_total,row])
     #sort the leaderboard
     arr.sort(key=lambda x: x[0])
