@@ -19,6 +19,7 @@ def leaderboard(request, id):
     front_par = golfcourse.hole1par + golfcourse.hole2par + golfcourse.hole3par + golfcourse.hole4par + golfcourse.hole5par + golfcourse.hole6par + golfcourse.hole7par + golfcourse.hole8par + golfcourse.hole9par
     back_par = golfcourse.hole10par + golfcourse.hole11par + golfcourse.hole12par + golfcourse.hole13par + golfcourse.hole14par + golfcourse.hole15par + golfcourse.hole16par + golfcourse.hole17par + golfcourse.hole18par
     total_par = front_par + back_par
+    arr = []
     for i in leaderboard:
         name = "<td>" + str(i.name) + "</td>"
         hole1 = "<td>" + str(i.hole1score) + "</td>"
@@ -46,7 +47,12 @@ def leaderboard(request, id):
         in_score = "<td>" + str(in_total) + "</td>"
         back = hole10 + hole11 + hole12 + hole13 + hole14 + hole15 + hole16 + hole17 + hole18 + in_score
         total = "<td>" + str(out_total + in_total) + "</td>"
-        output += "<tr>" + name + front + back + total + "</tr>"
+        row = "<tr>" + name + front + back + total + "</tr>"
+        arr.append([in_total + out_total,row])
+    #sort the leaderboard
+    arr.sort(key=lambda x: x[0])
+    for line in arr:
+        output += line[1]
     context = {
             'front_par': front_par,
             'back_par': back_par,
