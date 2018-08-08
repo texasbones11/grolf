@@ -3,7 +3,7 @@ from models import Events, Leaderboard, GolfCourse
 from django.db.models import F
 # Create your views here.
 def index(request):
-        events = Events.objects.all()[:10]
+        events = Events.objects.all().order_by('-date')[:10]
 
         context = {
                 'events': events
