@@ -219,7 +219,9 @@ def leaderboard(request, id):
     }
     return render(request, 'events/leaderboard.html', context)
 
-def scorecard(request):
+def scorecard(request, id):
+    eventid = id
+    event = Events.objects.get(id=id)
     if request.method == 'POST':
         form = ScorecardForm(request.POST)
         if form.is_valid():
@@ -227,4 +229,4 @@ def scorecard(request):
             return redirect('/')
     else:
         form = ScorecardForm()
-    return render(request, "events/scorecard.html", {'form': form})
+    return render(request, "events/scorecard.html", {'form': form, 'eventid': eventid})

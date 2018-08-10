@@ -5,7 +5,15 @@
 	<form method='post'>
 		{% csrf_token %}
 		{{form}}
-		<button type="submit" class="btn btn-default"&gt>Submit</button>
+		<br></br>
+		{{form}}
+		<br></br>
+		{{form}}
+                <br></br>
+		{{form}}
+                <br></br>
+		<button type="submit" class="btn btn-outline-dark"&gt>Submit</button>
+		<a href="/events/leaderboard/{{eventid}}" class="btn btn-outline-dark" role="button">Go Back</a>
 	</form>
 </body>
 </html>
