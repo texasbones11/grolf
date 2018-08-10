@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from models import Events, Leaderboard, GolfCourse
 from django.db.models import F
+from forms import ScorecardForm
 # Create your views here.
 def index(request):
         events = Events.objects.all().order_by('-date')[:10]
@@ -217,3 +218,13 @@ def leaderboard(request, id):
             'output': output
     }
     return render(request, 'events/leaderboard.html', context)
+
+def scorecard(request):
+    if request.method == 'POST':
+        form = ScorecardForm(request.POST)
+        if form.is_valid():
+            model_instance = form.save()
+            return redirect('/')
+    else:
+        form = ScorecardForm()
+    return render(request, "events/scorecard.html", {'form': form})

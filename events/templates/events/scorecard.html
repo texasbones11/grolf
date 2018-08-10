@@ -1,0 +1,12 @@
+{% extends 'events/layout.html' %}
+{% block content %}
+<html lang="en">
+<body>
+	<form method='post'>
+		{% csrf_token %}
+		{{form}}
+		<button type="submit" class="btn btn-default"&gt>Submit</button>
+	</form>
+</body>
+</html>
+{% endblock %}

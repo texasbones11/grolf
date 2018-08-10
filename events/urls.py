@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
         url(r'^$', views.index, name='index'),
-        url(r'^leaderboard/(?P<id>\d+)/$', views.leaderboard, name='leaderboard')
+        url(r'^leaderboard/(?P<id>\d+)/$', views.leaderboard, name='leaderboard'),
+        url(r'^scorecard/$', views.scorecard, name='scorecard'),
 ]
