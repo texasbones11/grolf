@@ -116,25 +116,25 @@ def leaderboard(request, id):
             hole5 = cell_start + str(i.hole5score) + cell_end
 	if i.hole6score == 0:
 	    hole6 = cell_start + cell_end
-        elif (len(skins6) == 1 and str(skins6[0][0]) == str(i.name)) or (len(skins6) > 1 and skins6[0][1] != skins6[1][1]):
+        elif (len(skins6) == 1 and str(skins6[0][0]) == str(i.name)) or (len(skins6) > 1 and skins6[0][1] != skins6[1][1] and str(skins6[0][0]) == str(i.name)):
             hole6 = cell_highlight + str(i.hole6score) + cell_end
         else:
             hole6 = cell_start + str(i.hole6score) + cell_end
 	if i.hole7score == 0:
 	    hole7 = cell_start + cell_end
-        elif (len(skins7) == 1 and str(skins7[0][0]) == str(i.name)) or (len(skins7) > 1 and skins7[0][1] != skins7[1][1]):
+        elif (len(skins7) == 1 and str(skins7[0][0]) == str(i.name)) or (len(skins7) > 1 and skins7[0][1] != skins7[1][1] and str(skins7[0][0]) == str(i.name)):
             hole7 = cell_highlight + str(i.hole7score) + cell_end
         else:
             hole7 = cell_start + str(i.hole7score) + cell_end
 	if i.hole8score == 0:
 	    hole8 = cell_start + cell_end
-        elif (len(skins8) == 1 and str(skins8[0][0]) == str(i.name)) or (len(skins8) > 1 and skins8[0][1] != skins8[1][1]):
+        elif (len(skins8) == 1 and str(skins8[0][0]) == str(i.name)) or (len(skins8) > 1 and skins8[0][1] != skins8[1][1] and str(skins8[0][0]) == str(i.name)):
             hole8 = cell_highlight + str(i.hole8score) + cell_end
         else:
             hole8 = cell_start + str(i.hole8score) + cell_end
 	if i.hole9score == 0:
 	    hole9 = cell_start + cell_end
-        elif (len(skins9) == 1 and str(skins9[0][0]) == str(i.name)) or (len(skins9) > 1 and skins9[0][1] != skins9[1][1]):
+        elif (len(skins9) == 1 and str(skins9[0][0]) == str(i.name)) or (len(skins9) > 1 and skins9[0][1] != skins9[1][1] and str(skins9[0][0]) == str(i.name)):
             hole9 = cell_highlight + str(i.hole9score) + cell_end
         else:
             hole9 = cell_start + str(i.hole9score) + cell_end
@@ -143,55 +143,55 @@ def leaderboard(request, id):
         front = hole1 + hole2 + hole3 + hole4 + hole5 + hole6 + hole7 + hole8 + hole9 + out_score
 	if i.hole10score == 0:
 	    hole10 = cell_start + cell_end
-        elif (len(skins10) == 1 and str(skins10[0][0]) == str(i.name)) or (len(skins10) > 1 and skins10[0][1] != skins10[1][1]):
+        elif (len(skins10) == 1 and str(skins10[0][0]) == str(i.name)) or (len(skins10) > 1 and skins10[0][1] != skins10[1][1] and str(skins10[0][0]) == str(i.name)):
             hole10 = cell_highlight + str(i.hole10score) + cell_end
         else:
             hole10 = cell_start + str(i.hole10score) + cell_end
 	if i.hole11score == 0:
 	    hole11 = cell_start + cell_end
-        elif (len(skins11) == 1 and str(skins11[0][0]) == str(i.name)) or (len(skins11) > 1 and skins11[0][1] != skins11[1][1]):
+        elif (len(skins11) == 1 and str(skins11[0][0]) == str(i.name)) or (len(skins11) > 1 and skins11[0][1] != skins11[1][1] and str(skins11[0][0]) == str(i.name)):
             hole11 = cell_highlight + str(i.hole11score) + cell_end
         else:
             hole11 = cell_start + str(i.hole11score) + cell_end
 	if i.hole12score == 0:
 	    hole12 = cell_start + cell_end
-        elif (len(skins12) == 1 and str(skins12[0][0]) == str(i.name)) or (len(skins12) > 1 and skins12[0][1] != skins12[1][1]):
+        elif (len(skins12) == 1 and str(skins12[0][0]) == str(i.name)) or (len(skins12) > 1 and skins12[0][1] != skins12[1][1] and str(skins12[0][0]) == str(i.name)):
             hole12 = cell_highlight + str(i.hole12score) + cell_end
         else:
             hole12 = cell_start + str(i.hole12score) + cell_end
 	if i.hole13score == 0:
 	    hole13 = cell_start + cell_end
-        elif (len(skins13) == 1 and str(skins13[0][0]) == str(i.name)) or (len(skins13) > 1 and skins13[0][1] != skins13[1][1]):
+        elif (len(skins13) == 1 and str(skins13[0][0]) == str(i.name)) or (len(skins13) > 1 and skins13[0][1] != skins13[1][1] and str(skins13[0][0]) == str(i.name)):
             hole13 = cell_highlight + str(i.hole13score) + cell_end
         else:
             hole13 = cell_start + str(i.hole13score) + cell_end
 	if i.hole14score == 0:
 	    hole14 = cell_start + cell_end
-        elif (len(skins14) == 1 and str(skins14[0][0]) == str(i.name)) or (len(skins14) > 1 and skins14[0][1] != skins14[1][1]):
+        elif (len(skins14) == 1 and str(skins14[0][0]) == str(i.name)) or (len(skins14) > 1 and skins14[0][1] != skins14[1][1] and str(skins14[0][0]) == str(i.name)):
             hole14 = cell_highlight + str(i.hole14score) + cell_end
         else:
             hole14 = cell_start + str(i.hole14score) + cell_end
 	if i.hole15score == 0:
 	    hole15 = cell_start + cell_end
-        elif (len(skins15) == 1 and str(skins15[0][0]) == str(i.name)) or (len(skins15) > 1 and skins15[0][1] != skins15[1][1]):
+        elif (len(skins15) == 1 and str(skins15[0][0]) == str(i.name)) or (len(skins15) > 1 and skins15[0][1] != skins15[1][1] and str(skins15[0][0]) == str(i.name)):
             hole15 = cell_highlight + str(i.hole15score) + cell_end
         else:
             hole15 = cell_start + str(i.hole15score) + cell_end
 	if i.hole16score == 0:
 	    hole16 = cell_start + cell_end
-        elif (len(skins16) == 1 and str(skins16[0][0]) == str(i.name)) or (len(skins16) > 1 and skins16[0][1] != skins16[1][1]):
+        elif (len(skins16) == 1 and str(skins16[0][0]) == str(i.name)) or (len(skins16) > 1 and skins16[0][1] != skins16[1][1] and str(skins16[0][0]) == str(i.name)):
             hole16 = cell_highlight + str(i.hole16score) + cell_end
         else:
             hole16 = cell_start + str(i.hole16score) + cell_end
 	if i.hole17score == 0:
 	    hole17 = cell_start + cell_end
-        elif (len(skins17) == 1 and str(skins17[0][0]) == str(i.name)) or (len(skins17) > 1 and skins17[0][1] != skins17[1][1]):
+        elif (len(skins17) == 1 and str(skins17[0][0]) == str(i.name)) or (len(skins17) > 1 and skins17[0][1] != skins17[1][1] and str(skins17[0][0]) == str(i.name)):
             hole17 = cell_highlight + str(i.hole17score) + cell_end
         else:
             hole17 = cell_start + str(i.hole17score) + cell_end
 	if i.hole18score == 0:
 	    hole18 = cell_start + cell_end
-        elif (len(skins18) == 1 and str(skins18[0][0]) == str(i.name)) or (len(skins18) > 1 and skins18[0][1] != skins18[1][1]):
+        elif (len(skins18) == 1 and str(skins18[0][0]) == str(i.name)) or (len(skins18) > 1 and skins18[0][1] != skins18[1][1] and str(skins18[0][0]) == str(i.name)):
             hole18 = cell_highlight + str(i.hole18score) + cell_end
         else:
             hole18 = cell_start + str(i.hole18score) + cell_end
@@ -224,6 +224,8 @@ def scorecard(request, id):
     event = Events.objects.get(id=id)
     if request.method == 'POST':
         form = ScorecardForm(request.POST)
+        data = {'event': event} 
+        form(data)
         if form.is_valid():
             model_instance = form.save()
             return redirect('/')
