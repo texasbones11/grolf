@@ -3,10 +3,7 @@
 <html lang="en">
 <body>
 	<form method='post'>
-		{{form.name}}
-		<br></br>
-		{{form.tee}}
-                <br></br>
+		{% csrf_token %}
 		{{form}}
                 <br></br>
 		<button type="submit" class="btn btn-outline-dark"&gt>Submit</button>

@@ -4,4 +4,5 @@ from models import Leaderboard
 class ScorecardForm(forms.ModelForm):
     class Meta:
         model = Leaderboard
-        fields = ['event', 'name', 'tee']
+        fields = ['name', 'tee']
+        widgets = {'event': forms.HiddenInput()}

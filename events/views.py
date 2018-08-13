@@ -222,13 +222,15 @@ def leaderboard(request, id):
 def scorecard(request, id):
     eventid = id
     event = Events.objects.get(id=id)
+    leaderboard = Leaderboard.objects.filter(event__id=id)
     if request.method == 'POST':
         form = ScorecardForm(request.POST)
-        data = {'event': event} 
-        form(data)
         if form.is_valid():
-            model_instance = form.save()
-            return redirect('/')
+            page = form.save(commit=False)
+            page.event = event
+            page.save()
+            url = '/events/leaderboard/' + str(eventid)
+            return redirect(url)
     else:
         form = ScorecardForm()
     return render(request, "events/scorecard.html", {'form': form, 'eventid': eventid})
