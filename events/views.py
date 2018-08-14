@@ -86,6 +86,7 @@ def leaderboard(request, id):
     skins17.sort(key=lambda x: x[1])
     skins18.sort(key=lambda x: x[1])
     for i in leaderboard:
+        tee = cell_start + str(i.tee.teecolor) + cell_end
         name = cell_start + str(i.name) + cell_end
 	if i.hole1score == 0:
 	    hole1 = cell_start + cell_end
@@ -205,12 +206,14 @@ def leaderboard(request, id):
         hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
         hdcp = cell_start + str(hdcp_adj) + cell_end
         net = cell_start + str(out_total + in_total - hdcp_adj) + cell_end
-        row = "<tr>" + name + front + back + total + hdcp + net + "</tr>"
+        row = name + tee + front + back + total + hdcp + net
         arr.append([in_total + out_total,row])
     #sort the leaderboard
     arr.sort(key=lambda x: x[0])
+    rank = 0
     for line in arr:
-        output += line[1]
+        rank += 1
+        output += '<tr>' + '<td>' + str(rank)+ '</td>' + line[1] + '</tr>'
     context = {
             'front_par': front_par,
             'back_par': back_par,
@@ -226,13 +229,13 @@ def scorecard(request, id):
     eventid = id
     event = Events.objects.get(id=id)
     leaderboard = Leaderboard.objects.filter(event__id=id)
-    loaded_list = leaderboard.values('id', 'name', 'tee')
+    loaded_list = leaderboard.values('id', 'name')
     print(len(loaded_list))
     for x in range(len(loaded_list)):
         print(loaded_list[x]['name'])
     for x in loaded_list:
         print(x)
-    SCFormset = modelformset_factory(Leaderboard, fields=('name','tee','hole1score','hole2score','hole3score','hole4score'), extra=0)
+    SCFormset = modelformset_factory(Leaderboard, fields=('name','hole1score','hole2score','hole3score','hole4score'), extra=0)
     if request.method == 'POST':
         formset = SCFormset(request.POST)
         if formset.is_valid():
@@ -243,5 +246,5 @@ def scorecard(request, id):
             url = '/events/leaderboard/' + str(eventid)
             return redirect(url)
     else:
-        formset = SCFormset(initial=[{'id': loaded_list[x]['id'],'name': loaded_list[x]['name'],'tee': loaded_list[x]['tee']} for x in range(len(loaded_list))], queryset=leaderboard)
+        formset = SCFormset(initial=[{'id': loaded_list[x]['id'],'name': loaded_list[x]['name']} for x in range(len(loaded_list))], queryset=leaderboard)
     return render(request, "events/scorecard.html", {'formset': formset, 'eventid': eventid})
