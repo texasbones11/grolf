@@ -3,11 +3,34 @@
 <html lang="en">
 <body>
 	<form method='post'>
+		<div>
+		<table class="table table-striped">
+		<tbody>
+		<thread>
+		<tr>
+			<th>Name</th>
+			<th>Tee</th>
+			<th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+		</tr>
+		</thread>
 		{% csrf_token %}
 		{{ formset.management_form }}
 		{% for form in formset %}
-		{{form.as_p}}<br>
+		<tr>
+			<td>{{form.name}}</td>
+			<td>{{form.tee}}</td>
+			<td>{{form.hole1score}}</td>
+			<td>{{form.hole2score}}</td>
+			<td>{{form.hole3score}}</td>
+			<td>{{form.hole4score}}</td>
+		</tr>
 		{% endfor %}
+		</tbody>
+		</table>
+		</div>
                 <br></br>
 		<button type="submit" class="btn btn-outline-dark"&gt>Submit</button>
 		<a href="/events/leaderboard/{{eventid}}" class="btn btn-outline-dark" role="button">Go Back</a>

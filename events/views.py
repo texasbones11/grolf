@@ -232,7 +232,7 @@ def scorecard(request, id):
         print(loaded_list[x]['name'])
     for x in loaded_list:
         print(x)
-    SCFormset = modelformset_factory(Leaderboard, fields=('name','tee','hole1score'), extra=0)
+    SCFormset = modelformset_factory(Leaderboard, fields=('name','tee','hole1score','hole2score','hole3score','hole4score'), extra=0)
     if request.method == 'POST':
         formset = SCFormset(request.POST)
         if formset.is_valid():
