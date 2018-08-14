@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from models import Events, Leaderboard, GolfCourse
 from django.db.models import F
 from forms import ScorecardForm
+from django.forms.formsets import formset_factory
+
 # Create your views here.
 def index(request):
         events = Events.objects.all().order_by('-date')[:10]
@@ -223,14 +225,22 @@ def scorecard(request, id):
     eventid = id
     event = Events.objects.get(id=id)
     leaderboard = Leaderboard.objects.filter(event__id=id)
+    loaded_list = leaderboard.values('id', 'name', 'tee')
+    print(len(loaded_list))
+    for x in range(len(loaded_list)):
+        print(loaded_list[x]['name'])
+    for x in loaded_list:
+        print(x)
+    SCFormset = formset_factory(ScorecardForm, extra=0)
     if request.method == 'POST':
-        form = ScorecardForm(request.POST)
-        if form.is_valid():
-            page = form.save(commit=False)
-            page.event = event
-            page.save()
+        formset = SCFormset(request.POST)
+        if formset.is_valid():
+            for form in formset:
+                page = form.save(commit=False)
+                page.event = event
+                page.save()
             url = '/events/leaderboard/' + str(eventid)
             return redirect(url)
     else:
-        form = ScorecardForm()
-    return render(request, "events/scorecard.html", {'form': form, 'eventid': eventid})
+        formset = SCFormset(initial=[{'name': loaded_list[x]['name']} for x in range(len(loaded_list))])
+    return render(request, "events/scorecard.html", {'formset': formset, 'eventid': eventid})

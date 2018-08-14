@@ -4,7 +4,10 @@
 <body>
 	<form method='post'>
 		{% csrf_token %}
-		{{form}}
+		{{ formset.management_form }}
+		{% for form in formset %}
+		{{form.as_p}}<br>
+		{% endfor %}
                 <br></br>
 		<button type="submit" class="btn btn-outline-dark"&gt>Submit</button>
 		<a href="/events/leaderboard/{{eventid}}" class="btn btn-outline-dark" role="button">Go Back</a>
