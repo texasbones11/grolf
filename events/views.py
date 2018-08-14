@@ -3,6 +3,7 @@ from models import Events, Leaderboard, GolfCourse
 from django.db.models import F
 from forms import ScorecardForm
 from django.forms.formsets import formset_factory
+from django.forms import modelformset_factory
 
 # Create your views here.
 def index(request):
@@ -231,7 +232,7 @@ def scorecard(request, id):
         print(loaded_list[x]['name'])
     for x in loaded_list:
         print(x)
-    SCFormset = formset_factory(ScorecardForm, extra=0)
+    SCFormset = modelformset_factory(Leaderboard, fields=('name','tee','hole1score'), extra=0)
     if request.method == 'POST':
         formset = SCFormset(request.POST)
         if formset.is_valid():
@@ -242,5 +243,5 @@ def scorecard(request, id):
             url = '/events/leaderboard/' + str(eventid)
             return redirect(url)
     else:
-        formset = SCFormset(initial=[{'name': loaded_list[x]['name'],'tee': loaded_list[x]['tee']} for x in range(len(loaded_list))])
+        formset = SCFormset(initial=[{'id': loaded_list[x]['id'],'name': loaded_list[x]['name'],'tee': loaded_list[x]['tee']} for x in range(len(loaded_list))], queryset=leaderboard)
     return render(request, "events/scorecard.html", {'formset': formset, 'eventid': eventid})

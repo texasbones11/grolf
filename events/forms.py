@@ -5,4 +5,4 @@ class ScorecardForm(forms.ModelForm):
     class Meta:
         model = Leaderboard
         fields = ['name', 'tee']
-        widgets = {'event': forms.HiddenInput()}
+        widgets = {'event': forms.HiddenInput(), 'id': forms.HiddenInput()}
