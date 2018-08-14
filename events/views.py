@@ -242,5 +242,5 @@ def scorecard(request, id):
             url = '/events/leaderboard/' + str(eventid)
             return redirect(url)
     else:
-        formset = SCFormset(initial=[{'name': loaded_list[x]['name']} for x in range(len(loaded_list))])
+        formset = SCFormset(initial=[{'name': loaded_list[x]['name'],'tee': loaded_list[x]['tee']} for x in range(len(loaded_list))])
     return render(request, "events/scorecard.html", {'formset': formset, 'eventid': eventid})
