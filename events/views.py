@@ -11,6 +11,7 @@ def index(request):
 
         context = {
                 'events': events
+
         }
 	return render(request, 'events/index.html', context)
 
@@ -18,7 +19,6 @@ def leaderboard(request, id):
     event = Events.objects.get(id=id)
     golfcourse = event.title
     leaderboard = Leaderboard.objects.filter(event__id=id)
-    #player = leaderboard.name
     output = ''
     front_par = golfcourse.hole1par + golfcourse.hole2par + golfcourse.hole3par + golfcourse.hole4par + golfcourse.hole5par + golfcourse.hole6par + golfcourse.hole7par + golfcourse.hole8par + golfcourse.hole9par
     back_par = golfcourse.hole10par + golfcourse.hole11par + golfcourse.hole12par + golfcourse.hole13par + golfcourse.hole14par + golfcourse.hole15par + golfcourse.hole16par + golfcourse.hole17par + golfcourse.hole18par
@@ -88,6 +88,7 @@ def leaderboard(request, id):
     for i in leaderboard:
         tee = cell_start + str(i.tee.teecolor) + cell_end
         name = cell_start + str(i.name) + cell_end
+        checkbox = '<td>'+'<label class="checkbox-inline"><input type ="checkbox" name="dl" value="'+str(i.name)+'"></label>'+'</td>'
 	if i.hole1score == 0:
 	    hole1 = cell_start + cell_end
         elif (len(skins1) == 1 and str(skins1[0][0]) == str(i.name)) or (len(skins1) > 1 and skins1[0][1] != skins1[1][1] and str(skins1[0][0]) == str(i.name)):
@@ -206,7 +207,7 @@ def leaderboard(request, id):
         hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
         hdcp = cell_start + str(hdcp_adj) + cell_end
         net = cell_start + str(out_total + in_total - hdcp_adj) + cell_end
-        row = name + tee + front + back + total + hdcp + net
+        row = checkbox + name + tee + front + back + total + hdcp + net
         arr.append([in_total + out_total,row])
     #sort the leaderboard
     arr.sort(key=lambda x: x[0])
@@ -214,6 +215,11 @@ def leaderboard(request, id):
     for line in arr:
         rank += 1
         output += '<tr>' + '<td>' + str(rank)+ '</td>' + line[1] + '</tr>'
+    if request.method == 'POST':
+        dlist = request.POST.getlist('dl')
+        print(dlist)
+        request.session['dl'] = dlist
+        return redirect('/events/scorecard/'+ id)
     context = {
             'front_par': front_par,
             'back_par': back_par,
@@ -229,13 +235,18 @@ def scorecard(request, id):
     eventid = id
     event = Events.objects.get(id=id)
     leaderboard = Leaderboard.objects.filter(event__id=id)
-    loaded_list = leaderboard.values('id', 'name')
+    z = request.session['dl']
+    loaded_list = [] 
+    tester = leaderboard.values('id', 'name')
+    selected_leaders = Leaderboard.objects.filter(name__name__in=z)
+    for guy in z:
+        man = list(Leaderboard.objects.filter(name__name=guy).values('id', 'name'))
+        loaded_list += man
     print(len(loaded_list))
     for x in range(len(loaded_list)):
+        print("test")
         print(loaded_list[x]['name'])
-    for x in loaded_list:
-        print(x)
-    SCFormset = modelformset_factory(Leaderboard, fields=('name','hole1score','hole2score','hole3score','hole4score'), extra=0)
+    SCFormset = modelformset_factory(Leaderboard, fields=('id','name','hole1score','hole2score','hole3score','hole4score'), extra=0)
     if request.method == 'POST':
         formset = SCFormset(request.POST)
         if formset.is_valid():
@@ -246,5 +257,9 @@ def scorecard(request, id):
             url = '/events/leaderboard/' + str(eventid)
             return redirect(url)
     else:
-        formset = SCFormset(initial=[{'id': loaded_list[x]['id'],'name': loaded_list[x]['name']} for x in range(len(loaded_list))], queryset=leaderboard)
+        formset = SCFormset(initial=[{'id': loaded_list[x]['id'],'name': loaded_list[x]['name']} for x in range(len(loaded_list))], queryset=selected_leaders)
     return render(request, "events/scorecard.html", {'formset': formset, 'eventid': eventid})
+
+def useradmin(request):
+    context = "test"
+    return render(request, "events/useradmin.html", {'context': context})
