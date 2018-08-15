@@ -9,7 +9,7 @@
 		<thread>
 		<tr>
 			<th>Name</th>
-			<th>Hole 1 Score</th>
+			<th>Hole 8 Score</th>
 			<th></th>
 		</tr>
 		</thread>
@@ -18,7 +18,7 @@
 		{% for form in formset %}
 		<tr>
 			<td>{{form.name}}</td>
-			<td>{{form.hole1score}}</td>
+			<td>{{form.hole8score}}</td>
 			<td>{{form.id}}</td>
 		</tr>
 		{% endfor %}
@@ -26,8 +26,10 @@
 		</table>
 		</div>
                 <br></br>
-		<button type="submit" name="value" value="2" class="btn btn-outline-dark"&gt>Next Hole</button>
-                <button type="submit" name="leaderboard" class="btn btn-outline-dark float-right"&gt>Leaderboard</button>
+		<button type="submit" name="value" value="9" class="btn btn-outline-dark"&gt>Next Hole</button>
+		<button type="submit" name="value" value="7" class="btn btn-outline-dark"&gt>Previous Hole</button>
+		<button type="submit" name="leaderboard" class="btn btn-outline-dark float-right"&gt>Leaderboard</button>
+
 	</form>
 </body>
 </html>
