@@ -9,7 +9,7 @@
 		<thread>
 		<tr>
 			<th>Name</th>
-			<th>1</th>
+			<th>2</th>
 		</tr>
 		</thread>
 		{% csrf_token %}
@@ -17,7 +17,7 @@
 		{% for form in formset %}
 		<tr>
 			<td>{{form.name}}</td>
-			<td>{{form.hole1score}}</td>
+			<td>{{form.hole2score}}</td>
 			<td>{{form.id}}</td>
 		</tr>
 		{% endfor %}
@@ -25,8 +25,9 @@
 		</table>
 		</div>
                 <br></br>
-		<button type="submit" name="value" value="2" class="btn btn-outline-dark"&gt>Next Hole</button>
-                <button type="submit" name="leaderboard" class="btn btn-outline-dark"&gt>Leaderboard</button>
+		<button type="submit" name="value" value="" class="btn btn-outline-dark"&gt>Previous Hole</button>
+		<button type="submit" name="value" value="3" class="btn btn-outline-dark"&gt>Next Hole</button>
+		<a href="/events/leaderboard/{{eventid}}" class="btn btn-outline-dark" role="button">Leaderboard</a>
 	</form>
 </body>
 </html>

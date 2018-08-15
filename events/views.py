@@ -219,6 +219,7 @@ def leaderboard(request, id):
         dlist = request.POST.getlist('dl')
         print(dlist)
         request.session['dl'] = dlist
+        request.session['value'] = ""
         return redirect('/events/scorecard/'+ id)
     context = {
             'front_par': front_par,
@@ -232,6 +233,7 @@ def leaderboard(request, id):
     return render(request, 'events/leaderboard.html', context)
 
 def scorecard(request, id):
+    next_page = request.session['value']
     eventid = id
     event = Events.objects.get(id=id)
     leaderboard = Leaderboard.objects.filter(event__id=id)
@@ -246,19 +248,23 @@ def scorecard(request, id):
     for x in range(len(loaded_list)):
         print("test")
         print(loaded_list[x]['name'])
-    SCFormset = modelformset_factory(Leaderboard, fields=('id','name','hole1score','hole2score','hole3score','hole4score'), extra=0)
+    SCFormset = modelformset_factory(Leaderboard, fields=('id','name','hole1score','hole2score','hole3score','hole4score', 'hole5score', 'hole6score', 'hole7score', 'hole8score','hole9score','hole10score','hole11score','hole12score', 'hole13score','hole14score','hole15score','hole16score', 'hole17score', 'hole18score'), extra=0)
+    if request.method == 'POST' and 'leaderboard' in request.POST:
+        return redirect('/events/leaderboard/' + str(eventid))
     if request.method == 'POST':
+        next_page = request.POST.get('value')
+        request.session['value'] = next_page
         formset = SCFormset(request.POST)
         if formset.is_valid():
             for form in formset:
                 page = form.save(commit=False)
                 page.event = event
                 page.save()
-            url = '/events/leaderboard/' + str(eventid)
+            url = '/events/scorecard'+str(next_page)+'/' + str(eventid)
             return redirect(url)
     else:
         formset = SCFormset(initial=[{'id': loaded_list[x]['id'],'name': loaded_list[x]['name']} for x in range(len(loaded_list))], queryset=selected_leaders)
-    return render(request, "events/scorecard.html", {'formset': formset, 'eventid': eventid})
+    return render(request, 'events/scorecard'+str(next_page)+'.html', {'formset': formset, 'eventid': eventid})
 
 def useradmin(request):
     context = "test"
