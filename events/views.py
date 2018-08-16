@@ -215,7 +215,6 @@ def leaderboard(request, id):
     count = 0
     prev = 0
     for line in arr:
-        print(line)
         count += 1
         if line[0] != prev:
             rank = count

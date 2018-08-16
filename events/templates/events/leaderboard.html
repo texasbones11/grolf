@@ -1,108 +1,127 @@
 {% extends 'events/layout.html' %}
 {% block content %}
-<form method='POST'>
-{% csrf_token %}
-<div>
-{{event.title}}
-{{event.date}}
-	<table class="table table-striped">
-		<thread>
-			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th>Hole</th>
-				<th>1</th>
-                                <th>2</th>
-                                <th>3</th>
-                                <th>4</th>
-                                <th>5</th>
-                                <th>6</th>
-                                <th>7</th>
-                                <th>8</th>
-				<th>9</th>
-				<th>OUT</th>
-                                <th>10</th>
-				<th>11</th>
-                                <th>12</th>
-                                <th>13</th>
-                                <th>14</th>
-                                <th>15</th>
-                                <th>16</th>
-                                <th>17</th>
-                                <th>18</th>
-                                <th>IN</th>
-				<th>GROSS</th>
-				<th>HCP</th>
-				<th>NET</th>
-			</tr>
-		</thread>
-		<tbody>
-			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-                                <th>Par</th>
-				<td>{{golfcourse.hole1par}}</td>
-				<td>{{golfcourse.hole2par}}</td>
-				<td>{{golfcourse.hole3par}}</td>
-				<td>{{golfcourse.hole4par}}</td>
-				<td>{{golfcourse.hole5par}}</td>
-				<td>{{golfcourse.hole6par}}</td>
-				<td>{{golfcourse.hole7par}}</td>
-				<td>{{golfcourse.hole8par}}</td>
-				<td>{{golfcourse.hole9par}}</td>
-				<td>{{front_par}}</td>
-				<td>{{golfcourse.hole10par}}</td>
-				<td>{{golfcourse.hole11par}}</td>
-                                <td>{{golfcourse.hole12par}}</td>
-                                <td>{{golfcourse.hole13par}}</td>
-                                <td>{{golfcourse.hole14par}}</td>
-                                <td>{{golfcourse.hole15par}}</td>
-                                <td>{{golfcourse.hole16par}}</td>
-                                <td>{{golfcourse.hole17par}}</td>
-                                <td>{{golfcourse.hole18par}}</td>
-				<td>{{back_par}}</td>
-				<td>{{total_par}}</td>
-				<td></td>
-				<td></td>
-                        </tr>
-			<tr>
-                                <th>Rank</th>
-				<th>Score</th>
-				<th>Player</th>
-				<th>Tee</th>
-				<td>{{golfcourse.hole1handicap}}</td>
-				<td>{{golfcourse.hole2handicap}}</td>
-				<td>{{golfcourse.hole3handicap}}</td>
-				<td>{{golfcourse.hole4handicap}}</td>
-				<td>{{golfcourse.hole5handicap}}</td>
-				<td>{{golfcourse.hole6handicap}}</td>
-				<td>{{golfcourse.hole7handicap}}</td>
-				<td>{{golfcourse.hole8handicap}}</td>
-				<td>{{golfcourse.hole9handicap}}</td>
-                                <td></td>
-				<td>{{golfcourse.hole10handicap}}</td>
-				<td>{{golfcourse.hole11handicap}}</td>
-                                <td>{{golfcourse.hole12handicap}}</td>
-                                <td>{{golfcourse.hole13handicap}}</td>
-                                <td>{{golfcourse.hole14handicap}}</td>
-                                <td>{{golfcourse.hole15handicap}}</td>
-                                <td>{{golfcourse.hole16handicap}}</td>
-                                <td>{{golfcourse.hole17handicap}}</td>
-                                <td>{{golfcourse.hole18handicap}}</td>
-				<td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                        </tr>
-			<tr>
-				{{output|safe}}
-		</tr>
-		</tbody>
-	</table>
+<html lang="en">
+<body>
+<div class="container">
+<ul class="nav nav-tabs">
+	<li class="nav-item">
+		<a class="nav-link active" data-toggle="tab" href="#gross">Gross</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" data-toggle="tab" href="#net">Net</a>
+	</li>
+</ul>
+<div class="tab-content">
+	<form method='POST'>
+		{% csrf_token %}
+		<div class="tab-content">
+			<div class="tab-pane container active" id="gross">
+				<table class="table table-striped table-bordered">
+					<thead class="thead-dark">
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th>Hole</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+							<th>4</th>
+							<th>5</th>
+							<th>6</th>
+							<th>7</th>
+							<th>8</th>
+							<th>9</th>
+							<th>OUT</th>
+							<th>10</th>
+							<th>11</th>
+							<th>12</th>
+							<th>13</th>
+							<th>14</th>
+							<th>15</th>
+							<th>16</th>
+							<th>17</th>
+							<th>18</th>
+							<th>IN</th>
+							<th>GROSS</th>
+							<th>HCP</th>
+							<th>NET</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th>Par</th>
+							<td>{{golfcourse.hole1par}}</td>
+							<td>{{golfcourse.hole2par}}</td>
+							<td>{{golfcourse.hole3par}}</td>
+							<td>{{golfcourse.hole4par}}</td>
+							<td>{{golfcourse.hole5par}}</td>
+							<td>{{golfcourse.hole6par}}</td>
+							<td>{{golfcourse.hole7par}}</td>
+							<td>{{golfcourse.hole8par}}</td>
+							<td>{{golfcourse.hole9par}}</td>
+							<td>{{front_par}}</td>
+							<td>{{golfcourse.hole10par}}</td>
+							<td>{{golfcourse.hole11par}}</td>
+							<td>{{golfcourse.hole12par}}</td>
+							<td>{{golfcourse.hole13par}}</td>
+							<td>{{golfcourse.hole14par}}</td>
+							<td>{{golfcourse.hole15par}}</td>
+							<td>{{golfcourse.hole16par}}</td>
+							<td>{{golfcourse.hole17par}}</td>
+							<td>{{golfcourse.hole18par}}</td>
+							<td>{{back_par}}</td>
+							<td>{{total_par}}</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th>Rank</th>
+							<th>Score</th>
+							<th>Player</th>
+							<th>Tee</th>
+							<td>{{golfcourse.hole1handicap}}</td>
+							<td>{{golfcourse.hole2handicap}}</td>
+							<td>{{golfcourse.hole3handicap}}</td>
+							<td>{{golfcourse.hole4handicap}}</td>
+							<td>{{golfcourse.hole5handicap}}</td>
+							<td>{{golfcourse.hole6handicap}}</td>
+							<td>{{golfcourse.hole7handicap}}</td>
+							<td>{{golfcourse.hole8handicap}}</td>
+							<td>{{golfcourse.hole9handicap}}</td>
+							<td></td>
+							<td>{{golfcourse.hole10handicap}}</td>
+							<td>{{golfcourse.hole11handicap}}</td>
+							<td>{{golfcourse.hole12handicap}}</td>
+							<td>{{golfcourse.hole13handicap}}</td>
+							<td>{{golfcourse.hole14handicap}}</td>
+							<td>{{golfcourse.hole15handicap}}</td>
+							<td>{{golfcourse.hole16handicap}}</td>
+							<td>{{golfcourse.hole17handicap}}</td>
+							<td>{{golfcourse.hole18handicap}}</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							{{output|safe}}
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="tab-pane container fade" id="net">
+				<p>Net Leaderboard here</p>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-outline-dark"&gt>Keep Score</button>
+		<a href="/events" class="btn btn-outline-dark" role="button">Go Back</a>
+	</form>
 </div>
-<button type="submit" class="btn btn-outline-dark"&gt>Keep Score</button>
-<a href="/events" class="btn btn-outline-dark" role="button">Go Back</a>
-</form>
+</div>
+</body>
+</html>
 {% endblock %}
