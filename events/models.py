@@ -68,6 +68,7 @@ class Player(models.Model):
 class Events(models.Model):
     title = models.ForeignKey(GolfCourse, on_delete=models.CASCADE)
     date = models.DateField(default=date.today)
+    lock = models.BooleanField(default=False)
     def __str__(self):
         return str(self.title) + " " + str(self.date)
     class Meta:

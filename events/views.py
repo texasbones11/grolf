@@ -233,7 +233,8 @@ def leaderboard(request, id):
             'event': event,
             'leaderboard': leaderboard,
             'golfcourse': golfcourse,
-            'output': output
+            'output_gross': output,
+            'output_net': output,
     }
     return render(request, 'events/leaderboard.html', context)
 
