@@ -211,9 +211,15 @@ def leaderboard(request, id):
         arr.append([in_total + out_total,row])
     #sort the leaderboard
     arr.sort(key=lambda x: x[0])
-    rank = 0
+    rank = 1
+    count = 0
+    prev = 0
     for line in arr:
-        rank += 1
+        print(line)
+        count += 1
+        if line[0] != prev:
+            rank = count
+        prev = line[0]
         output += '<tr>' + '<td>' + str(rank)+ '</td>' + line[1] + '</tr>'
     if request.method == 'POST':
         dlist = request.POST.getlist('dl')
@@ -249,8 +255,6 @@ def scorecard(request, id):
         print("test")
         print(loaded_list[x]['name'])
     SCFormset = modelformset_factory(Leaderboard, fields=('id','name','hole1score','hole2score','hole3score','hole4score', 'hole5score', 'hole6score', 'hole7score', 'hole8score','hole9score','hole10score','hole11score','hole12score', 'hole13score','hole14score','hole15score','hole16score', 'hole17score', 'hole18score'), extra=0)
-    if request.method == 'POST' and 'leaderboard' in request.POST:
-        return redirect('/events/leaderboard/' + str(eventid))
     if request.method == 'POST':
         next_page = request.POST.get('value')
         request.session['value'] = next_page
@@ -260,7 +264,10 @@ def scorecard(request, id):
                 page = form.save(commit=False)
                 page.event = event
                 page.save()
-            url = '/events/scorecard'+str(next_page)+'/' + str(eventid)
+            if 'leaderboard' in request.POST:
+                url = '/events/leaderboard/' + str(eventid)
+            else:
+                url = '/events/scorecard'+str(next_page)+'/' + str(eventid)
             return redirect(url)
     else:
         formset = SCFormset(initial=[{'id': loaded_list[x]['id'],'name': loaded_list[x]['name']} for x in range(len(loaded_list))], queryset=selected_leaders)
