@@ -20,13 +20,16 @@ def leaderboard(request, id):
     golfcourse = event.title
     leaderboard = Leaderboard.objects.filter(event__id=id)
     output = ''
+    g_output = ''
     front_par = golfcourse.hole1par + golfcourse.hole2par + golfcourse.hole3par + golfcourse.hole4par + golfcourse.hole5par + golfcourse.hole6par + golfcourse.hole7par + golfcourse.hole8par + golfcourse.hole9par
     back_par = golfcourse.hole10par + golfcourse.hole11par + golfcourse.hole12par + golfcourse.hole13par + golfcourse.hole14par + golfcourse.hole15par + golfcourse.hole16par + golfcourse.hole17par + golfcourse.hole18par
     total_par = front_par + back_par
     arr = []
+    g_arr = []
     cell_start = "<td>"
     cell_highlight = "<td class=table-success>"
     cell_end = "</td>"
+
     skins1, skins2, skins3, skins4, skins5, skins6, skins7, skins8, skins9, skins10, skins11, skins12, skins13, skins14, skins15, skins16, skins17, skins18 = ([] for i in range(18))
     for i in leaderboard:
         name = str(i.name)
@@ -143,9 +146,6 @@ def leaderboard(request, id):
             hole9 = cell_highlight + str(i.hole9score) + cell_end
         else:
             hole9 = cell_start + str(i.hole9score) + cell_end
-        out_total = i.hole1score + i.hole2score + i.hole3score + i.hole4score + i.hole5score + i.hole6score + i.hole7score + i.hole8score + i.hole9score
-	out_score = cell_start + str(out_total) + cell_end
-        front = hole1 + hole2 + hole3 + hole4 + hole5 + hole6 + hole7 + hole8 + hole9 + out_score
 	if i.hole10score == 0:
 	    hole10 = cell_start + cell_end
         elif (len(skins10) == 1 and str(skins10[0][0]) == str(i.name)) or (len(skins10) > 1 and skins10[0][1] != skins10[1][1] and str(skins10[0][0]) == str(i.name)):
@@ -200,14 +200,15 @@ def leaderboard(request, id):
             hole18 = cell_highlight + str(i.hole18score) + cell_end
         else:
             hole18 = cell_start + str(i.hole18score) + cell_end
+        out_total = i.hole1score + i.hole2score + i.hole3score + i.hole4score + i.hole5score + i.hole6score + i.hole7score + i.hole8score + i.hole9score
+	out_score = cell_start + str(out_total) + cell_end
+        front = hole1 + hole2 + hole3 + hole4 + hole5 + hole6 + hole7 + hole8 + hole9 + out_score
         in_total = i.hole10score + i.hole11score + i.hole12score + i.hole13score + i.hole14score + i.hole15score + i.hole16score + i.hole17score + i.hole18score
         in_score = cell_start + str(in_total) + cell_end
         back = hole10 + hole11 + hole12 + hole13 + hole14 + hole15 + hole16 + hole17 + hole18 + in_score
         total = cell_start + str(out_total + in_total) + cell_end
         hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
-        hdcp = cell_start + str(hdcp_adj) + cell_end
-        net = cell_start + str(out_total + in_total - hdcp_adj) + cell_end
-        row = checkbox + name + tee + front + back + total + hdcp + net
+        row = checkbox + name + tee + front + back + total
         arr.append([in_total + out_total,row])
     #sort the leaderboard
     arr.sort(key=lambda x: x[0])
@@ -220,6 +221,475 @@ def leaderboard(request, id):
             rank = count
         prev = line[0]
         output += '<tr>' + '<td>' + str(rank)+ '</td>' + line[1] + '</tr>'
+
+    g_skins1, g_skins2, g_skins3, g_skins4, g_skins5, g_skins6, g_skins7, g_skins8, g_skins9, g_skins10, g_skins11, g_skins12, g_skins13, g_skins14, g_skins15, g_skins16, g_skins17, g_skins18 = ([] for i in range(18))
+    for i in leaderboard:
+        name = str(i.name)
+	hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
+	score_adj = 0
+        if i.hole1score != 0:
+	    score_adj = i.hole1score
+	    if (hdcp_adj - 18) / golfcourse.hole1handicap >= 1:
+		score_adj = i.hole1score - 2
+	    elif (hdcp_adj / golfcourse.hole1handicap) >= 1:
+		score_adj = i.hole1score - 1
+	    elif (hdcp_adj / golfcourse.hole1handicap) <= -1:
+		score_adj = i.hole1score + 1
+            g_skins1.append([name,score_adj])
+        if i.hole2score != 0:
+	    score_adj = i.hole2score
+	    if (hdcp_adj - 18) / golfcourse.hole2handicap >= 1:
+		score_adj = i.hole2score - 2
+	    elif (hdcp_adj / golfcourse.hole2handicap) >= 1:
+		score_adj = i.hole2score - 1
+	    elif (hdcp_adj / golfcourse.hole2handicap) <= -1:
+		score_adj = i.hole2score + 1
+            g_skins2.append([name,score_adj])
+        if i.hole3score != 0:
+	    score_adj = i.hole3score
+	    if (hdcp_adj - 18) / golfcourse.hole3handicap >= 1:
+		score_adj = i.hole3score - 2
+	    elif (hdcp_adj / golfcourse.hole3handicap) >= 1:
+		score_adj = i.hole3score - 1
+	    elif (hdcp_adj / golfcourse.hole3handicap) <= -1:
+		score_adj = i.hole3score + 1
+            g_skins3.append([name,score_adj])
+        if i.hole4score != 0:
+	    score_adj = i.hole4score
+	    if (hdcp_adj - 18) / golfcourse.hole4handicap >= 1:
+		score_adj = i.hole4score - 2
+	    elif (hdcp_adj / golfcourse.hole4handicap) >= 1:
+		score_adj = i.hole4score - 1
+	    elif (hdcp_adj / golfcourse.hole4handicap) <= -1:
+		score_adj = i.hole4score + 1
+            g_skins4.append([name,score_adj])
+        if i.hole5score != 0:
+	    score_adj = i.hole5score
+	    if (hdcp_adj - 18) / golfcourse.hole5handicap >= 1:
+		score_adj = i.hole5score - 2
+	    elif (hdcp_adj / golfcourse.hole5handicap) >= 1:
+		score_adj = i.hole5score - 1
+	    elif (hdcp_adj / golfcourse.hole5handicap) <= -1:
+		score_adj = i.hole5score + 1
+            g_skins5.append([name,score_adj])
+        if i.hole6score != 0:
+	    score_adj = i.hole6score
+	    if (hdcp_adj - 18) / golfcourse.hole6handicap >= 1:
+		score_adj = i.hole6score - 2
+	    elif (hdcp_adj / golfcourse.hole6handicap) >= 1:
+		score_adj = i.hole6score - 1
+	    elif (hdcp_adj / golfcourse.hole6handicap) <= -1:
+		score_adj = i.hole6score + 1
+            g_skins6.append([name,score_adj])
+        if i.hole7score != 0:
+	    score_adj = i.hole7score
+	    if (hdcp_adj - 18) / golfcourse.hole7handicap >= 1:
+		score_adj = i.hole7score - 2
+	    elif (hdcp_adj / golfcourse.hole7handicap) >= 1:
+		score_adj = i.hole7score - 1
+	    elif (hdcp_adj / golfcourse.hole7handicap) <= -1:
+		score_adj = i.hole7score + 1
+            g_skins7.append([name,score_adj])
+        if i.hole8score != 0:
+	    score_adj = i.hole8score
+	    if (hdcp_adj - 18) / golfcourse.hole8handicap >= 1:
+		score_adj = i.hole8score - 2
+	    elif (hdcp_adj / golfcourse.hole8handicap) >= 1:
+		score_adj = i.hole8score - 1
+	    elif (hdcp_adj / golfcourse.hole8handicap) <= -1:
+		score_adj = i.hole8score + 1
+            g_skins8.append([name,score_adj])
+        if i.hole9score != 0:
+	    score_adj = i.hole9score
+	    if (hdcp_adj - 18) / golfcourse.hole9handicap >= 1:
+		score_adj = i.hole9score - 2
+	    elif (hdcp_adj / golfcourse.hole9handicap) >= 1:
+		score_adj = i.hole9score - 1
+	    elif (hdcp_adj / golfcourse.hole9handicap) <= -1:
+		score_adj = i.hole9score + 1
+            g_skins9.append([name,score_adj])
+        if i.hole10score != 0:
+	    score_adj = i.hole10score
+	    if (hdcp_adj - 18) / golfcourse.hole10handicap >= 1:
+		score_adj = i.hole10score - 2
+	    elif (hdcp_adj / golfcourse.hole10handicap) >= 1:
+		score_adj = i.hole10score - 1
+	    elif (hdcp_adj / golfcourse.hole10handicap) <= -1:
+		score_adj = i.hole10score + 1
+            g_skins10.append([name,score_adj])
+        if i.hole11score != 0:
+	    score_adj = i.hole11score
+	    if (hdcp_adj - 18) / golfcourse.hole11handicap >= 1:
+		score_adj = i.hole11score - 2
+	    elif (hdcp_adj / golfcourse.hole11handicap) >= 1:
+		score_adj = i.hole11score - 1
+	    elif (hdcp_adj / golfcourse.hole11handicap) <= -1:
+		score_adj = i.hole11score + 1
+            g_skins11.append([name,score_adj])
+        if i.hole12score != 0:
+	    score_adj = i.hole12score
+	    if (hdcp_adj - 18) / golfcourse.hole12handicap >= 1:
+		score_adj = i.hole12score - 2
+	    elif (hdcp_adj / golfcourse.hole12handicap) >= 1:
+		score_adj = i.hole12score - 1
+	    elif (hdcp_adj / golfcourse.hole12handicap) <= -1:
+		score_adj = i.hole12score + 1
+            g_skins12.append([name,score_adj])
+        if i.hole13score != 0:
+	    score_adj = i.hole13score
+	    if (hdcp_adj - 18) / golfcourse.hole13handicap >= 1:
+		score_adj = i.hole13score - 2
+	    elif (hdcp_adj / golfcourse.hole13handicap) >= 1:
+		score_adj = i.hole13score - 1
+	    elif (hdcp_adj / golfcourse.hole13handicap) <= -1:
+		score_adj = i.hole13score + 1
+            g_skins13.append([name,score_adj])
+        if i.hole14score != 0:
+	    score_adj = i.hole14score
+	    if (hdcp_adj - 18) / golfcourse.hole14handicap >= 1:
+		score_adj = i.hole14score - 2
+	    elif (hdcp_adj / golfcourse.hole14handicap) >= 1:
+		score_adj = i.hole14score - 1
+	    elif (hdcp_adj / golfcourse.hole14handicap) <= -1:
+		score_adj = i.hole14score + 1
+            g_skins14.append([name,score_adj])
+        if i.hole15score != 0:
+	    score_adj = i.hole15score
+	    if (hdcp_adj - 18) / golfcourse.hole15handicap >= 1:
+		score_adj = i.hole15score - 2
+	    elif (hdcp_adj / golfcourse.hole15handicap) >= 1:
+		score_adj = i.hole15score - 1
+	    elif (hdcp_adj / golfcourse.hole15handicap) <= -1:
+		score_adj = i.hole15score + 1
+            g_skins15.append([name,score_adj])
+        if i.hole16score != 0:
+	    score_adj = i.hole16score
+	    if (hdcp_adj - 18) / golfcourse.hole16handicap >= 1:
+		score_adj = i.hole16score - 2
+	    elif (hdcp_adj / golfcourse.hole16handicap) >= 1:
+		score_adj = i.hole16score - 1
+	    elif (hdcp_adj / golfcourse.hole16handicap) <= -1:
+		score_adj = i.hole16score + 1
+            g_skins16.append([name,score_adj])
+        if i.hole17score != 0:
+	    score_adj = i.hole17score
+	    if (hdcp_adj - 18) / golfcourse.hole17handicap >= 1:
+		score_adj = i.hole17score - 2
+	    elif (hdcp_adj / golfcourse.hole17handicap) >= 1:
+		score_adj = i.hole17score - 1
+	    elif (hdcp_adj / golfcourse.hole17handicap) <= -1:
+		score_adj = i.hole17score + 1
+            g_skins17.append([name,score_adj])
+        if i.hole18score != 0:
+	    score_adj = i.hole18score
+	    if (hdcp_adj - 18) / golfcourse.hole18handicap >= 1:
+		score_adj = i.hole18score - 2
+	    elif (hdcp_adj / golfcourse.hole18handicap) >= 1:
+		score_adj = i.hole18score - 1
+	    elif (hdcp_adj / golfcourse.hole18handicap) <= -1:
+		score_adj = i.hole18score + 1
+            g_skins18.append([name,score_adj])
+    #sort all holes to find skins
+    g_skins1.sort(key=lambda x: x[1])
+    g_skins2.sort(key=lambda x: x[1])
+    g_skins3.sort(key=lambda x: x[1])
+    g_skins4.sort(key=lambda x: x[1])
+    g_skins5.sort(key=lambda x: x[1])
+    g_skins6.sort(key=lambda x: x[1])
+    g_skins7.sort(key=lambda x: x[1])
+    g_skins8.sort(key=lambda x: x[1])
+    g_skins9.sort(key=lambda x: x[1])
+    g_skins10.sort(key=lambda x: x[1])
+    g_skins11.sort(key=lambda x: x[1])
+    g_skins12.sort(key=lambda x: x[1])
+    g_skins13.sort(key=lambda x: x[1])
+    g_skins14.sort(key=lambda x: x[1])
+    g_skins15.sort(key=lambda x: x[1])
+    g_skins16.sort(key=lambda x: x[1])
+    g_skins17.sort(key=lambda x: x[1])
+    g_skins18.sort(key=lambda x: x[1])
+    for i in leaderboard:
+        tee = cell_start + str(i.tee.teecolor) + cell_end
+        name = cell_start + str(i.name) + cell_end
+        checkbox = '<td>'+'<label class="checkbox-inline"><input type ="checkbox" name="dl" value="'+str(i.name)+'"></label>'+'</td>'
+	hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
+        score_adj = i.hole1score
+        if (hdcp_adj - 18) / golfcourse.hole1handicap >= 1:
+	    score_adj = i.hole1score - 2
+        elif (hdcp_adj / golfcourse.hole1handicap) >= 1:
+	    score_adj = i.hole1score - 1
+        elif (hdcp_adj / golfcourse.hole1handicap) <= -1:
+	    score_adj = i.hole1score + 1
+	hole1_adj = score_adj
+	if i.hole1score == 0:
+	    g_hole1 = cell_start + cell_end
+        elif (len(g_skins1) == 1 and str(g_skins1[0][0]) == str(i.name)) or (len(g_skins1) > 1 and g_skins1[0][1] != g_skins1[1][1] and str(g_skins1[0][0]) == str(i.name)):
+            g_hole1 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole1 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole2score
+        if (hdcp_adj - 18) / golfcourse.hole2handicap >= 1:
+	    score_adj = i.hole2score - 2
+        elif (hdcp_adj / golfcourse.hole2handicap) >= 1:
+	    score_adj = i.hole2score - 1
+        elif (hdcp_adj / golfcourse.hole2handicap) <= -1:
+	    score_adj = i.hole2score + 1
+	hole2_adj = score_adj
+	if i.hole2score == 0:
+	    g_hole2 = cell_start + cell_end
+        elif (len(g_skins2) == 1 and str(g_skins2[0][0]) == str(i.name)) or (len(g_skins2) > 1 and g_skins2[0][1] != g_skins2[1][1] and str(g_skins2[0][0]) == str(i.name)):
+            g_hole2 = cell_highlight + str(score_adj) + cell_end
+            print("it works")
+        else:
+            g_hole2 = cell_start + str(score_adj) + cell_end
+            print("it doesn't work")
+        score_adj = i.hole3score
+        if (hdcp_adj - 18) / golfcourse.hole3handicap >= 1:
+	    score_adj = i.hole3score - 2
+        elif (hdcp_adj / golfcourse.hole3handicap) >= 1:
+	    score_adj = i.hole3score - 1
+        elif (hdcp_adj / golfcourse.hole3handicap) <= -1:
+	    score_adj = i.hole3score + 1
+	hole3_adj = score_adj
+	if i.hole3score == 0:
+	    g_hole3 = cell_start + cell_end
+        elif (len(g_skins3) == 1 and str(g_skins3[0][0]) == str(i.name)) or (len(g_skins3) > 1 and g_skins3[0][1] != g_skins3[1][1] and str(g_skins3[0][0]) == str(i.name)):
+            g_hole3 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole3 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole4score
+        if (hdcp_adj - 18) / golfcourse.hole4handicap >= 1:
+	    score_adj = i.hole4score - 2
+        elif (hdcp_adj / golfcourse.hole4handicap) >= 1:
+	    score_adj = i.hole4score - 1
+        elif (hdcp_adj / golfcourse.hole4handicap) <= -1:
+	    score_adj = i.hole4score + 1
+	hole4_adj = score_adj
+	if i.hole4score == 0:
+	    g_hole4 = cell_start + cell_end
+        elif (len(g_skins4) == 1 and str(g_skins4[0][0]) == str(i.name)) or (len(g_skins4) > 1 and g_skins4[0][1] != g_skins4[1][1] and str(g_skins4[0][0]) == str(i.name)):
+            g_hole4 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole4 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole5score
+        if (hdcp_adj - 18) / golfcourse.hole5handicap >= 1:
+	    score_adj = i.hole5score - 2
+        elif (hdcp_adj / golfcourse.hole5handicap) >= 1:
+	    score_adj = i.hole5score - 1
+        elif (hdcp_adj / golfcourse.hole5handicap) <= -1:
+	    score_adj = i.hole5score + 1
+	hole5_adj = score_adj
+	if i.hole5score == 0:
+	    g_hole5 = cell_start + cell_end
+        elif (len(g_skins5) == 1 and str(g_skins5[0][0]) == str(i.name)) or (len(g_skins5) > 1 and g_skins5[0][1] != g_skins5[1][1] and str(g_skins5[0][0]) == str(i.name)):
+            g_hole5 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole5 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole6score
+        if (hdcp_adj - 18) / golfcourse.hole6handicap >= 1:
+	    score_adj = i.hole6score - 2
+        elif (hdcp_adj / golfcourse.hole6handicap) >= 1:
+	    score_adj = i.hole6score - 1
+        elif (hdcp_adj / golfcourse.hole6handicap) <= -1:
+	    score_adj = i.hole6score + 1
+	hole6_adj = score_adj
+	if i.hole6score == 0:
+	    g_hole6 = cell_start + cell_end
+        elif (len(g_skins6) == 1 and str(g_skins6[0][0]) == str(i.name)) or (len(g_skins6) > 1 and g_skins6[0][1] != g_skins6[1][1] and str(g_skins6[0][0]) == str(i.name)):
+            g_hole6 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole6 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole7score
+        if (hdcp_adj - 18) / golfcourse.hole7handicap >= 1:
+	    score_adj = i.hole7score - 2
+        elif (hdcp_adj / golfcourse.hole7handicap) >= 1:
+	    score_adj = i.hole7score - 1
+        elif (hdcp_adj / golfcourse.hole7handicap) <= -1:
+	    score_adj = i.hole7score + 1
+	hole7_adj = score_adj
+	if i.hole7score == 0:
+	    g_hole7 = cell_start + cell_end
+        elif (len(g_skins7) == 1 and str(g_skins7[0][0]) == str(i.name)) or (len(g_skins7) > 1 and g_skins7[0][1] != g_skins7[1][1] and str(g_skins7[0][0]) == str(i.name)):
+            g_hole7 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole7 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole8score
+        if (hdcp_adj - 18) / golfcourse.hole8handicap >= 1:
+	    score_adj = i.hole8score - 2
+        elif (hdcp_adj / golfcourse.hole8handicap) >= 1:
+	    score_adj = i.hole8score - 1
+        elif (hdcp_adj / golfcourse.hole8handicap) <= -1:
+	    score_adj = i.hole8score + 1
+	hole8_adj = score_adj
+	if i.hole8score == 0:
+	    g_hole8 = cell_start + cell_end
+        elif (len(g_skins8) == 1 and str(g_skins8[0][0]) == str(i.name)) or (len(g_skins8) > 1 and g_skins8[0][1] != g_skins8[1][1] and str(g_skins8[0][0]) == str(i.name)):
+            g_hole8 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole8 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole9score
+        if (hdcp_adj - 18) / golfcourse.hole9handicap >= 1:
+	    score_adj = i.hole9score - 2
+        elif (hdcp_adj / golfcourse.hole9handicap) >= 1:
+	    score_adj = i.hole9score - 1
+        elif (hdcp_adj / golfcourse.hole9handicap) <= -1:
+	    score_adj = i.hole9score + 1
+	hole9_adj = score_adj
+	if i.hole9score == 0:
+	    g_hole9 = cell_start + cell_end
+        elif (len(g_skins9) == 1 and str(g_skins9[0][0]) == str(i.name)) or (len(g_skins9) > 1 and g_skins9[0][1] != g_skins9[1][1] and str(g_skins9[0][0]) == str(i.name)):
+            g_hole9 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole9 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole10score
+        if (hdcp_adj - 18) / golfcourse.hole10handicap >= 1:
+	    score_adj = i.hole10score - 2
+        elif (hdcp_adj / golfcourse.hole10handicap) >= 1:
+	    score_adj = i.hole10score - 1
+        elif (hdcp_adj / golfcourse.hole10handicap) <= -1:
+	    score_adj = i.hole10score + 1
+	hole10_adj = score_adj
+	if i.hole10score == 0:
+	    g_hole10 = cell_start + cell_end
+        elif (len(g_skins10) == 1 and str(g_skins10[0][0]) == str(i.name)) or (len(g_skins10) > 1 and g_skins10[0][1] != g_skins10[1][1] and str(g_skins10[0][0]) == str(i.name)):
+            g_hole10 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole10 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole11score
+        if (hdcp_adj - 18) / golfcourse.hole11handicap >= 1:
+	    score_adj = i.hole11score - 2
+        elif (hdcp_adj / golfcourse.hole11handicap) >= 1:
+	    score_adj = i.hole11score - 1
+        elif (hdcp_adj / golfcourse.hole11handicap) <= -1:
+	    score_adj = i.hole11score + 1
+	hole11_adj = score_adj
+	if i.hole11score == 0:
+	    g_hole11 = cell_start + cell_end
+        elif (len(g_skins11) == 1 and str(g_skins11[0][0]) == str(i.name)) or (len(g_skins11) > 1 and g_skins11[0][1] != g_skins11[1][1] and str(g_skins11[0][0]) == str(i.name)):
+            g_hole11 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole11 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole12score
+        if (hdcp_adj - 18) / golfcourse.hole12handicap >= 1:
+	    score_adj = i.hole12score - 2
+        elif (hdcp_adj / golfcourse.hole12handicap) >= 1:
+	    score_adj = i.hole12score - 1
+        elif (hdcp_adj / golfcourse.hole12handicap) <= -1:
+	    score_adj = i.hole12score + 1
+	hole12_adj = score_adj
+	if i.hole12score == 0:
+	    g_hole12 = cell_start + cell_end
+        elif (len(g_skins12) == 1 and str(g_skins12[0][0]) == str(i.name)) or (len(g_skins12) > 1 and g_skins12[0][1] != g_skins12[1][1] and str(g_skins12[0][0]) == str(i.name)):
+            g_hole12 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole12 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole13score
+        if (hdcp_adj - 18) / golfcourse.hole13handicap >= 1:
+	    score_adj = i.hole13score - 2
+        elif (hdcp_adj / golfcourse.hole13handicap) >= 1:
+	    score_adj = i.hole13score - 1
+        elif (hdcp_adj / golfcourse.hole13handicap) <= -1:
+	    score_adj = i.hole13score + 1
+	hole13_adj = score_adj
+	if i.hole13score == 0:
+	    g_hole13 = cell_start + cell_end
+        elif (len(g_skins13) == 1 and str(g_skins13[0][0]) == str(i.name)) or (len(g_skins13) > 1 and g_skins13[0][1] != g_skins13[1][1] and str(g_skins13[0][0]) == str(i.name)):
+            g_hole13 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole13 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole14score
+        if (hdcp_adj - 18) / golfcourse.hole14handicap >= 1:
+	    score_adj = i.hole14score - 2
+        elif (hdcp_adj / golfcourse.hole14handicap) >= 1:
+	    score_adj = i.hole14score - 1
+        elif (hdcp_adj / golfcourse.hole14handicap) <= -1:
+	    score_adj = i.hole14score + 1
+	hole14_adj = score_adj
+	if i.hole14score == 0:
+	    g_hole14 = cell_start + cell_end
+        elif (len(g_skins14) == 1 and str(g_skins14[0][0]) == str(i.name)) or (len(g_skins14) > 1 and g_skins14[0][1] != g_skins14[1][1] and str(g_skins14[0][0]) == str(i.name)):
+            g_hole14 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole14 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole15score
+        if (hdcp_adj - 18) / golfcourse.hole15handicap >= 1:
+	    score_adj = i.hole15score - 2
+        elif (hdcp_adj / golfcourse.hole15handicap) >= 1:
+	    score_adj = i.hole15score - 1
+        elif (hdcp_adj / golfcourse.hole15handicap) <= -1:
+	    score_adj = i.hole15score + 1
+	hole15_adj = score_adj
+	if i.hole15score == 0:
+	    g_hole15 = cell_start + cell_end
+        elif (len(g_skins15) == 1 and str(g_skins15[0][0]) == str(i.name)) or (len(g_skins15) > 1 and g_skins15[0][1] != g_skins15[1][1] and str(g_skins15[0][0]) == str(i.name)):
+            g_hole15 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole15 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole16score
+        if (hdcp_adj - 18) / golfcourse.hole16handicap >= 1:
+	    score_adj = i.hole16score - 2
+        elif (hdcp_adj / golfcourse.hole16handicap) >= 1:
+	    score_adj = i.hole16score - 1
+        elif (hdcp_adj / golfcourse.hole16handicap) <= -1:
+	    score_adj = i.hole16score + 1
+	hole16_adj = score_adj
+	if i.hole16score == 0:
+	    g_hole16 = cell_start + cell_end
+        elif (len(g_skins16) == 1 and str(g_skins16[0][0]) == str(i.name)) or (len(g_skins16) > 1 and g_skins16[0][1] != g_skins16[1][1] and str(g_skins16[0][0]) == str(i.name)):
+            g_hole16 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole16 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole17score
+        if (hdcp_adj - 18) / golfcourse.hole17handicap >= 1:
+	    score_adj = i.hole17score - 2
+        elif (hdcp_adj / golfcourse.hole17handicap) >= 1:
+	    score_adj = i.hole17score - 1
+        elif (hdcp_adj / golfcourse.hole17handicap) <= -1:
+	    score_adj = i.hole17score + 1
+	hole17_adj = score_adj
+	if i.hole17score == 0:
+	    g_hole17 = cell_start + cell_end
+        elif (len(g_skins17) == 1 and str(g_skins17[0][0]) == str(i.name)) or (len(g_skins17) > 1 and g_skins17[0][1] != g_skins17[1][1] and str(g_skins17[0][0]) == str(i.name)):
+            g_hole17 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole17 = cell_start + str(score_adj) + cell_end
+        score_adj = i.hole18score
+        if (hdcp_adj - 18) / golfcourse.hole18handicap >= 1:
+	    score_adj = i.hole18score - 2
+        elif (hdcp_adj / golfcourse.hole18handicap) >= 1:
+	    score_adj = i.hole18score - 1
+        elif (hdcp_adj / golfcourse.hole18handicap) <= -1:
+	    score_adj = i.hole18score + 1
+	hole18_adj = score_adj
+	if i.hole18score == 0:
+	    g_hole18 = cell_start + cell_end
+        elif (len(g_skins18) == 1 and str(g_skins18[0][0]) == str(i.name)) or (len(g_skins18) > 1 and g_skins18[0][1] != g_skins18[1][1] and str(g_skins18[0][0]) == str(i.name)):
+            g_hole18 = cell_highlight + str(score_adj) + cell_end
+        else:
+            g_hole18 = cell_start + str(score_adj) + cell_end
+        g_out_total = hole1_adj + hole2_adj + hole3_adj + hole4_adj + hole5_adj + hole6_adj + hole7_adj + hole8_adj + hole9_adj
+	g_out_score = cell_start + str(g_out_total) + cell_end
+        g_front = g_hole1 + g_hole2 + g_hole3 + g_hole4 + g_hole5 + g_hole6 + g_hole7 + g_hole8 + g_hole9 + g_out_score
+        g_in_total = hole10_adj + hole11_adj + hole12_adj + hole13_adj + hole14_adj + hole15_adj + hole16_adj + hole17_adj + hole18_adj
+        g_in_score = cell_start + str(in_total) + cell_end
+        g_back = g_hole10 + g_hole11 + g_hole12 + g_hole13 + g_hole14 + g_hole15 + g_hole16 + g_hole17 + g_hole18 + g_in_score
+        g_total = cell_start + str(g_out_total + g_in_total) + cell_end
+        hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
+        hdcp = cell_start + str(hdcp_adj) + cell_end
+        net = g_total
+        row = hdcp + name + tee + g_front + g_back + net
+        g_arr.append([g_in_total + g_out_total,row])
+    #sort the leaderboard
+    g_arr.sort(key=lambda x: x[0])
+    rank = 1
+    count = 0
+    prev = 0
+    for line in g_arr:
+        count += 1
+        if line[0] != prev:
+            rank = count
+        prev = line[0]
+        g_output += '<tr>' + '<td>' + str(rank)+ '</td>' + line[1] + '</tr>'
     if request.method == 'POST':
         dlist = request.POST.getlist('dl')
         print(dlist)
@@ -234,7 +704,7 @@ def leaderboard(request, id):
             'leaderboard': leaderboard,
             'golfcourse': golfcourse,
             'output_gross': output,
-            'output_net': output,
+            'output_net': g_output,
     }
     return render(request, 'events/leaderboard.html', context)
 
@@ -246,7 +716,7 @@ def scorecard(request, id):
     z = request.session['dl']
     loaded_list = [] 
     tester = leaderboard.values('id', 'name')
-    selected_leaders = Leaderboard.objects.filter(name__name__in=z)
+    selected_leaders = leaderboard.filter(name__name__in=z)
     for guy in z:
         man = list(Leaderboard.objects.filter(name__name=guy).values('id', 'name'))
         loaded_list += man
