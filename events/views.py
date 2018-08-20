@@ -27,7 +27,8 @@ def leaderboard(request, id):
     arr = []
     g_arr = []
     cell_start = "<td>"
-    cell_highlight = "<td class=table-success>"
+    cell_highlight_green = "<td class=table-success>"
+    cell_highlight_yellow = "<td class=table-warning>"
     cell_end = "</td>"
 
     skins1, skins2, skins3, skins4, skins5, skins6, skins7, skins8, skins9, skins10, skins11, skins12, skins13, skins14, skins15, skins16, skins17, skins18 = ([] for i in range(18))
@@ -95,109 +96,109 @@ def leaderboard(request, id):
 	if i.hole1score == 0:
 	    hole1 = cell_start + cell_end
         elif (len(skins1) == 1 and str(skins1[0][0]) == str(i.name)) or (len(skins1) > 1 and skins1[0][1] != skins1[1][1] and str(skins1[0][0]) == str(i.name)):
-            hole1 = cell_highlight + str(i.hole1score) + cell_end
+            hole1 = cell_highlight_green + str(i.hole1score) + cell_end
         else:
             hole1 = cell_start + str(i.hole1score) + cell_end
 	if i.hole2score == 0:
 	    hole2 = cell_start + cell_end
         elif (len(skins2) == 1 and str(skins2[0][0]) == str(i.name)) or (len(skins2) > 1 and skins2[0][1] != skins2[1][1] and str(skins2[0][0]) == str(i.name)):
-            hole2 = cell_highlight + str(i.hole2score) + cell_end
+            hole2 = cell_highlight_green + str(i.hole2score) + cell_end
         else:
             hole2 = cell_start + str(i.hole2score) + cell_end
 	if i.hole3score == 0:
 	    hole3 = cell_start + cell_end
         elif (len(skins3) == 1 and str(skins3[0][0]) == str(i.name)) or (len(skins3) > 1 and skins3[0][1] != skins3[1][1] and str(skins3[0][0]) == str(i.name)):
-            hole3 = cell_highlight + str(i.hole3score) + cell_end
+            hole3 = cell_highlight_green + str(i.hole3score) + cell_end
         else:
             hole3 = cell_start + str(i.hole3score) + cell_end
 	if i.hole4score == 0:
 	    hole4 = cell_start + cell_end
         elif (len(skins4) == 1 and str(skins4[0][0]) == str(i.name)) or (len(skins4) > 1 and skins4[0][1] != skins4[1][1] and str(skins4[0][0]) == str(i.name)):
-            hole4 = cell_highlight + str(i.hole4score) + cell_end
+            hole4 = cell_highlight_green + str(i.hole4score) + cell_end
         else:
             hole4 = cell_start + str(i.hole4score) + cell_end
 	if i.hole5score == 0:
 	    hole5 = cell_start + cell_end
         elif (len(skins5) == 1 and str(skins5[0][0]) == str(i.name)) or (len(skins5) > 1 and skins5[0][1] != skins5[1][1] and str(skins5[0][0]) == str(i.name)):
-                hole5 = cell_highlight + str(i.hole5score) + cell_end
+                hole5 = cell_highlight_green + str(i.hole5score) + cell_end
         else:
             hole5 = cell_start + str(i.hole5score) + cell_end
 	if i.hole6score == 0:
 	    hole6 = cell_start + cell_end
         elif (len(skins6) == 1 and str(skins6[0][0]) == str(i.name)) or (len(skins6) > 1 and skins6[0][1] != skins6[1][1] and str(skins6[0][0]) == str(i.name)):
-            hole6 = cell_highlight + str(i.hole6score) + cell_end
+            hole6 = cell_highlight_green + str(i.hole6score) + cell_end
         else:
             hole6 = cell_start + str(i.hole6score) + cell_end
 	if i.hole7score == 0:
 	    hole7 = cell_start + cell_end
         elif (len(skins7) == 1 and str(skins7[0][0]) == str(i.name)) or (len(skins7) > 1 and skins7[0][1] != skins7[1][1] and str(skins7[0][0]) == str(i.name)):
-            hole7 = cell_highlight + str(i.hole7score) + cell_end
+            hole7 = cell_highlight_green + str(i.hole7score) + cell_end
         else:
             hole7 = cell_start + str(i.hole7score) + cell_end
 	if i.hole8score == 0:
 	    hole8 = cell_start + cell_end
         elif (len(skins8) == 1 and str(skins8[0][0]) == str(i.name)) or (len(skins8) > 1 and skins8[0][1] != skins8[1][1] and str(skins8[0][0]) == str(i.name)):
-            hole8 = cell_highlight + str(i.hole8score) + cell_end
+            hole8 = cell_highlight_green + str(i.hole8score) + cell_end
         else:
             hole8 = cell_start + str(i.hole8score) + cell_end
 	if i.hole9score == 0:
 	    hole9 = cell_start + cell_end
         elif (len(skins9) == 1 and str(skins9[0][0]) == str(i.name)) or (len(skins9) > 1 and skins9[0][1] != skins9[1][1] and str(skins9[0][0]) == str(i.name)):
-            hole9 = cell_highlight + str(i.hole9score) + cell_end
+            hole9 = cell_highlight_green + str(i.hole9score) + cell_end
         else:
             hole9 = cell_start + str(i.hole9score) + cell_end
 	if i.hole10score == 0:
 	    hole10 = cell_start + cell_end
         elif (len(skins10) == 1 and str(skins10[0][0]) == str(i.name)) or (len(skins10) > 1 and skins10[0][1] != skins10[1][1] and str(skins10[0][0]) == str(i.name)):
-            hole10 = cell_highlight + str(i.hole10score) + cell_end
+            hole10 = cell_highlight_green + str(i.hole10score) + cell_end
         else:
             hole10 = cell_start + str(i.hole10score) + cell_end
 	if i.hole11score == 0:
 	    hole11 = cell_start + cell_end
         elif (len(skins11) == 1 and str(skins11[0][0]) == str(i.name)) or (len(skins11) > 1 and skins11[0][1] != skins11[1][1] and str(skins11[0][0]) == str(i.name)):
-            hole11 = cell_highlight + str(i.hole11score) + cell_end
+            hole11 = cell_highlight_green + str(i.hole11score) + cell_end
         else:
             hole11 = cell_start + str(i.hole11score) + cell_end
 	if i.hole12score == 0:
 	    hole12 = cell_start + cell_end
         elif (len(skins12) == 1 and str(skins12[0][0]) == str(i.name)) or (len(skins12) > 1 and skins12[0][1] != skins12[1][1] and str(skins12[0][0]) == str(i.name)):
-            hole12 = cell_highlight + str(i.hole12score) + cell_end
+            hole12 = cell_highlight_green + str(i.hole12score) + cell_end
         else:
             hole12 = cell_start + str(i.hole12score) + cell_end
 	if i.hole13score == 0:
 	    hole13 = cell_start + cell_end
         elif (len(skins13) == 1 and str(skins13[0][0]) == str(i.name)) or (len(skins13) > 1 and skins13[0][1] != skins13[1][1] and str(skins13[0][0]) == str(i.name)):
-            hole13 = cell_highlight + str(i.hole13score) + cell_end
+            hole13 = cell_highlight_green + str(i.hole13score) + cell_end
         else:
             hole13 = cell_start + str(i.hole13score) + cell_end
 	if i.hole14score == 0:
 	    hole14 = cell_start + cell_end
         elif (len(skins14) == 1 and str(skins14[0][0]) == str(i.name)) or (len(skins14) > 1 and skins14[0][1] != skins14[1][1] and str(skins14[0][0]) == str(i.name)):
-            hole14 = cell_highlight + str(i.hole14score) + cell_end
+            hole14 = cell_highlight_green + str(i.hole14score) + cell_end
         else:
             hole14 = cell_start + str(i.hole14score) + cell_end
 	if i.hole15score == 0:
 	    hole15 = cell_start + cell_end
         elif (len(skins15) == 1 and str(skins15[0][0]) == str(i.name)) or (len(skins15) > 1 and skins15[0][1] != skins15[1][1] and str(skins15[0][0]) == str(i.name)):
-            hole15 = cell_highlight + str(i.hole15score) + cell_end
+            hole15 = cell_highlight_green + str(i.hole15score) + cell_end
         else:
             hole15 = cell_start + str(i.hole15score) + cell_end
 	if i.hole16score == 0:
 	    hole16 = cell_start + cell_end
         elif (len(skins16) == 1 and str(skins16[0][0]) == str(i.name)) or (len(skins16) > 1 and skins16[0][1] != skins16[1][1] and str(skins16[0][0]) == str(i.name)):
-            hole16 = cell_highlight + str(i.hole16score) + cell_end
+            hole16 = cell_highlight_green + str(i.hole16score) + cell_end
         else:
             hole16 = cell_start + str(i.hole16score) + cell_end
 	if i.hole17score == 0:
 	    hole17 = cell_start + cell_end
         elif (len(skins17) == 1 and str(skins17[0][0]) == str(i.name)) or (len(skins17) > 1 and skins17[0][1] != skins17[1][1] and str(skins17[0][0]) == str(i.name)):
-            hole17 = cell_highlight + str(i.hole17score) + cell_end
+            hole17 = cell_highlight_green + str(i.hole17score) + cell_end
         else:
             hole17 = cell_start + str(i.hole17score) + cell_end
 	if i.hole18score == 0:
 	    hole18 = cell_start + cell_end
         elif (len(skins18) == 1 and str(skins18[0][0]) == str(i.name)) or (len(skins18) > 1 and skins18[0][1] != skins18[1][1] and str(skins18[0][0]) == str(i.name)):
-            hole18 = cell_highlight + str(i.hole18score) + cell_end
+            hole18 = cell_highlight_green + str(i.hole18score) + cell_end
         else:
             hole18 = cell_start + str(i.hole18score) + cell_end
         out_total = i.hole1score + i.hole2score + i.hole3score + i.hole4score + i.hole5score + i.hole6score + i.hole7score + i.hole8score + i.hole9score
@@ -424,7 +425,7 @@ def leaderboard(request, id):
 	if i.hole1score == 0:
 	    g_hole1 = cell_start + cell_end
         elif (len(g_skins1) == 1 and str(g_skins1[0][0]) == str(i.name)) or (len(g_skins1) > 1 and g_skins1[0][1] != g_skins1[1][1] and str(g_skins1[0][0]) == str(i.name)):
-            g_hole1 = cell_highlight + str(score_adj) + cell_end
+            g_hole1 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole1 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole2score
@@ -438,7 +439,7 @@ def leaderboard(request, id):
 	if i.hole2score == 0:
 	    g_hole2 = cell_start + cell_end
         elif (len(g_skins2) == 1 and str(g_skins2[0][0]) == str(i.name)) or (len(g_skins2) > 1 and g_skins2[0][1] != g_skins2[1][1] and str(g_skins2[0][0]) == str(i.name)):
-            g_hole2 = cell_highlight + str(score_adj) + cell_end
+            g_hole2 = cell_highlight_yellow + str(score_adj) + cell_end
             print("it works")
         else:
             g_hole2 = cell_start + str(score_adj) + cell_end
@@ -454,7 +455,7 @@ def leaderboard(request, id):
 	if i.hole3score == 0:
 	    g_hole3 = cell_start + cell_end
         elif (len(g_skins3) == 1 and str(g_skins3[0][0]) == str(i.name)) or (len(g_skins3) > 1 and g_skins3[0][1] != g_skins3[1][1] and str(g_skins3[0][0]) == str(i.name)):
-            g_hole3 = cell_highlight + str(score_adj) + cell_end
+            g_hole3 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole3 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole4score
@@ -468,7 +469,7 @@ def leaderboard(request, id):
 	if i.hole4score == 0:
 	    g_hole4 = cell_start + cell_end
         elif (len(g_skins4) == 1 and str(g_skins4[0][0]) == str(i.name)) or (len(g_skins4) > 1 and g_skins4[0][1] != g_skins4[1][1] and str(g_skins4[0][0]) == str(i.name)):
-            g_hole4 = cell_highlight + str(score_adj) + cell_end
+            g_hole4 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole4 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole5score
@@ -482,7 +483,7 @@ def leaderboard(request, id):
 	if i.hole5score == 0:
 	    g_hole5 = cell_start + cell_end
         elif (len(g_skins5) == 1 and str(g_skins5[0][0]) == str(i.name)) or (len(g_skins5) > 1 and g_skins5[0][1] != g_skins5[1][1] and str(g_skins5[0][0]) == str(i.name)):
-            g_hole5 = cell_highlight + str(score_adj) + cell_end
+            g_hole5 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole5 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole6score
@@ -496,7 +497,7 @@ def leaderboard(request, id):
 	if i.hole6score == 0:
 	    g_hole6 = cell_start + cell_end
         elif (len(g_skins6) == 1 and str(g_skins6[0][0]) == str(i.name)) or (len(g_skins6) > 1 and g_skins6[0][1] != g_skins6[1][1] and str(g_skins6[0][0]) == str(i.name)):
-            g_hole6 = cell_highlight + str(score_adj) + cell_end
+            g_hole6 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole6 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole7score
@@ -510,7 +511,7 @@ def leaderboard(request, id):
 	if i.hole7score == 0:
 	    g_hole7 = cell_start + cell_end
         elif (len(g_skins7) == 1 and str(g_skins7[0][0]) == str(i.name)) or (len(g_skins7) > 1 and g_skins7[0][1] != g_skins7[1][1] and str(g_skins7[0][0]) == str(i.name)):
-            g_hole7 = cell_highlight + str(score_adj) + cell_end
+            g_hole7 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole7 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole8score
@@ -524,7 +525,7 @@ def leaderboard(request, id):
 	if i.hole8score == 0:
 	    g_hole8 = cell_start + cell_end
         elif (len(g_skins8) == 1 and str(g_skins8[0][0]) == str(i.name)) or (len(g_skins8) > 1 and g_skins8[0][1] != g_skins8[1][1] and str(g_skins8[0][0]) == str(i.name)):
-            g_hole8 = cell_highlight + str(score_adj) + cell_end
+            g_hole8 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole8 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole9score
@@ -538,7 +539,7 @@ def leaderboard(request, id):
 	if i.hole9score == 0:
 	    g_hole9 = cell_start + cell_end
         elif (len(g_skins9) == 1 and str(g_skins9[0][0]) == str(i.name)) or (len(g_skins9) > 1 and g_skins9[0][1] != g_skins9[1][1] and str(g_skins9[0][0]) == str(i.name)):
-            g_hole9 = cell_highlight + str(score_adj) + cell_end
+            g_hole9 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole9 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole10score
@@ -552,7 +553,7 @@ def leaderboard(request, id):
 	if i.hole10score == 0:
 	    g_hole10 = cell_start + cell_end
         elif (len(g_skins10) == 1 and str(g_skins10[0][0]) == str(i.name)) or (len(g_skins10) > 1 and g_skins10[0][1] != g_skins10[1][1] and str(g_skins10[0][0]) == str(i.name)):
-            g_hole10 = cell_highlight + str(score_adj) + cell_end
+            g_hole10 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole10 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole11score
@@ -566,7 +567,7 @@ def leaderboard(request, id):
 	if i.hole11score == 0:
 	    g_hole11 = cell_start + cell_end
         elif (len(g_skins11) == 1 and str(g_skins11[0][0]) == str(i.name)) or (len(g_skins11) > 1 and g_skins11[0][1] != g_skins11[1][1] and str(g_skins11[0][0]) == str(i.name)):
-            g_hole11 = cell_highlight + str(score_adj) + cell_end
+            g_hole11 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole11 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole12score
@@ -580,7 +581,7 @@ def leaderboard(request, id):
 	if i.hole12score == 0:
 	    g_hole12 = cell_start + cell_end
         elif (len(g_skins12) == 1 and str(g_skins12[0][0]) == str(i.name)) or (len(g_skins12) > 1 and g_skins12[0][1] != g_skins12[1][1] and str(g_skins12[0][0]) == str(i.name)):
-            g_hole12 = cell_highlight + str(score_adj) + cell_end
+            g_hole12 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole12 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole13score
@@ -594,7 +595,7 @@ def leaderboard(request, id):
 	if i.hole13score == 0:
 	    g_hole13 = cell_start + cell_end
         elif (len(g_skins13) == 1 and str(g_skins13[0][0]) == str(i.name)) or (len(g_skins13) > 1 and g_skins13[0][1] != g_skins13[1][1] and str(g_skins13[0][0]) == str(i.name)):
-            g_hole13 = cell_highlight + str(score_adj) + cell_end
+            g_hole13 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole13 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole14score
@@ -608,7 +609,7 @@ def leaderboard(request, id):
 	if i.hole14score == 0:
 	    g_hole14 = cell_start + cell_end
         elif (len(g_skins14) == 1 and str(g_skins14[0][0]) == str(i.name)) or (len(g_skins14) > 1 and g_skins14[0][1] != g_skins14[1][1] and str(g_skins14[0][0]) == str(i.name)):
-            g_hole14 = cell_highlight + str(score_adj) + cell_end
+            g_hole14 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole14 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole15score
@@ -622,7 +623,7 @@ def leaderboard(request, id):
 	if i.hole15score == 0:
 	    g_hole15 = cell_start + cell_end
         elif (len(g_skins15) == 1 and str(g_skins15[0][0]) == str(i.name)) or (len(g_skins15) > 1 and g_skins15[0][1] != g_skins15[1][1] and str(g_skins15[0][0]) == str(i.name)):
-            g_hole15 = cell_highlight + str(score_adj) + cell_end
+            g_hole15 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole15 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole16score
@@ -636,7 +637,7 @@ def leaderboard(request, id):
 	if i.hole16score == 0:
 	    g_hole16 = cell_start + cell_end
         elif (len(g_skins16) == 1 and str(g_skins16[0][0]) == str(i.name)) or (len(g_skins16) > 1 and g_skins16[0][1] != g_skins16[1][1] and str(g_skins16[0][0]) == str(i.name)):
-            g_hole16 = cell_highlight + str(score_adj) + cell_end
+            g_hole16 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole16 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole17score
@@ -650,7 +651,7 @@ def leaderboard(request, id):
 	if i.hole17score == 0:
 	    g_hole17 = cell_start + cell_end
         elif (len(g_skins17) == 1 and str(g_skins17[0][0]) == str(i.name)) or (len(g_skins17) > 1 and g_skins17[0][1] != g_skins17[1][1] and str(g_skins17[0][0]) == str(i.name)):
-            g_hole17 = cell_highlight + str(score_adj) + cell_end
+            g_hole17 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole17 = cell_start + str(score_adj) + cell_end
         score_adj = i.hole18score
@@ -664,7 +665,7 @@ def leaderboard(request, id):
 	if i.hole18score == 0:
 	    g_hole18 = cell_start + cell_end
         elif (len(g_skins18) == 1 and str(g_skins18[0][0]) == str(i.name)) or (len(g_skins18) > 1 and g_skins18[0][1] != g_skins18[1][1] and str(g_skins18[0][0]) == str(i.name)):
-            g_hole18 = cell_highlight + str(score_adj) + cell_end
+            g_hole18 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
             g_hole18 = cell_start + str(score_adj) + cell_end
         g_out_total = hole1_adj + hole2_adj + hole3_adj + hole4_adj + hole5_adj + hole6_adj + hole7_adj + hole8_adj + hole9_adj
