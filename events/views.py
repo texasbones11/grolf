@@ -296,7 +296,7 @@ def leaderboard(request, id):
         elif over_total > 0:
 	    total = cell_start + "+" + str(over_total) + cell_end
         elif over_total < 0:
-	    total = '<td class="text-danger">' + "-" + str(over_total) + cell_end
+	    total = '<td class="text-danger">' + str(over_total) + cell_end
 	elif over_total == 0:
 	    total = cell_start + "E" + cell_end
 	hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
@@ -851,7 +851,7 @@ def leaderboard(request, id):
         elif g_over_total > 0:
 	    g_total = cell_start + "+" + str(g_over_total) + cell_end
         elif g_over_total < 0:
-	    g_total = '<td class="text-danger">' + "-" + str(g_over_total) + cell_end
+	    g_total = '<td class="text-danger">' + str(g_over_total) + cell_end
 	elif g_over_total == 0:
 	    g_total = cell_start + "E" + cell_end
         hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
