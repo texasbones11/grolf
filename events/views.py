@@ -92,12 +92,14 @@ def leaderboard(request, id):
     for i in leaderboard:
 	over_total = 0
 	finished_flag = 1
+	front_finished_flag = 1
         tee = cell_start + str(i.tee.teecolor) + cell_end
         name = cell_start + str(i.name) + cell_end
         checkbox = '<td>'+'<label class="checkbox-inline"><input type ="checkbox" name="dl" value="'+str(i.name)+'"></label>'+'</td>'
 	if i.hole1score == 0:
 	    hole1 = cell_start + cell_end
 	    finished_flag = 0
+	    front_finished_flag = 0
         elif (len(skins1) == 1 and str(skins1[0][0]) == str(i.name)) or (len(skins1) > 1 and skins1[0][1] != skins1[1][1] and str(skins1[0][0]) == str(i.name)):
             hole1 = cell_highlight_green + str(i.hole1score) + cell_end
 	    over_total += i.hole1score - golfcourse.hole1par
@@ -107,6 +109,7 @@ def leaderboard(request, id):
 	if i.hole2score == 0:
 	    hole2 = cell_start + cell_end
 	    finished_flag = 0
+	    front_finished_flag = 0
         elif (len(skins2) == 1 and str(skins2[0][0]) == str(i.name)) or (len(skins2) > 1 and skins2[0][1] != skins2[1][1] and str(skins2[0][0]) == str(i.name)):
             hole2 = cell_highlight_green + str(i.hole2score) + cell_end
 	    over_total += i.hole2score - golfcourse.hole2par
@@ -116,6 +119,7 @@ def leaderboard(request, id):
 	if i.hole3score == 0:
 	    hole3 = cell_start + cell_end
 	    finished_flag = 0
+	    front_finished_flag = 0
         elif (len(skins3) == 1 and str(skins3[0][0]) == str(i.name)) or (len(skins3) > 1 and skins3[0][1] != skins3[1][1] and str(skins3[0][0]) == str(i.name)):
             hole3 = cell_highlight_green + str(i.hole3score) + cell_end
 	    over_total += i.hole3score - golfcourse.hole3par
@@ -125,6 +129,7 @@ def leaderboard(request, id):
 	if i.hole4score == 0:
 	    hole4 = cell_start + cell_end
 	    finished_flag = 0
+	    front_finished_flag = 0
         elif (len(skins4) == 1 and str(skins4[0][0]) == str(i.name)) or (len(skins4) > 1 and skins4[0][1] != skins4[1][1] and str(skins4[0][0]) == str(i.name)):
             hole4 = cell_highlight_green + str(i.hole4score) + cell_end
 	    over_total += i.hole4score - golfcourse.hole4par
@@ -134,6 +139,7 @@ def leaderboard(request, id):
 	if i.hole5score == 0:
 	    hole5 = cell_start + cell_end
 	    finished_flag = 0
+	    front_finished_flag = 0
         elif (len(skins5) == 1 and str(skins5[0][0]) == str(i.name)) or (len(skins5) > 1 and skins5[0][1] != skins5[1][1] and str(skins5[0][0]) == str(i.name)):
             hole5 = cell_highlight_green + str(i.hole5score) + cell_end
 	    over_total += i.hole5score - golfcourse.hole5par
@@ -143,6 +149,7 @@ def leaderboard(request, id):
 	if i.hole6score == 0:
 	    hole6 = cell_start + cell_end
 	    finished_flag = 0
+	    front_finished_flag = 0
         elif (len(skins6) == 1 and str(skins6[0][0]) == str(i.name)) or (len(skins6) > 1 and skins6[0][1] != skins6[1][1] and str(skins6[0][0]) == str(i.name)):
             hole6 = cell_highlight_green + str(i.hole6score) + cell_end
 	    over_total += i.hole6score - golfcourse.hole6par
@@ -152,6 +159,7 @@ def leaderboard(request, id):
 	if i.hole7score == 0:
 	    hole7 = cell_start + cell_end
 	    finished_flag = 0
+	    front_finished_flag = 0
         elif (len(skins7) == 1 and str(skins7[0][0]) == str(i.name)) or (len(skins7) > 1 and skins7[0][1] != skins7[1][1] and str(skins7[0][0]) == str(i.name)):
             hole7 = cell_highlight_green + str(i.hole7score) + cell_end
 	    over_total += i.hole7score - golfcourse.hole7par
@@ -161,6 +169,7 @@ def leaderboard(request, id):
 	if i.hole8score == 0:
 	    hole8 = cell_start + cell_end
 	    finished_flag = 0
+	    front_finished_flag = 0
         elif (len(skins8) == 1 and str(skins8[0][0]) == str(i.name)) or (len(skins8) > 1 and skins8[0][1] != skins8[1][1] and str(skins8[0][0]) == str(i.name)):
             hole8 = cell_highlight_green + str(i.hole8score) + cell_end
 	    over_total += i.hole8score - golfcourse.hole8par
@@ -170,6 +179,7 @@ def leaderboard(request, id):
 	if i.hole9score == 0:
 	    hole9 = cell_start + cell_end
 	    finished_flag = 0
+	    front_finished_flag = 0
         elif (len(skins9) == 1 and str(skins9[0][0]) == str(i.name)) or (len(skins9) > 1 and skins9[0][1] != skins9[1][1] and str(skins9[0][0]) == str(i.name)):
             hole9 = cell_highlight_green + str(i.hole9score) + cell_end
 	    over_total += i.hole9score - golfcourse.hole9par
@@ -179,6 +189,7 @@ def leaderboard(request, id):
 	if i.hole10score == 0:
 	    hole10 = cell_start + cell_end
 	    finished_flag = 0
+	    back_finished_flag = 0
         elif (len(skins10) == 1 and str(skins10[0][0]) == str(i.name)) or (len(skins10) > 1 and skins10[0][1] != skins10[1][1] and str(skins10[0][0]) == str(i.name)):
             hole10 = cell_highlight_green + str(i.hole10score) + cell_end
 	    over_total += i.hole10score - golfcourse.hole10par
@@ -188,6 +199,7 @@ def leaderboard(request, id):
 	if i.hole11score == 0:
 	    hole11 = cell_start + cell_end
 	    finished_flag = 0
+	    back_finished_flag = 0
         elif (len(skins11) == 1 and str(skins11[0][0]) == str(i.name)) or (len(skins11) > 1 and skins11[0][1] != skins11[1][1] and str(skins11[0][0]) == str(i.name)):
             hole11 = cell_highlight_green + str(i.hole11score) + cell_end
 	    over_total += i.hole11score - golfcourse.hole11par
@@ -197,6 +209,7 @@ def leaderboard(request, id):
 	if i.hole12score == 0:
 	    hole12 = cell_start + cell_end
 	    finished_flag = 0
+	    back_finished_flag = 0
         elif (len(skins12) == 1 and str(skins12[0][0]) == str(i.name)) or (len(skins12) > 1 and skins12[0][1] != skins12[1][1] and str(skins12[0][0]) == str(i.name)):
             hole12 = cell_highlight_green + str(i.hole12score) + cell_end
 	    over_total += i.hole12score - golfcourse.hole12par
@@ -206,6 +219,7 @@ def leaderboard(request, id):
 	if i.hole13score == 0:
 	    hole13 = cell_start + cell_end
 	    finished_flag = 0
+	    back_finished_flag = 0
         elif (len(skins13) == 1 and str(skins13[0][0]) == str(i.name)) or (len(skins13) > 1 and skins13[0][1] != skins13[1][1] and str(skins13[0][0]) == str(i.name)):
             hole13 = cell_highlight_green + str(i.hole13score) + cell_end
 	    over_total += i.hole13score - golfcourse.hole13par
@@ -215,6 +229,7 @@ def leaderboard(request, id):
 	if i.hole14score == 0:
 	    hole14 = cell_start + cell_end
 	    finished_flag = 0
+	    back_finished_flag = 0
         elif (len(skins14) == 1 and str(skins14[0][0]) == str(i.name)) or (len(skins14) > 1 and skins14[0][1] != skins14[1][1] and str(skins14[0][0]) == str(i.name)):
             hole14 = cell_highlight_green + str(i.hole14score) + cell_end
 	    over_total += i.hole14score - golfcourse.hole14par
@@ -224,6 +239,7 @@ def leaderboard(request, id):
 	if i.hole15score == 0:
 	    hole15 = cell_start + cell_end
 	    finished_flag = 0
+	    back_finished_flag = 0
         elif (len(skins15) == 1 and str(skins15[0][0]) == str(i.name)) or (len(skins15) > 1 and skins15[0][1] != skins15[1][1] and str(skins15[0][0]) == str(i.name)):
             hole15 = cell_highlight_green + str(i.hole15score) + cell_end
 	    over_total += i.hole15score - golfcourse.hole15par
@@ -233,6 +249,7 @@ def leaderboard(request, id):
 	if i.hole16score == 0:
 	    hole16 = cell_start + cell_end
 	    finished_flag = 0
+	    back_finished_flag = 0
         elif (len(skins16) == 1 and str(skins16[0][0]) == str(i.name)) or (len(skins16) > 1 and skins16[0][1] != skins16[1][1] and str(skins16[0][0]) == str(i.name)):
             hole16 = cell_highlight_green + str(i.hole16score) + cell_end
 	    over_total += i.hole16score - golfcourse.hole16par
@@ -242,6 +259,7 @@ def leaderboard(request, id):
 	if i.hole17score == 0:
 	    hole17 = cell_start + cell_end
 	    finished_flag = 0
+	    back_finished_flag = 0
         elif (len(skins17) == 1 and str(skins17[0][0]) == str(i.name)) or (len(skins17) > 1 and skins17[0][1] != skins17[1][1] and str(skins17[0][0]) == str(i.name)):
             hole17 = cell_highlight_green + str(i.hole17score) + cell_end
 	    over_total += i.hole17score - golfcourse.hole17par
@@ -251,6 +269,7 @@ def leaderboard(request, id):
 	if i.hole18score == 0:
 	    hole18 = cell_start + cell_end
 	    finished_flag = 0
+	    back_finished_flag = 0
         elif (len(skins18) == 1 and str(skins18[0][0]) == str(i.name)) or (len(skins18) > 1 and skins18[0][1] != skins18[1][1] and str(skins18[0][0]) == str(i.name)):
             hole18 = cell_highlight_green + str(i.hole18score) + cell_end
 	    over_total += i.hole18score - golfcourse.hole18par
@@ -258,10 +277,16 @@ def leaderboard(request, id):
             hole18 = cell_start + str(i.hole18score) + cell_end
 	    over_total += i.hole18score - golfcourse.hole18par
         out_total = i.hole1score + i.hole2score + i.hole3score + i.hole4score + i.hole5score + i.hole6score + i.hole7score + i.hole8score + i.hole9score
-	out_score = cell_start + str(out_total) + cell_end
+	if front_finished_flag == 0:
+	    out_score = cell_start + cell_end
+	else:
+	    out_score = cell_start + str(out_total) + cell_end
         front = hole1 + hole2 + hole3 + hole4 + hole5 + hole6 + hole7 + hole8 + hole9 + out_score
         in_total = i.hole10score + i.hole11score + i.hole12score + i.hole13score + i.hole14score + i.hole15score + i.hole16score + i.hole17score + i.hole18score
-        in_score = cell_start + str(in_total) + cell_end
+	if back_finished_flag == 0:
+            in_score = cell_start + cell_end
+	else:
+            in_score = cell_start + str(in_total) + cell_end
         back = hole10 + hole11 + hole12 + hole13 + hole14 + hole15 + hole16 + hole17 + hole18 + in_score
 	if finished_flag == 1:
             if over_total < 0:
@@ -478,6 +503,8 @@ def leaderboard(request, id):
     for i in leaderboard:
 	g_over_total = 0
 	g_finished_flag = 1
+	g_front_finished_flag = 1
+	g_back_finished_flag = 1
         tee = cell_start + str(i.tee.teecolor) + cell_end
         name = cell_start + str(i.name) + cell_end
         checkbox = '<td>'+'<label class="checkbox-inline"><input type ="checkbox" name="dl" value="'+str(i.name)+'"></label>'+'</td>'
@@ -493,6 +520,7 @@ def leaderboard(request, id):
 	if i.hole1score == 0:
 	    g_hole1 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_front_finished_flag = 0
         elif (len(g_skins1) == 1 and str(g_skins1[0][0]) == str(i.name)) or (len(g_skins1) > 1 and g_skins1[0][1] != g_skins1[1][1] and str(g_skins1[0][0]) == str(i.name)):
             g_hole1 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole1par
@@ -510,6 +538,7 @@ def leaderboard(request, id):
 	if i.hole2score == 0:
 	    g_hole2 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_front_finished_flag = 0
         elif (len(g_skins2) == 1 and str(g_skins2[0][0]) == str(i.name)) or (len(g_skins2) > 1 and g_skins2[0][1] != g_skins2[1][1] and str(g_skins2[0][0]) == str(i.name)):
             g_hole2 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole2par
@@ -527,6 +556,7 @@ def leaderboard(request, id):
 	if i.hole3score == 0:
 	    g_hole3 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_front_finished_flag = 0
         elif (len(g_skins3) == 1 and str(g_skins3[0][0]) == str(i.name)) or (len(g_skins3) > 1 and g_skins3[0][1] != g_skins3[1][1] and str(g_skins3[0][0]) == str(i.name)):
             g_hole3 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole3par
@@ -544,6 +574,7 @@ def leaderboard(request, id):
 	if i.hole4score == 0:
 	    g_hole4 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_front_finished_flag = 0
         elif (len(g_skins4) == 1 and str(g_skins4[0][0]) == str(i.name)) or (len(g_skins4) > 1 and g_skins4[0][1] != g_skins4[1][1] and str(g_skins4[0][0]) == str(i.name)):
             g_hole4 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole4par
@@ -561,6 +592,7 @@ def leaderboard(request, id):
 	if i.hole5score == 0:
 	    g_hole5 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_front_finished_flag = 0
         elif (len(g_skins5) == 1 and str(g_skins5[0][0]) == str(i.name)) or (len(g_skins5) > 1 and g_skins5[0][1] != g_skins5[1][1] and str(g_skins5[0][0]) == str(i.name)):
             g_hole5 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole5par
@@ -578,6 +610,7 @@ def leaderboard(request, id):
 	if i.hole6score == 0:
 	    g_hole6 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_front_finished_flag = 0
         elif (len(g_skins6) == 1 and str(g_skins6[0][0]) == str(i.name)) or (len(g_skins6) > 1 and g_skins6[0][1] != g_skins6[1][1] and str(g_skins6[0][0]) == str(i.name)):
             g_hole6 = cell_highlight_yellow + str(score_adj) + cell_end
         else:
@@ -593,6 +626,7 @@ def leaderboard(request, id):
 	if i.hole7score == 0:
 	    g_hole7 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_front_finished_flag = 0
         elif (len(g_skins7) == 1 and str(g_skins7[0][0]) == str(i.name)) or (len(g_skins7) > 1 and g_skins7[0][1] != g_skins7[1][1] and str(g_skins7[0][0]) == str(i.name)):
             g_hole7 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole7par
@@ -610,6 +644,7 @@ def leaderboard(request, id):
 	if i.hole8score == 0:
 	    g_hole8 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_front_finished_flag = 0
         elif (len(g_skins8) == 1 and str(g_skins8[0][0]) == str(i.name)) or (len(g_skins8) > 1 and g_skins8[0][1] != g_skins8[1][1] and str(g_skins8[0][0]) == str(i.name)):
             g_hole8 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole8par
@@ -627,6 +662,7 @@ def leaderboard(request, id):
 	if i.hole9score == 0:
 	    g_hole9 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_front_finished_flag = 0
         elif (len(g_skins9) == 1 and str(g_skins9[0][0]) == str(i.name)) or (len(g_skins9) > 1 and g_skins9[0][1] != g_skins9[1][1] and str(g_skins9[0][0]) == str(i.name)):
             g_hole9 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole9par
@@ -644,6 +680,7 @@ def leaderboard(request, id):
 	if i.hole10score == 0:
 	    g_hole10 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_back_finished_flag = 0
         elif (len(g_skins10) == 1 and str(g_skins10[0][0]) == str(i.name)) or (len(g_skins10) > 1 and g_skins10[0][1] != g_skins10[1][1] and str(g_skins10[0][0]) == str(i.name)):
             g_hole10 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole10par
@@ -661,6 +698,7 @@ def leaderboard(request, id):
 	if i.hole11score == 0:
 	    g_hole11 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_back_finished_flag = 0
         elif (len(g_skins11) == 1 and str(g_skins11[0][0]) == str(i.name)) or (len(g_skins11) > 1 and g_skins11[0][1] != g_skins11[1][1] and str(g_skins11[0][0]) == str(i.name)):
             g_hole11 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole11par
@@ -678,6 +716,7 @@ def leaderboard(request, id):
 	if i.hole12score == 0:
 	    g_hole12 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_back_finished_flag = 0
         elif (len(g_skins12) == 1 and str(g_skins12[0][0]) == str(i.name)) or (len(g_skins12) > 1 and g_skins12[0][1] != g_skins12[1][1] and str(g_skins12[0][0]) == str(i.name)):
             g_hole12 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole12par
@@ -695,6 +734,7 @@ def leaderboard(request, id):
 	if i.hole13score == 0:
 	    g_hole13 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_back_finished_flag = 0
         elif (len(g_skins13) == 1 and str(g_skins13[0][0]) == str(i.name)) or (len(g_skins13) > 1 and g_skins13[0][1] != g_skins13[1][1] and str(g_skins13[0][0]) == str(i.name)):
             g_hole13 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole13par
@@ -712,6 +752,7 @@ def leaderboard(request, id):
 	if i.hole14score == 0:
 	    g_hole14 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_back_finished_flag = 0
         elif (len(g_skins14) == 1 and str(g_skins14[0][0]) == str(i.name)) or (len(g_skins14) > 1 and g_skins14[0][1] != g_skins14[1][1] and str(g_skins14[0][0]) == str(i.name)):
             g_hole14 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole14par
@@ -729,6 +770,7 @@ def leaderboard(request, id):
 	if i.hole15score == 0:
 	    g_hole15 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_back_finished_flag = 0
         elif (len(g_skins15) == 1 and str(g_skins15[0][0]) == str(i.name)) or (len(g_skins15) > 1 and g_skins15[0][1] != g_skins15[1][1] and str(g_skins15[0][0]) == str(i.name)):
             g_hole15 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole15par
@@ -746,6 +788,7 @@ def leaderboard(request, id):
 	if i.hole16score == 0:
 	    g_hole16 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_back_finished_flag = 0
         elif (len(g_skins16) == 1 and str(g_skins16[0][0]) == str(i.name)) or (len(g_skins16) > 1 and g_skins16[0][1] != g_skins16[1][1] and str(g_skins16[0][0]) == str(i.name)):
             g_hole16 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole16par
@@ -763,6 +806,7 @@ def leaderboard(request, id):
 	if i.hole17score == 0:
 	    g_hole17 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_back_finished_flag = 0
         elif (len(g_skins17) == 1 and str(g_skins17[0][0]) == str(i.name)) or (len(g_skins17) > 1 and g_skins17[0][1] != g_skins17[1][1] and str(g_skins17[0][0]) == str(i.name)):
             g_hole17 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole17par
@@ -780,6 +824,7 @@ def leaderboard(request, id):
 	if i.hole18score == 0:
 	    g_hole18 = cell_start + cell_end
 	    g_finished_flag = 0
+	    g_back_finished_flag = 0
         elif (len(g_skins18) == 1 and str(g_skins18[0][0]) == str(i.name)) or (len(g_skins18) > 1 and g_skins18[0][1] != g_skins18[1][1] and str(g_skins18[0][0]) == str(i.name)):
             g_hole18 = cell_highlight_yellow + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole18par
@@ -787,10 +832,16 @@ def leaderboard(request, id):
             g_hole18 = cell_start + str(score_adj) + cell_end
 	    g_over_total += score_adj - golfcourse.hole18par
         g_out_total = hole1_adj + hole2_adj + hole3_adj + hole4_adj + hole5_adj + hole6_adj + hole7_adj + hole8_adj + hole9_adj
-	g_out_score = cell_start + str(g_out_total) + cell_end
+	if g_front_finished_flag == 0:
+	    g_out_score = cell_start + cell_end
+	else:
+	    g_out_score = cell_start + str(g_out_total) + cell_end
         g_front = g_hole1 + g_hole2 + g_hole3 + g_hole4 + g_hole5 + g_hole6 + g_hole7 + g_hole8 + g_hole9 + g_out_score
         g_in_total = hole10_adj + hole11_adj + hole12_adj + hole13_adj + hole14_adj + hole15_adj + hole16_adj + hole17_adj + hole18_adj
-        g_in_score = cell_start + str(in_total) + cell_end
+	if g_back_finished_flag == 0:
+            g_in_score = cell_start + cell_end
+	else:
+            g_in_score = cell_start + str(g_in_total) + cell_end
         g_back = g_hole10 + g_hole11 + g_hole12 + g_hole13 + g_hole14 + g_hole15 + g_hole16 + g_hole17 + g_hole18 + g_in_score
 	if g_finished_flag == 1:
             if g_over_total < 0:
