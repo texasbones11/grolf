@@ -1,8 +1,7 @@
 {% extends 'events/layout.html' %}
 {% block content %}
-<html lang="en">
+<div class="row">
 <body>
-<div class="container">
 <ul class="nav nav-tabs">
 	<li class="nav-item">
 		<a class="nav-link active" data-toggle="tab" href="#gross">Gross</a>
@@ -11,6 +10,8 @@
 		<a class="nav-link" data-toggle="tab" href="#net">Net</a>
 	</li>
 </ul>
+</div>
+<div class="row">
 <div class="tab-content">
 	<form method='POST'>
 		{% csrf_token %}
@@ -208,5 +209,5 @@
 </div>
 </div>
 </body>
-</html>
+</div>
 {% endblock %}
