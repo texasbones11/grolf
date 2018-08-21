@@ -299,7 +299,7 @@ def leaderboard(request, id):
 	    total = '<td class="text-danger">' + str(over_total) + cell_end
 	elif over_total == 0:
 	    total = cell_start + "E" + cell_end
-	hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
+	hdcp_adj = int(round(i.tee.teeslope * i.name.handicap / 113))
         row = checkbox + name + tee + front + back + total
         arr.append([over_total,row])
     #sort the leaderboard
@@ -317,7 +317,7 @@ def leaderboard(request, id):
     g_skins1, g_skins2, g_skins3, g_skins4, g_skins5, g_skins6, g_skins7, g_skins8, g_skins9, g_skins10, g_skins11, g_skins12, g_skins13, g_skins14, g_skins15, g_skins16, g_skins17, g_skins18 = ([] for i in range(18))
     for i in leaderboard:
         name = str(i.name)
-	hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
+	hdcp_adj = int(round(i.tee.teeslope * i.name.handicap / 113))
 	score_adj = 0
         if i.hole1score != 0:
 	    score_adj = i.hole1score
@@ -508,7 +508,7 @@ def leaderboard(request, id):
         tee = cell_start + str(i.tee.teecolor) + cell_end
         name = cell_start + str(i.name) + cell_end
         checkbox = '<td>'+'<label class="checkbox-inline"><input type ="checkbox" name="dl" value="'+str(i.name)+'"></label>'+'</td>'
-	hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
+	hdcp_adj = int(round(i.tee.teeslope * i.name.handicap / 113))
         score_adj = i.hole1score
         if (hdcp_adj - 18) / golfcourse.hole1handicap >= 1:
 	    score_adj = i.hole1score - 2
@@ -854,7 +854,7 @@ def leaderboard(request, id):
 	    g_total = '<td class="text-danger">' + str(g_over_total) + cell_end
 	elif g_over_total == 0:
 	    g_total = cell_start + "E" + cell_end
-        hdcp_adj = int(round(i.tee.teerating * i.name.handicap / i.tee.teeslope))
+	hdcp_adj = int(round(i.tee.teeslope * i.name.handicap / 113))
         hdcp = cell_start + str(hdcp_adj) + cell_end
         net = g_total
         row = hdcp + name + tee + g_front + g_back + net
