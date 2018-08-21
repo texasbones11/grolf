@@ -613,8 +613,10 @@ def leaderboard(request, id):
 	    g_front_finished_flag = 0
         elif (len(g_skins6) == 1 and str(g_skins6[0][0]) == str(i.name)) or (len(g_skins6) > 1 and g_skins6[0][1] != g_skins6[1][1] and str(g_skins6[0][0]) == str(i.name)):
             g_hole6 = cell_highlight_yellow + str(score_adj) + cell_end
+            g_over_total += score_adj - golfcourse.hole6par
         else:
             g_hole6 = cell_start + str(score_adj) + cell_end
+            g_over_total += score_adj - golfcourse.hole6par
         score_adj = i.hole7score
         if (hdcp_adj - 18) / golfcourse.hole7handicap >= 1:
 	    score_adj = i.hole7score - 2
