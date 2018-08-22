@@ -52,7 +52,7 @@ class Tee(models.Model):
     teerating = models.FloatField()
     teecolor = models.CharField(max_length=10)
     def __str__(self):
-        return self.teename
+        return str(self.teename) + " " + str(self.course)
     class Meta:
         verbose_name_plural = "Tees"
 
@@ -66,11 +66,12 @@ class Player(models.Model):
         verbose_name_plural = "Players"
 
 class Events(models.Model):
+    tag = models.CharField(max_length=40, default="")
     title = models.ForeignKey(GolfCourse, on_delete=models.CASCADE)
     date = models.DateField(default=date.today)
     lock = models.BooleanField(default=False)
     def __str__(self):
-        return str(self.title) + " " + str(self.date)
+        return str(self.tag) + " " + str(self.title) + " " + str(self.date)
     class Meta:
         verbose_name_plural = "Events"
 
@@ -105,3 +106,14 @@ class Leaderboard(models.Model):
         return str(self.event) + " - " + str(self.name)
     class Meta:
         verbose_name_plural = "Leaderboards"
+
+class TeamLeaderboard(models.Model):
+    event = models.ForeignKey(Events, on_delete=models.CASCADE)
+    teamname = models.CharField(max_length=40)
+    player1 = models.ForeignKey(Leaderboard, on_delete=models.CASCADE, related_name='first_player')
+    player2 = models.ForeignKey(Leaderboard, on_delete=models.CASCADE, related_name='second_player')
+    handicap = models.SmallIntegerField(blank=True,default=0)
+    def __str__(self):
+        return str(self.event) + " - " + str(self.teamname)
+    class Meta:
+        verbose_name_plural = "TeamLeaderboards"

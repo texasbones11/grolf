@@ -3,7 +3,7 @@
 {% block content %}
 <ul class="collection">
 	{% for event in events %}
-	<li class="collection-item"><a href="/events/leaderboard/{{event.id}}">{{event.title}} - {{event.date}}</a></li>
+	<li class="collection-item"><a href="/events/leaderboard/{{event.id}}">{{event.tag}} - {{event.title}} - {{event.date}}</a></li>
 	{% endfor %}
 </ul>
 {% endblock %}

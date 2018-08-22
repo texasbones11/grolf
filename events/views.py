@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from models import Events, Leaderboard, GolfCourse
+from models import Events, Leaderboard, GolfCourse, TeamLeaderboard
 from django.db.models import F
 from forms import ScorecardForm
 from django.forms.formsets import formset_factory
@@ -19,8 +19,10 @@ def leaderboard(request, id):
     event = Events.objects.get(id=id)
     golfcourse = event.title
     leaderboard = Leaderboard.objects.filter(event__id=id)
+    teamleaderboard = TeamLeaderboard.objects.filter(event__id=id)
     output = ''
     g_output = ''
+    bb_output = ''
     front_par = golfcourse.hole1par + golfcourse.hole2par + golfcourse.hole3par + golfcourse.hole4par + golfcourse.hole5par + golfcourse.hole6par + golfcourse.hole7par + golfcourse.hole8par + golfcourse.hole9par
     back_par = golfcourse.hole10par + golfcourse.hole11par + golfcourse.hole12par + golfcourse.hole13par + golfcourse.hole14par + golfcourse.hole15par + golfcourse.hole16par + golfcourse.hole17par + golfcourse.hole18par
     total_par = front_par + back_par
@@ -94,6 +96,7 @@ def leaderboard(request, id):
 	over_total = 0
 	finished_flag = 1
 	front_finished_flag = 1
+        back_finished_flag = 1
         tee = cell_start + str(i.tee.teecolor) + cell_end
         name = cell_start + str(i.name) + cell_end
         checkbox = '<td>'+'<label class="checkbox-inline"><input type ="checkbox" name="dl" value="'+str(i.name)+'"></label>'+'</td>'
@@ -886,6 +889,141 @@ def leaderboard(request, id):
         request.session['dl'] = dlist
         request.session['value'] = ""
         return redirect('/events/scorecard/'+ id)
+    for i in teamleaderboard:
+        teamscore = 0
+        teamfront = 0
+        teamback = 0
+        bb_output += '<tr>' + '<td>' + str(i.teamname) + '</td>'
+        if i.player1.hole1score < i.player2.hole1score:
+            bb_output += '<td>' + str(i.player1.hole1score) + '</td>'
+	    teamscore += i.player1.hole1score
+        else:
+            bb_output += '<td>' + str(i.player2.hole1score) + '</td>'
+	    teamscore += i.player2.hole1score
+        teamfront = teamscore
+        if i.player1.hole2score < i.player2.hole2score:
+            bb_output += '<td>' + str(i.player1.hole2score) + '</td>'
+	    teamscore += i.player1.hole2score
+        else:
+            bb_output += '<td>' + str(i.player2.hole2score) + '</td>'
+	    teamscore += i.player2.hole2score
+        teamfront = teamscore
+        if i.player1.hole3score < i.player2.hole3score:
+            bb_output += '<td>' + str(i.player1.hole3score) + '</td>'
+	    teamscore += i.player1.hole3score
+        else:
+            bb_output += '<td>' + str(i.player2.hole3score) + '</td>'
+	    teamscore += i.player2.hole3score
+        teamfront = teamscore
+        if i.player1.hole4score < i.player2.hole4score:
+            bb_output += '<td>' + str(i.player1.hole4score) + '</td>'
+	    teamscore += i.player1.hole4score
+        else:
+            bb_output += '<td>' + str(i.player2.hole4score) + '</td>'
+	    teamscore += i.player2.hole4score
+        teamfront = teamscore
+        if i.player1.hole5score < i.player2.hole5score:
+            bb_output += '<td>' + str(i.player1.hole5score) + '</td>'
+	    teamscore += i.player1.hole5score
+        else:
+            bb_output += '<td>' + str(i.player2.hole5score) + '</td>'
+	    teamscore += i.player2.hole5score
+        teamfront = teamscore
+        if i.player1.hole6score < i.player2.hole6score:
+            bb_output += '<td>' + str(i.player1.hole6score) + '</td>'
+	    teamscore += i.player1.hole6score
+        else:
+            bb_output += '<td>' + str(i.player2.hole6score) + '</td>'
+	    teamscore += i.player2.hole6score
+        teamfront = teamscore
+        if i.player1.hole7score < i.player2.hole7score:
+            bb_output += '<td>' + str(i.player1.hole7score) + '</td>'
+	    teamscore += i.player1.hole7score
+        else:
+            bb_output += '<td>' + str(i.player2.hole7score) + '</td>'
+	    teamscore += i.player2.hole7score
+        teamfront = teamscore
+        if i.player1.hole8score < i.player2.hole8score:
+            bb_output += '<td>' + str(i.player1.hole8score) + '</td>'
+	    teamscore += i.player1.hole8score
+        else:
+            bb_output += '<td>' + str(i.player2.hole8score) + '</td>'
+	    teamscore += i.player2.hole8score
+        teamfront = teamscore
+        if i.player1.hole9score < i.player2.hole9score:
+            bb_output += '<td>' + str(i.player1.hole9score) + '</td>'
+	    teamscore += i.player1.hole9score
+        else:
+            bb_output += '<td>' + str(i.player2.hole9score) + '</td>'
+	    teamscore += i.player2.hole9score
+        teamfront = teamscore
+        bb_output += '<td>' + str(teamfront) + '</td>'
+        if i.player1.hole10score < i.player2.hole10score:
+            bb_output += '<td>' + str(i.player1.hole10score) + '</td>'
+	    teamscore += i.player1.hole10score
+        else:
+            bb_output += '<td>' + str(i.player2.hole10score) + '</td>'
+	    teamscore += i.player2.hole10score
+        teamback = teamscore - teamfront
+        if i.player1.hole11score < i.player2.hole11score:
+            bb_output += '<td>' + str(i.player1.hole11score) + '</td>'
+	    teamscore += i.player1.hole11score
+        else:
+            bb_output += '<td>' + str(i.player2.hole11score) + '</td>'
+	    teamscore += i.player2.hole11score
+        teamback = teamscore - teamfront
+        if i.player1.hole12score < i.player2.hole12score:
+            bb_output += '<td>' + str(i.player1.hole12score) + '</td>'
+	    teamscore += i.player1.hole12score
+        else:
+            bb_output += '<td>' + str(i.player2.hole12score) + '</td>'
+	    teamscore += i.player2.hole12score
+        teamback = teamscore - teamfront
+        if i.player1.hole13score < i.player2.hole13score:
+            bb_output += '<td>' + str(i.player1.hole13score) + '</td>'
+	    teamscore += i.player1.hole13score
+        else:
+            bb_output += '<td>' + str(i.player2.hole13score) + '</td>'
+	    teamscore += i.player2.hole13score
+        teamback = teamscore - teamfront
+        if i.player1.hole14score < i.player2.hole14score:
+            bb_output += '<td>' + str(i.player1.hole14score) + '</td>'
+	    teamscore += i.player1.hole14score
+        else:
+            bb_output += '<td>' + str(i.player2.hole14score) + '</td>'
+	    teamscore += i.player2.hole14score
+        teamback = teamscore - teamfront
+        if i.player1.hole15score < i.player2.hole15score:
+            bb_output += '<td>' + str(i.player1.hole15score) + '</td>'
+	    teamscore += i.player1.hole15score
+        else:
+            bb_output += '<td>' + str(i.player2.hole15score) + '</td>'
+	    teamscore += i.player2.hole15score
+        teamback = teamscore - teamfront
+        if i.player1.hole16score < i.player2.hole16score:
+            bb_output += '<td>' + str(i.player1.hole16score) + '</td>'
+	    teamscore += i.player1.hole16score
+        else:
+            bb_output += '<td>' + str(i.player2.hole16score) + '</td>'
+	    teamscore += i.player2.hole16score
+        teamback = teamscore - teamfront
+        if i.player1.hole17score < i.player2.hole17score:
+            bb_output += '<td>' + str(i.player1.hole17score) + '</td>'
+	    teamscore += i.player1.hole17score
+        else:
+            bb_output += '<td>' + str(i.player2.hole17score) + '</td>'
+	    teamscore += i.player2.hole17score
+        teamback = teamscore - teamfront
+        if i.player1.hole18score < i.player2.hole18score:
+            bb_output += '<td>' + str(i.player1.hole18score) + '</td>'
+	    teamscore += i.player1.hole18score
+        else:
+            bb_output += '<td>' + str(i.player2.hole18score) + '</td>'
+	    teamscore += i.player2.hole18score
+        teamback = teamscore - teamfront
+        bb_output += '<td>' + str(teamback) + '</td>'
+	bb_output += '<td>' + str(teamscore) + '</td>'
+        bb_output += '</tr>'
     context = {
             'front_par': front_par,
             'back_par': back_par,
@@ -895,6 +1033,7 @@ def leaderboard(request, id):
             'golfcourse': golfcourse,
             'output_gross': output,
             'output_net': g_output,
+            'output_bestball': bb_output,
     }
     return render(request, 'events/leaderboard.html', context)
 
