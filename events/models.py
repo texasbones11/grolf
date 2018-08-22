@@ -96,6 +96,11 @@ class Leaderboard(models.Model):
     hole17score = models.SmallIntegerField(blank=True,default=0)
     hole18score = models.SmallIntegerField(blank=True,default=0)
     tee = models.ForeignKey(Tee, on_delete=models.CASCADE)
+    skinsgross = models.BooleanField(default=True)
+    skinsnet = models.BooleanField(default=False)
+    gross = models.BooleanField(default=False)
+    net = models.BooleanField(default=True)
+    eagles = models.BooleanField(default=False)
     def __str__(self):
         return str(self.event) + " - " + str(self.name)
     class Meta:
