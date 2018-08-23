@@ -901,7 +901,7 @@ def leaderboard(request, id):
         teamback = 0
 	bb_overtotal = 0
         bb_row = '<td>' + str(i.teamname) + '</td>'
-        if i.player1.hole1score < i.player2.hole1score:
+        if i.player1.hole1score < i.player2.hole1score and i.player1.hole1score != 0 or i.player2.hole1score == 0:
 	    bb_hole1 = i.player1.hole1score
         else:
 	    bb_hole1 = i.player2.hole1score
@@ -913,7 +913,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole1) + '</td>'
 	teamscore += bb_hole1
         teamfront = teamscore
-        if i.player1.hole2score < i.player2.hole2score:
+        if i.player1.hole2score < i.player2.hole2score and i.player1.hole2score != 0 or i.player2.hole2score == 0:
 	    bb_hole2 = i.player1.hole2score
         else:
 	    bb_hole2 = i.player2.hole2score
@@ -925,7 +925,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole2) + '</td>'
 	teamscore += bb_hole2
         teamfront = teamscore
-        if i.player1.hole3score < i.player2.hole3score:
+        if i.player1.hole3score < i.player2.hole3score and i.player1.hole3score != 0 or i.player2.hole3score == 0:
 	    bb_hole3 = i.player1.hole3score
         else:
 	    bb_hole3 = i.player2.hole3score
@@ -937,7 +937,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole3) + '</td>'
 	teamscore += bb_hole3
         teamfront = teamscore
-        if i.player1.hole4score < i.player2.hole4score:
+        if i.player1.hole4score < i.player2.hole4score and i.player1.hole4score != 0 or i.player2.hole4score == 0:
 	    bb_hole4 = i.player1.hole4score
         else:
 	    bb_hole4 = i.player2.hole4score
@@ -949,7 +949,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole4) + '</td>'
 	teamscore += bb_hole4
         teamfront = teamscore
-        if i.player1.hole5score < i.player2.hole5score:
+        if i.player1.hole5score < i.player2.hole5score and i.player1.hole5score != 0 or i.player2.hole5score == 0:
 	    bb_hole5 = i.player1.hole5score
         else:
 	    bb_hole5 = i.player2.hole5score
@@ -961,7 +961,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole5) + '</td>'
 	teamscore += bb_hole5
         teamfront = teamscore
-        if i.player1.hole6score < i.player2.hole6score:
+        if i.player1.hole6score < i.player2.hole6score and i.player1.hole6score != 0 or i.player2.hole6score == 0:
 	    bb_hole6 = i.player1.hole6score
         else:
 	    bb_hole6 = i.player2.hole6score
@@ -973,7 +973,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole6) + '</td>'
 	teamscore += bb_hole6
         teamfront = teamscore
-        if i.player1.hole7score < i.player2.hole7score:
+        if i.player1.hole7score < i.player2.hole7score and i.player1.hole7score != 0 or i.player2.hole7score == 0:
 	    bb_hole7 = i.player1.hole7score
         else:
 	    bb_hole7 = i.player2.hole7score
@@ -985,7 +985,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole7) + '</td>'
 	teamscore += bb_hole7
         teamfront = teamscore
-        if i.player1.hole8score < i.player2.hole8score:
+        if i.player1.hole8score < i.player2.hole8score and i.player1.hole8score != 0 or i.player2.hole8score == 0:
 	    bb_hole8 = i.player1.hole8score
         else:
 	    bb_hole8 = i.player2.hole8score
@@ -997,7 +997,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole8) + '</td>'
 	teamscore += bb_hole8
         teamfront = teamscore
-        if i.player1.hole9score < i.player2.hole9score:
+        if i.player1.hole9score < i.player2.hole9score and i.player1.hole9score != 0 or i.player2.hole9score == 0:
 	    bb_hole9 = i.player1.hole9score
         else:
 	    bb_hole9 = i.player2.hole9score
@@ -1013,7 +1013,7 @@ def leaderboard(request, id):
             bb_row += '<td>' + str(teamfront) + '</td>'
 	else:
 	    bb_row += '<td></td>'
-        if i.player1.hole10score < i.player2.hole10score:
+        if i.player1.hole10score < i.player2.hole10score and i.player1.hole10score != 0 or i.player2.hole10score == 0:
 	    bb_hole10 = i.player1.hole10score
         else:
 	    bb_hole10 = i.player2.hole10score
@@ -1025,7 +1025,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole10) + '</td>'
 	teamscore += bb_hole10
         teamback = teamscore - teamfront
-        if i.player1.hole11score < i.player2.hole11score:
+        if i.player1.hole11score < i.player2.hole11score and i.player1.hole11score != 0 or i.player2.hole11score == 0:
 	    bb_hole11 = i.player1.hole11score
         else:
 	    bb_hole11 = i.player2.hole11score
@@ -1037,7 +1037,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole11) + '</td>'
 	teamscore += bb_hole11
         teamback = teamscore - teamfront
-        if i.player1.hole12score < i.player2.hole12score:
+        if i.player1.hole12score < i.player2.hole12score and i.player1.hole12score != 0 or i.player2.hole12score == 0:
 	    bb_hole12 = i.player1.hole12score
         else:
 	    bb_hole12 = i.player2.hole12score
@@ -1049,7 +1049,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole12) + '</td>'
 	teamscore += bb_hole12
         teamback = teamscore - teamfront
-        if i.player1.hole13score < i.player2.hole13score:
+        if i.player1.hole13score < i.player2.hole13score and i.player1.hole13score != 0 or i.player2.hole13score == 0:
 	    bb_hole13 = i.player1.hole13score
         else:
 	    bb_hole13 = i.player2.hole13score
@@ -1061,7 +1061,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole13) + '</td>'
 	teamscore += bb_hole13
         teamback = teamscore - teamfront
-        if i.player1.hole14score < i.player2.hole14score:
+        if i.player1.hole14score < i.player2.hole14score and i.player1.hole14score != 0 or i.player2.hole14score == 0:
 	    bb_hole14 = i.player1.hole14score
         else:
 	    bb_hole14 = i.player2.hole14score
@@ -1073,7 +1073,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole14) + '</td>'
 	teamscore += bb_hole14
         teamback = teamscore - teamfront
-        if i.player1.hole15score < i.player2.hole15score:
+        if i.player1.hole15score < i.player2.hole15score and i.player1.hole15score != 0 or i.player2.hole15score == 0:
 	    bb_hole15 = i.player1.hole15score
         else:
 	    bb_hole15 = i.player2.hole15score
@@ -1085,7 +1085,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole15) + '</td>'
 	teamscore += bb_hole15
         teamback = teamscore - teamfront
-        if i.player1.hole16score < i.player2.hole16score:
+        if i.player1.hole16score < i.player2.hole16score and i.player1.hole16score != 0 or i.player2.hole16score == 0:
 	    bb_hole16 = i.player1.hole16score
         else:
 	    bb_hole16 = i.player2.hole16score
@@ -1097,7 +1097,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole16) + '</td>'
 	teamscore += bb_hole16
         teamback = teamscore - teamfront
-        if i.player1.hole17score < i.player2.hole17score:
+        if i.player1.hole17score < i.player2.hole17score and i.player1.hole17score != 0 or i.player2.hole17score == 0:
 	    bb_hole17 = i.player1.hole17score
         else:
 	    bb_hole17 = i.player2.hole17score
@@ -1109,7 +1109,7 @@ def leaderboard(request, id):
         bb_row += '<td>' + str(bb_hole17) + '</td>'
 	teamscore += bb_hole17
         teamback = teamscore - teamfront
-        if i.player1.hole18score < i.player2.hole18score:
+        if i.player1.hole18score < i.player2.hole18score and i.player1.hole18score != 0 or i.player2.hole18score == 0:
 	    bb_hole18 = i.player1.hole18score
         else:
 	    bb_hole18 = i.player2.hole18score
