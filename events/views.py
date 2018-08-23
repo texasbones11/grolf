@@ -30,6 +30,7 @@ def leaderboard(request, id):
     total_par = front_par + back_par
     arr = []
     g_arr = []
+    bb_arr = []
     cell_start = "<td>"
     cell_highlight_green = "<td class=table-success>"
     cell_highlight_yellow = "<td class=table-warning>"
@@ -892,140 +893,217 @@ def leaderboard(request, id):
         request.session['value'] = ""
         return redirect('/events/scorecard/'+ id)
     for i in teamleaderboard:
+	bb_finished_flag = 1
         teamscore = 0
         teamfront = 0
         teamback = 0
-        bb_output += '<tr>' + '<td>' + str(i.teamname) + '</td>'
+	bb_overtotal = 0
+        bb_row = '<td>' + str(i.teamname) + '</td>'
         if i.player1.hole1score < i.player2.hole1score:
-            bb_output += '<td>' + str(i.player1.hole1score) + '</td>'
-	    teamscore += i.player1.hole1score
+	    bb_hole1 = i.player1.hole1score
         else:
-            bb_output += '<td>' + str(i.player2.hole1score) + '</td>'
-	    teamscore += i.player2.hole1score
+	    bb_hole1 = i.player2.hole1score
+	if bb_hole1 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole1) + '</td>'
+	teamscore += bb_hole1
+	bb_overtotal += bb_hole1 - golfcourse.hole1par
         teamfront = teamscore
         if i.player1.hole2score < i.player2.hole2score:
-            bb_output += '<td>' + str(i.player1.hole2score) + '</td>'
-	    teamscore += i.player1.hole2score
+	    bb_hole2 = i.player1.hole2score
         else:
-            bb_output += '<td>' + str(i.player2.hole2score) + '</td>'
-	    teamscore += i.player2.hole2score
+	    bb_hole2 = i.player2.hole2score
+	if bb_hole2 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole2) + '</td>'
+	teamscore += bb_hole2
+	bb_overtotal += bb_hole2 - golfcourse.hole2par
         teamfront = teamscore
         if i.player1.hole3score < i.player2.hole3score:
-            bb_output += '<td>' + str(i.player1.hole3score) + '</td>'
-	    teamscore += i.player1.hole3score
+	    bb_hole3 = i.player1.hole3score
         else:
-            bb_output += '<td>' + str(i.player2.hole3score) + '</td>'
-	    teamscore += i.player2.hole3score
+	    bb_hole3 = i.player2.hole3score
+	if bb_hole3 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole3) + '</td>'
+	teamscore += bb_hole3
+	bb_overtotal += bb_hole3 - golfcourse.hole3par
         teamfront = teamscore
         if i.player1.hole4score < i.player2.hole4score:
-            bb_output += '<td>' + str(i.player1.hole4score) + '</td>'
-	    teamscore += i.player1.hole4score
+	    bb_hole4 = i.player1.hole4score
         else:
-            bb_output += '<td>' + str(i.player2.hole4score) + '</td>'
-	    teamscore += i.player2.hole4score
+	    bb_hole4 = i.player2.hole4score
+	if bb_hole4 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole4) + '</td>'
+	teamscore += bb_hole4
+	bb_overtotal += bb_hole4 - golfcourse.hole4par
         teamfront = teamscore
         if i.player1.hole5score < i.player2.hole5score:
-            bb_output += '<td>' + str(i.player1.hole5score) + '</td>'
-	    teamscore += i.player1.hole5score
+	    bb_hole5 = i.player1.hole5score
         else:
-            bb_output += '<td>' + str(i.player2.hole5score) + '</td>'
-	    teamscore += i.player2.hole5score
+	    bb_hole5 = i.player2.hole5score
+	if bb_hole5 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole5) + '</td>'
+	teamscore += bb_hole5
+	bb_overtotal += bb_hole5 - golfcourse.hole5par
         teamfront = teamscore
         if i.player1.hole6score < i.player2.hole6score:
-            bb_output += '<td>' + str(i.player1.hole6score) + '</td>'
-	    teamscore += i.player1.hole6score
+	    bb_hole6 = i.player1.hole6score
         else:
-            bb_output += '<td>' + str(i.player2.hole6score) + '</td>'
-	    teamscore += i.player2.hole6score
+	    bb_hole6 = i.player2.hole6score
+	if bb_hole6 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole6) + '</td>'
+	teamscore += bb_hole6
+	bb_overtotal += bb_hole6 - golfcourse.hole6par
         teamfront = teamscore
         if i.player1.hole7score < i.player2.hole7score:
-            bb_output += '<td>' + str(i.player1.hole7score) + '</td>'
-	    teamscore += i.player1.hole7score
+	    bb_hole7 = i.player1.hole7score
         else:
-            bb_output += '<td>' + str(i.player2.hole7score) + '</td>'
-	    teamscore += i.player2.hole7score
+	    bb_hole7 = i.player2.hole7score
+	if bb_hole7 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole7) + '</td>'
+	teamscore += bb_hole7
+	bb_overtotal += bb_hole7 - golfcourse.hole7par
         teamfront = teamscore
         if i.player1.hole8score < i.player2.hole8score:
-            bb_output += '<td>' + str(i.player1.hole8score) + '</td>'
-	    teamscore += i.player1.hole8score
+	    bb_hole8 = i.player1.hole8score
         else:
-            bb_output += '<td>' + str(i.player2.hole8score) + '</td>'
-	    teamscore += i.player2.hole8score
+	    bb_hole8 = i.player2.hole8score
+	if bb_hole8 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole8) + '</td>'
+	teamscore += bb_hole8
+	bb_overtotal += bb_hole8 - golfcourse.hole8par
         teamfront = teamscore
         if i.player1.hole9score < i.player2.hole9score:
-            bb_output += '<td>' + str(i.player1.hole9score) + '</td>'
-	    teamscore += i.player1.hole9score
+	    bb_hole9 = i.player1.hole9score
         else:
-            bb_output += '<td>' + str(i.player2.hole9score) + '</td>'
-	    teamscore += i.player2.hole9score
+	    bb_hole9 = i.player2.hole9score
+	if bb_hole9 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole9) + '</td>'
+	teamscore += bb_hole9
+	bb_overtotal += bb_hole9 - golfcourse.hole9par
         teamfront = teamscore
-        bb_output += '<td>' + str(teamfront) + '</td>'
+        bb_row += '<td>' + str(teamfront) + '</td>'
         if i.player1.hole10score < i.player2.hole10score:
-            bb_output += '<td>' + str(i.player1.hole10score) + '</td>'
-	    teamscore += i.player1.hole10score
+	    bb_hole10 = i.player1.hole10score
         else:
-            bb_output += '<td>' + str(i.player2.hole10score) + '</td>'
-	    teamscore += i.player2.hole10score
+	    bb_hole10 = i.player2.hole10score
+	if bb_hole10 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole10) + '</td>'
+	teamscore += bb_hole10
+	bb_overtotal += bb_hole10 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole11score < i.player2.hole11score:
-            bb_output += '<td>' + str(i.player1.hole11score) + '</td>'
-	    teamscore += i.player1.hole11score
+	    bb_hole11 = i.player1.hole11score
         else:
-            bb_output += '<td>' + str(i.player2.hole11score) + '</td>'
-	    teamscore += i.player2.hole11score
+	    bb_hole11 = i.player2.hole11score
+	if bb_hole11 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole11) + '</td>'
+	teamscore += bb_hole11
+	bb_overtotal += bb_hole11 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole12score < i.player2.hole12score:
-            bb_output += '<td>' + str(i.player1.hole12score) + '</td>'
-	    teamscore += i.player1.hole12score
+	    bb_hole12 = i.player1.hole12score
         else:
-            bb_output += '<td>' + str(i.player2.hole12score) + '</td>'
-	    teamscore += i.player2.hole12score
+	    bb_hole12 = i.player2.hole12score
+	if bb_hole12 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole12) + '</td>'
+	teamscore += bb_hole12
+	bb_overtotal += bb_hole12 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole13score < i.player2.hole13score:
-            bb_output += '<td>' + str(i.player1.hole13score) + '</td>'
-	    teamscore += i.player1.hole13score
+	    bb_hole13 = i.player1.hole13score
         else:
-            bb_output += '<td>' + str(i.player2.hole13score) + '</td>'
-	    teamscore += i.player2.hole13score
+	    bb_hole13 = i.player2.hole13score
+	if bb_hole13 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole13) + '</td>'
+	teamscore += bb_hole13
+	bb_overtotal += bb_hole13 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole14score < i.player2.hole14score:
-            bb_output += '<td>' + str(i.player1.hole14score) + '</td>'
-	    teamscore += i.player1.hole14score
+	    bb_hole14 = i.player1.hole14score
         else:
-            bb_output += '<td>' + str(i.player2.hole14score) + '</td>'
-	    teamscore += i.player2.hole14score
+	    bb_hole14 = i.player2.hole14score
+	if bb_hole14 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole14) + '</td>'
+	teamscore += bb_hole14
+	bb_overtotal += bb_hole14 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole15score < i.player2.hole15score:
-            bb_output += '<td>' + str(i.player1.hole15score) + '</td>'
-	    teamscore += i.player1.hole15score
+	    bb_hole15 = i.player1.hole15score
         else:
-            bb_output += '<td>' + str(i.player2.hole15score) + '</td>'
-	    teamscore += i.player2.hole15score
+	    bb_hole15 = i.player2.hole15score
+	if bb_hole15 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole15) + '</td>'
+	teamscore += bb_hole15
+	bb_overtotal += bb_hole15 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole16score < i.player2.hole16score:
-            bb_output += '<td>' + str(i.player1.hole16score) + '</td>'
-	    teamscore += i.player1.hole16score
+	    bb_hole16 = i.player1.hole16score
         else:
-            bb_output += '<td>' + str(i.player2.hole16score) + '</td>'
-	    teamscore += i.player2.hole16score
+	    bb_hole16 = i.player2.hole16score
+	if bb_hole16 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole16) + '</td>'
+	teamscore += bb_hole16
+	bb_overtotal += bb_hole16 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole17score < i.player2.hole17score:
-            bb_output += '<td>' + str(i.player1.hole17score) + '</td>'
-	    teamscore += i.player1.hole17score
+	    bb_hole17 = i.player1.hole17score
         else:
-            bb_output += '<td>' + str(i.player2.hole17score) + '</td>'
-	    teamscore += i.player2.hole17score
+	    bb_hole17 = i.player2.hole17score
+	if bb_hole17 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole17) + '</td>'
+	teamscore += bb_hole17
+	bb_overtotal += bb_hole17 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole18score < i.player2.hole18score:
-            bb_output += '<td>' + str(i.player1.hole18score) + '</td>'
-	    teamscore += i.player1.hole18score
+	    bb_hole18 = i.player1.hole18score
         else:
-            bb_output += '<td>' + str(i.player2.hole18score) + '</td>'
-	    teamscore += i.player2.hole18score
+	    bb_hole18 = i.player2.hole18score
+	if bb_hole18 == 0:
+	    bb_finished_flag = 0
+        bb_row += '<td>' + str(bb_hole18) + '</td>'
+	teamscore += bb_hole18
+	bb_overtotal += bb_hole18 - golfcourse.hole1par
         teamback = teamscore - teamfront
-        bb_output += '<td>' + str(teamback) + '</td>'
-	bb_output += '<td>' + str(teamscore) + '</td>'
-        bb_output += '</tr>'
+        bb_row += '<td>' + str(teamback) + '</td>'
+	if bb_finished_flag == 1:
+            if bb_over_total < 0:
+                bb_row += '<td class="text-danger">' + str(teamscore) + '</td>'
+            else:
+	        bb_row += '<td>' + str(teamscore) + '</td>'
+        elif bb_overtotal > 0:
+	    bb_row += cell_start + "+" + str(bb_overtotal) + cell_end
+        elif bb_overtotal < 0:
+	    bb_row += '<td class="text-danger">' + str(bb_overtotal) + cell_end
+	elif bb_overtotal == 0:
+	    bb_row += cell_start + "E" + cell_end
+        bb_arr.append([bb_overtotal,bb_row])
+    #sort the leaderboard
+    bb_arr.sort(key=lambda x: x[0])
+    rank = 1
+    count = 0
+    prev = 0
+    for line in bb_arr:
+	count += 1
+	if line[0] != prev:
+	    rank = count
+	prev = line[0]
+	bb_output += '<tr>' + '<td>' + str(rank)+ '</td>' + line[1] + '</tr>'
     context = {
             'front_par': front_par,
             'back_par': back_par,
