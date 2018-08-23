@@ -894,6 +894,8 @@ def leaderboard(request, id):
         return redirect('/events/scorecard/'+ id)
     for i in teamleaderboard:
 	bb_finished_flag = 1
+	bb_front_finished_flag = 1
+	bb_back_finished_flag = 1
         teamscore = 0
         teamfront = 0
         teamback = 0
@@ -905,6 +907,7 @@ def leaderboard(request, id):
 	    bb_hole1 = i.player2.hole1score
 	if bb_hole1 == 0:
 	    bb_finished_flag = 0
+	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole1) + '</td>'
 	teamscore += bb_hole1
 	bb_overtotal += bb_hole1 - golfcourse.hole1par
@@ -915,6 +918,7 @@ def leaderboard(request, id):
 	    bb_hole2 = i.player2.hole2score
 	if bb_hole2 == 0:
 	    bb_finished_flag = 0
+	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole2) + '</td>'
 	teamscore += bb_hole2
 	bb_overtotal += bb_hole2 - golfcourse.hole2par
@@ -925,6 +929,7 @@ def leaderboard(request, id):
 	    bb_hole3 = i.player2.hole3score
 	if bb_hole3 == 0:
 	    bb_finished_flag = 0
+	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole3) + '</td>'
 	teamscore += bb_hole3
 	bb_overtotal += bb_hole3 - golfcourse.hole3par
@@ -935,6 +940,7 @@ def leaderboard(request, id):
 	    bb_hole4 = i.player2.hole4score
 	if bb_hole4 == 0:
 	    bb_finished_flag = 0
+	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole4) + '</td>'
 	teamscore += bb_hole4
 	bb_overtotal += bb_hole4 - golfcourse.hole4par
@@ -945,6 +951,7 @@ def leaderboard(request, id):
 	    bb_hole5 = i.player2.hole5score
 	if bb_hole5 == 0:
 	    bb_finished_flag = 0
+	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole5) + '</td>'
 	teamscore += bb_hole5
 	bb_overtotal += bb_hole5 - golfcourse.hole5par
@@ -955,6 +962,7 @@ def leaderboard(request, id):
 	    bb_hole6 = i.player2.hole6score
 	if bb_hole6 == 0:
 	    bb_finished_flag = 0
+	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole6) + '</td>'
 	teamscore += bb_hole6
 	bb_overtotal += bb_hole6 - golfcourse.hole6par
@@ -965,6 +973,7 @@ def leaderboard(request, id):
 	    bb_hole7 = i.player2.hole7score
 	if bb_hole7 == 0:
 	    bb_finished_flag = 0
+	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole7) + '</td>'
 	teamscore += bb_hole7
 	bb_overtotal += bb_hole7 - golfcourse.hole7par
@@ -975,6 +984,7 @@ def leaderboard(request, id):
 	    bb_hole8 = i.player2.hole8score
 	if bb_hole8 == 0:
 	    bb_finished_flag = 0
+	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole8) + '</td>'
 	teamscore += bb_hole8
 	bb_overtotal += bb_hole8 - golfcourse.hole8par
@@ -985,17 +995,22 @@ def leaderboard(request, id):
 	    bb_hole9 = i.player2.hole9score
 	if bb_hole9 == 0:
 	    bb_finished_flag = 0
+	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole9) + '</td>'
 	teamscore += bb_hole9
 	bb_overtotal += bb_hole9 - golfcourse.hole9par
         teamfront = teamscore
-        bb_row += '<td>' + str(teamfront) + '</td>'
+	if bb_front_finished_flag == 1:
+            bb_row += '<td>' + str(teamfront) + '</td>'
+	else:
+	    bb_row += '<td></td>'
         if i.player1.hole10score < i.player2.hole10score:
 	    bb_hole10 = i.player1.hole10score
         else:
 	    bb_hole10 = i.player2.hole10score
 	if bb_hole10 == 0:
 	    bb_finished_flag = 0
+	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole10) + '</td>'
 	teamscore += bb_hole10
 	bb_overtotal += bb_hole10 - golfcourse.hole1par
@@ -1006,6 +1021,7 @@ def leaderboard(request, id):
 	    bb_hole11 = i.player2.hole11score
 	if bb_hole11 == 0:
 	    bb_finished_flag = 0
+	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole11) + '</td>'
 	teamscore += bb_hole11
 	bb_overtotal += bb_hole11 - golfcourse.hole1par
@@ -1016,6 +1032,7 @@ def leaderboard(request, id):
 	    bb_hole12 = i.player2.hole12score
 	if bb_hole12 == 0:
 	    bb_finished_flag = 0
+	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole12) + '</td>'
 	teamscore += bb_hole12
 	bb_overtotal += bb_hole12 - golfcourse.hole1par
@@ -1026,6 +1043,7 @@ def leaderboard(request, id):
 	    bb_hole13 = i.player2.hole13score
 	if bb_hole13 == 0:
 	    bb_finished_flag = 0
+	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole13) + '</td>'
 	teamscore += bb_hole13
 	bb_overtotal += bb_hole13 - golfcourse.hole1par
@@ -1036,6 +1054,7 @@ def leaderboard(request, id):
 	    bb_hole14 = i.player2.hole14score
 	if bb_hole14 == 0:
 	    bb_finished_flag = 0
+	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole14) + '</td>'
 	teamscore += bb_hole14
 	bb_overtotal += bb_hole14 - golfcourse.hole1par
@@ -1046,6 +1065,7 @@ def leaderboard(request, id):
 	    bb_hole15 = i.player2.hole15score
 	if bb_hole15 == 0:
 	    bb_finished_flag = 0
+	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole15) + '</td>'
 	teamscore += bb_hole15
 	bb_overtotal += bb_hole15 - golfcourse.hole1par
@@ -1056,6 +1076,7 @@ def leaderboard(request, id):
 	    bb_hole16 = i.player2.hole16score
 	if bb_hole16 == 0:
 	    bb_finished_flag = 0
+	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole16) + '</td>'
 	teamscore += bb_hole16
 	bb_overtotal += bb_hole16 - golfcourse.hole1par
@@ -1066,6 +1087,7 @@ def leaderboard(request, id):
 	    bb_hole17 = i.player2.hole17score
 	if bb_hole17 == 0:
 	    bb_finished_flag = 0
+	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole17) + '</td>'
 	teamscore += bb_hole17
 	bb_overtotal += bb_hole17 - golfcourse.hole1par
@@ -1076,11 +1098,15 @@ def leaderboard(request, id):
 	    bb_hole18 = i.player2.hole18score
 	if bb_hole18 == 0:
 	    bb_finished_flag = 0
+	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole18) + '</td>'
 	teamscore += bb_hole18
 	bb_overtotal += bb_hole18 - golfcourse.hole1par
         teamback = teamscore - teamfront
-        bb_row += '<td>' + str(teamback) + '</td>'
+	if bb_back_finished_flag == 1:
+            bb_row += '<td>' + str(teamback) + '</td>'
+	else:
+	    bb_row += '<td></td>'
 	if bb_finished_flag == 1:
             if bb_over_total < 0:
                 bb_row += '<td class="text-danger">' + str(teamscore) + '</td>'
