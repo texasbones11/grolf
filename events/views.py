@@ -891,7 +891,7 @@ def leaderboard(request, id):
         print(dlist)
         request.session['dl'] = dlist
         request.session['value'] = ""
-        return redirect('/events/scorecard/'+ id)
+        return redirect('/events/login/'+ id)
     for i in teamleaderboard:
 	bb_finished_flag = 1
 	bb_front_finished_flag = 1
@@ -1201,3 +1201,23 @@ def scorecard(request, id):
 def useradmin(request):
     context = "test"
     return render(request, "events/useradmin.html", {'context': context})
+
+def login(request, id):
+    event = Events.objects.get(id=id)
+    eventid = id
+    context = "test"
+    if request.method == 'POST':
+        next_page = request.POST.get('value')
+        request.session['value'] = next_page
+        password = request.POST.get('inputpassword')
+        if 'leaderboard' in request.POST:
+            url = '/events/leaderboard/' + str(eventid)
+        elif str(password) == str(event.password):
+            url = '/events/scorecard'+str(next_page)+'/' + str(eventid)
+            print("success")
+        else:
+            url = '/events/leaderboard/' + str(eventid)
+            print(str(event.password) + " " + str(password))
+            print(str(request.POST))
+        return redirect(url)
+    return render(request, "events/login.html", {'context': context})

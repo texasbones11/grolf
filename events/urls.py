@@ -23,4 +23,5 @@ urlpatterns = [
         url(r'^scorecard16/(?P<id>\d+)/$', views.scorecard, name='scorecard16'),
         url(r'^scorecard17/(?P<id>\d+)/$', views.scorecard, name='scorecard17'),
         url(r'^scorecard18/(?P<id>\d+)/$', views.scorecard, name='scorecard18'),
+        url(r'^login/(?P<id>\d+)/$', views.login, name='login'),
 ]
