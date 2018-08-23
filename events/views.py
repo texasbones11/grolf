@@ -20,6 +20,8 @@ def leaderboard(request, id):
     golfcourse = event.title
     leaderboard = Leaderboard.objects.filter(event__id=id)
     teamleaderboard = TeamLeaderboard.objects.filter(event__id=id)
+    teamscoring = event.teamscoring
+    netscoring = event.netscoring
     output = ''
     g_output = ''
     bb_output = ''
@@ -1034,6 +1036,8 @@ def leaderboard(request, id):
             'output_gross': output,
             'output_net': g_output,
             'output_bestball': bb_output,
+            'netscoring': netscoring,
+            'teamscoring': teamscoring,
     }
     return render(request, 'events/leaderboard.html', context)
 

@@ -6,12 +6,16 @@
 	<li class="nav-item">
 		<a class="nav-link active" data-toggle="tab" href="#gross">Gross</a>
 	</li>
+	{% if netscoring %}
 	<li class="nav-item">
 		<a class="nav-link" data-toggle="tab" href="#net">Net</a>
 	</li>
+	{% endif %}
+	{% if teamscoring %}
 	<li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#bestball">Teams</a>
         </li>
+	{% endif %}
 </ul>
 </div>
 <div class="row">

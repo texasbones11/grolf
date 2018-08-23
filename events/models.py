@@ -69,6 +69,8 @@ class Events(models.Model):
     tag = models.CharField(max_length=40, default="")
     title = models.ForeignKey(GolfCourse, on_delete=models.CASCADE)
     date = models.DateField(default=date.today)
+    teamscoring = models.BooleanField(default=False)
+    netscoring = models.BooleanField(default=False)
     lock = models.BooleanField(default=False)
     def __str__(self):
         return str(self.tag) + " " + str(self.title) + " " + str(self.date)
