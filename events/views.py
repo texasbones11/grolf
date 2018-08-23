@@ -903,102 +903,111 @@ def leaderboard(request, id):
         bb_row = '<td>' + str(i.teamname) + '</td>'
         if i.player1.hole1score < i.player2.hole1score:
 	    bb_hole1 = i.player1.hole1score
+	    bb_overtotal += bb_hole1 - golfcourse.hole1par
         else:
 	    bb_hole1 = i.player2.hole1score
+	    bb_overtotal += bb_hole1 - golfcourse.hole1par
 	if bb_hole1 == 0:
 	    bb_finished_flag = 0
 	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole1) + '</td>'
 	teamscore += bb_hole1
-	bb_overtotal += bb_hole1 - golfcourse.hole1par
         teamfront = teamscore
         if i.player1.hole2score < i.player2.hole2score:
 	    bb_hole2 = i.player1.hole2score
+	    bb_overtotal += bb_hole2 - golfcourse.hole2par
         else:
 	    bb_hole2 = i.player2.hole2score
+	    bb_overtotal += bb_hole2 - golfcourse.hole2par
 	if bb_hole2 == 0:
 	    bb_finished_flag = 0
 	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole2) + '</td>'
 	teamscore += bb_hole2
-	bb_overtotal += bb_hole2 - golfcourse.hole2par
         teamfront = teamscore
         if i.player1.hole3score < i.player2.hole3score:
 	    bb_hole3 = i.player1.hole3score
+	    bb_overtotal += bb_hole3 - golfcourse.hole3par
         else:
 	    bb_hole3 = i.player2.hole3score
+	    bb_overtotal += bb_hole3 - golfcourse.hole3par
 	if bb_hole3 == 0:
 	    bb_finished_flag = 0
 	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole3) + '</td>'
 	teamscore += bb_hole3
-	bb_overtotal += bb_hole3 - golfcourse.hole3par
         teamfront = teamscore
         if i.player1.hole4score < i.player2.hole4score:
 	    bb_hole4 = i.player1.hole4score
+	    bb_overtotal += bb_hole4 - golfcourse.hole4par
         else:
 	    bb_hole4 = i.player2.hole4score
+	    bb_overtotal += bb_hole4 - golfcourse.hole4par
 	if bb_hole4 == 0:
 	    bb_finished_flag = 0
 	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole4) + '</td>'
 	teamscore += bb_hole4
-	bb_overtotal += bb_hole4 - golfcourse.hole4par
         teamfront = teamscore
         if i.player1.hole5score < i.player2.hole5score:
 	    bb_hole5 = i.player1.hole5score
+	    bb_overtotal += bb_hole5 - golfcourse.hole5par
         else:
 	    bb_hole5 = i.player2.hole5score
+	    bb_overtotal += bb_hole5 - golfcourse.hole5par
 	if bb_hole5 == 0:
 	    bb_finished_flag = 0
 	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole5) + '</td>'
 	teamscore += bb_hole5
-	bb_overtotal += bb_hole5 - golfcourse.hole5par
         teamfront = teamscore
         if i.player1.hole6score < i.player2.hole6score:
 	    bb_hole6 = i.player1.hole6score
+	    bb_overtotal += bb_hole6 - golfcourse.hole6par
         else:
 	    bb_hole6 = i.player2.hole6score
+	    bb_overtotal += bb_hole6 - golfcourse.hole6par
 	if bb_hole6 == 0:
 	    bb_finished_flag = 0
 	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole6) + '</td>'
 	teamscore += bb_hole6
-	bb_overtotal += bb_hole6 - golfcourse.hole6par
         teamfront = teamscore
         if i.player1.hole7score < i.player2.hole7score:
 	    bb_hole7 = i.player1.hole7score
+	    bb_overtotal += bb_hole7 - golfcourse.hole7par
         else:
 	    bb_hole7 = i.player2.hole7score
+	    bb_overtotal += bb_hole7 - golfcourse.hole7par
 	if bb_hole7 == 0:
 	    bb_finished_flag = 0
 	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole7) + '</td>'
 	teamscore += bb_hole7
-	bb_overtotal += bb_hole7 - golfcourse.hole7par
         teamfront = teamscore
         if i.player1.hole8score < i.player2.hole8score:
 	    bb_hole8 = i.player1.hole8score
+	    bb_overtotal += bb_hole8 - golfcourse.hole8par
         else:
 	    bb_hole8 = i.player2.hole8score
+	    bb_overtotal += bb_hole8 - golfcourse.hole8par
 	if bb_hole8 == 0:
 	    bb_finished_flag = 0
 	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole8) + '</td>'
 	teamscore += bb_hole8
-	bb_overtotal += bb_hole8 - golfcourse.hole8par
         teamfront = teamscore
         if i.player1.hole9score < i.player2.hole9score:
 	    bb_hole9 = i.player1.hole9score
+	    bb_overtotal += bb_hole9 - golfcourse.hole9par
         else:
 	    bb_hole9 = i.player2.hole9score
+	    bb_overtotal += bb_hole9 - golfcourse.hole9par
 	if bb_hole9 == 0:
 	    bb_finished_flag = 0
 	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole9) + '</td>'
 	teamscore += bb_hole9
-	bb_overtotal += bb_hole9 - golfcourse.hole9par
         teamfront = teamscore
 	if bb_front_finished_flag == 1:
             bb_row += '<td>' + str(teamfront) + '</td>'
@@ -1006,102 +1015,111 @@ def leaderboard(request, id):
 	    bb_row += '<td></td>'
         if i.player1.hole10score < i.player2.hole10score:
 	    bb_hole10 = i.player1.hole10score
+	    bb_overtotal += bb_hole10 - golfcourse.hole10par
         else:
 	    bb_hole10 = i.player2.hole10score
+	    bb_overtotal += bb_hole10 - golfcourse.hole10par
 	if bb_hole10 == 0:
 	    bb_finished_flag = 0
 	    bb_front_finished_flag = 0
         bb_row += '<td>' + str(bb_hole10) + '</td>'
 	teamscore += bb_hole10
-	bb_overtotal += bb_hole10 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole11score < i.player2.hole11score:
 	    bb_hole11 = i.player1.hole11score
+	    bb_overtotal += bb_hole11 - golfcourse.hole11par
         else:
 	    bb_hole11 = i.player2.hole11score
+	    bb_overtotal += bb_hole11 - golfcourse.hole11par
 	if bb_hole11 == 0:
 	    bb_finished_flag = 0
 	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole11) + '</td>'
 	teamscore += bb_hole11
-	bb_overtotal += bb_hole11 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole12score < i.player2.hole12score:
 	    bb_hole12 = i.player1.hole12score
+	    bb_overtotal += bb_hole12 - golfcourse.hole12par
         else:
 	    bb_hole12 = i.player2.hole12score
+	    bb_overtotal += bb_hole12 - golfcourse.hole12par
 	if bb_hole12 == 0:
 	    bb_finished_flag = 0
 	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole12) + '</td>'
 	teamscore += bb_hole12
-	bb_overtotal += bb_hole12 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole13score < i.player2.hole13score:
 	    bb_hole13 = i.player1.hole13score
+	    bb_overtotal += bb_hole13 - golfcourse.hole13par
         else:
 	    bb_hole13 = i.player2.hole13score
+	    bb_overtotal += bb_hole13 - golfcourse.hole13par
 	if bb_hole13 == 0:
 	    bb_finished_flag = 0
 	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole13) + '</td>'
 	teamscore += bb_hole13
-	bb_overtotal += bb_hole13 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole14score < i.player2.hole14score:
 	    bb_hole14 = i.player1.hole14score
+	    bb_overtotal += bb_hole14 - golfcourse.hole14par
         else:
 	    bb_hole14 = i.player2.hole14score
+	    bb_overtotal += bb_hole14 - golfcourse.hole14par
 	if bb_hole14 == 0:
 	    bb_finished_flag = 0
 	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole14) + '</td>'
 	teamscore += bb_hole14
-	bb_overtotal += bb_hole14 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole15score < i.player2.hole15score:
 	    bb_hole15 = i.player1.hole15score
+	    bb_overtotal += bb_hole15 - golfcourse.hole15par
         else:
 	    bb_hole15 = i.player2.hole15score
+	    bb_overtotal += bb_hole15 - golfcourse.hole15par
 	if bb_hole15 == 0:
 	    bb_finished_flag = 0
 	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole15) + '</td>'
 	teamscore += bb_hole15
-	bb_overtotal += bb_hole15 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole16score < i.player2.hole16score:
 	    bb_hole16 = i.player1.hole16score
+	    bb_overtotal += bb_hole16 - golfcourse.hole16par
         else:
 	    bb_hole16 = i.player2.hole16score
+	    bb_overtotal += bb_hole16 - golfcourse.hole16par
 	if bb_hole16 == 0:
 	    bb_finished_flag = 0
 	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole16) + '</td>'
 	teamscore += bb_hole16
-	bb_overtotal += bb_hole16 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole17score < i.player2.hole17score:
 	    bb_hole17 = i.player1.hole17score
+	    bb_overtotal += bb_hole17 - golfcourse.hole17par
         else:
 	    bb_hole17 = i.player2.hole17score
+	    bb_overtotal += bb_hole17 - golfcourse.hole17par
 	if bb_hole17 == 0:
 	    bb_finished_flag = 0
 	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole17) + '</td>'
 	teamscore += bb_hole17
-	bb_overtotal += bb_hole17 - golfcourse.hole1par
         teamback = teamscore - teamfront
         if i.player1.hole18score < i.player2.hole18score:
 	    bb_hole18 = i.player1.hole18score
+	    bb_overtotal += bb_hole18 - golfcourse.hole18par
         else:
 	    bb_hole18 = i.player2.hole18score
+	    bb_overtotal += bb_hole18 - golfcourse.hole18par
 	if bb_hole18 == 0:
 	    bb_finished_flag = 0
 	    bb_back_finished_flag = 0
         bb_row += '<td>' + str(bb_hole18) + '</td>'
 	teamscore += bb_hole18
-	bb_overtotal += bb_hole18 - golfcourse.hole1par
         teamback = teamscore - teamfront
 	if bb_back_finished_flag == 1:
             bb_row += '<td>' + str(teamback) + '</td>'
@@ -1183,3 +1201,4 @@ def scorecard(request, id):
 def useradmin(request):
     context = "test"
     return render(request, "events/useradmin.html", {'context': context})
+
