@@ -1144,7 +1144,7 @@ def leaderboard(request, id):
 	else:
 	    bb_row += '<td></td>'
 	if bb_finished_flag == 1:
-            if bb_over_total < 0:
+            if bb_overtotal < 0:
                 bb_row += '<td class="text-danger">' + str(teamscore) + '</td>'
             else:
 	        bb_row += '<td>' + str(teamscore) + '</td>'
