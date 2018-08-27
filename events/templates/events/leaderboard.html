@@ -20,7 +20,7 @@
         </li>
 	{% endif %}
 </ul>
-</div>
+</div> 
 <div class="row">
 <div class="tab-content">
 	<form method='POST'>
@@ -30,7 +30,9 @@
 				<table class="table table-bordered">
 					<thead class="thead-dark">
 						<tr>
+							{% if not event.lock %}
 							<th></th>
+							{% endif %}
 							<th></th>
 							<th></th>
 							<th>Hole</th>
@@ -59,7 +61,9 @@
 					</thead>
 					<tbody>
 						<tr>
-							<th></th>
+	                                                {% if not event.lock %}
+                                                        <th></th>
+                                                        {% endif %}
 							<th></th>
 							<th></th>
 							<th>Par</th>
@@ -87,7 +91,9 @@
 						</tr>
 						<tr>
 							<th>Rank</th>
+                                                        {% if not event.lock %}
 							<th>Score</th>
+                                                        {% endif %}
 							<th>Player</th>
 							<th>Tee</th>
 							<td>{{golfcourse.hole1handicap}}</td>

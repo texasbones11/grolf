@@ -103,7 +103,7 @@ def leaderboard(request, id):
         tee = cell_start + str(i.tee.teecolor) + cell_end
         name = cell_start + str(i.name) + cell_end
         if event.lock:
-            checkbox = '<td></td>'
+            checkbox = ''
         else:
             checkbox = '<td>'+'<label class="checkbox-inline"><input type ="checkbox" name="dl" value="'+str(i.name)+'"></label>'+'</td>'
 	if i.hole1score == 0:
