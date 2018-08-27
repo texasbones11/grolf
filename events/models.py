@@ -74,7 +74,7 @@ class Events(models.Model):
     lock = models.BooleanField(default=False)
     password = models.CharField(max_length=20, default="")
     def __str__(self):
-        return str(self.tag) + " " + str(self.title) + " " + str(self.date)
+        return str(self.tag) + " - " + str(self.title) + " - " + str(self.date)
     class Meta:
         verbose_name_plural = "Events"
 

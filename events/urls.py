@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from . import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
         url(r'^$', views.index, name='index'),
@@ -25,3 +26,5 @@ urlpatterns = [
         url(r'^scorecard18/(?P<id>\d+)/$', views.scorecard, name='scorecard18'),
         url(r'^login/(?P<id>\d+)/$', views.login, name='login'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
