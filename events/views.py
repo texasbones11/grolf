@@ -102,7 +102,10 @@ def leaderboard(request, id):
         back_finished_flag = 1
         tee = cell_start + str(i.tee.teecolor) + cell_end
         name = cell_start + str(i.name) + cell_end
-        checkbox = '<td>'+'<label class="checkbox-inline"><input type ="checkbox" name="dl" value="'+str(i.name)+'"></label>'+'</td>'
+        if event.lock:
+            checkbox = '<td></td>'
+        else:
+            checkbox = '<td>'+'<label class="checkbox-inline"><input type ="checkbox" name="dl" value="'+str(i.name)+'"></label>'+'</td>'
 	if i.hole1score == 0:
 	    hole1 = cell_start + cell_end
 	    finished_flag = 0
