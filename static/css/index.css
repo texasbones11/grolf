@@ -1,0 +1,18 @@
+body, html {
+	height: 100%;
+}
+.bg {
+	background-position: center;
+	background-image: url("/static/gcoh.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-height: 100%;
+	min-width: 100%;
+}
+#first-jumbo {
+	background-color: transparent !important;
+	padding-bottom: 0;
+}
+p { 
+	font-family: 'Pacifico', cursive;
+}

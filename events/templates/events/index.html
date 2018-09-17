@@ -1,9 +1,12 @@
 {% extends 'events/layout.html' %}
 
 {% block content %}
-<ul class="collection">
+<section class="container">
+<div class="mx-auto text-center">
 	{% for event in events %}
-	<li class="collection-item"><a href="/events/leaderboard/{{event.id}}">{{event.tag}} - {{event.title}} - {{event.date}}</a></li>
+	<a href="/events/leaderboard/{{event.id}}" class="btn btn-dark">{{event.tag}} - {{event.title}} - {{event.date}}</a>
+	<br><br>
 	{% endfor %}
-</ul>
+</div>
+</section>
 {% endblock %}

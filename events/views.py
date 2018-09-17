@@ -7,7 +7,7 @@ from django.forms import modelformset_factory
 
 # Create your views here.
 def index(request):
-        events = Events.objects.all().order_by('-date')[:10]
+        events = Events.objects.all().order_by('-date')[:6]
 
         context = {
                 'events': events
