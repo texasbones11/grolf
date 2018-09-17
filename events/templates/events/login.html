@@ -1,18 +1,25 @@
 {% extends 'events/layout.html' %}
 {% block content %}
-<html lang="en">
 <form method='post' class="form-inline">
 	{% csrf_token %}
-	<div class="form-group mb-2">
+	<div class="container">
+	<div class="row">
+	<div class="col-4 bg-light">
 		Enter Password
 	</div>
-	<div class="form-group mx-sm-3 mb-2">
+	<div class="col-4 bg-light">
 		<label for="inputpassword" class="sr-only">Password</label>
 		<input type="password" class="form-control" id="inputpassword" name="inputpassword" placeholder="Password">
 	</div>
-        <br></br>
-	<button type="submit" name="value" value="" class="btn btn-outline-dark"&gt>Submit</button>
-	<button type="submit" name="leaderboard" class="btn btn-outline-dark float-right"&gt>Leaderboard</button>
+	</div>
+	<div class="row">
+	<div class="col-4">
+	<button type="submit" name="value" value="" class="btn btn-dark"&gt>Submit</button>
+	</div>
+	<div class="col-4">
+		<button type="submit" name="leaderboard" class="btn btn-dark float-right"&gt>Leaderboard</button>
+	</div>
+	</div>
+	</div>
 </form>
-</html>
 {% endblock %}
