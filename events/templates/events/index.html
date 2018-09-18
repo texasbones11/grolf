@@ -4,7 +4,7 @@
 <section class="container">
 <div class="mx-auto text-center">
 	{% for event in events %}
-	<a href="/events/leaderboard/{{event.id}}" class="btn btn-dark">{{event.tag}} - {{event.title}} - {{event.date}}</a>
+	<a href="/events/leaderboard/{{event.id}}" class="btn btn-dark btn-sm">{{event.tag}} - {{event.title}} - {{event.date}}</a>
 	<br><br>
 	{% endfor %}
 </div>
