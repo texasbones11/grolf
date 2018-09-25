@@ -339,7 +339,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole1score - 2
 	        elif (hdcp_adj / golfcourse.hole1handicap) >= 1:
 		    score_adj = i.hole1score - 1
-	        elif (hdcp_adj / golfcourse.hole1handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole1handicap) < 1:
 		    score_adj = i.hole1score + 1
                 g_skins1.append([name,score_adj])
             if i.hole2score != 0:
@@ -348,7 +348,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole2score - 2
 	        elif (hdcp_adj / golfcourse.hole2handicap) >= 1:
 		    score_adj = i.hole2score - 1
-	        elif (hdcp_adj / golfcourse.hole2handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole2handicap) < 1:
 		    score_adj = i.hole2score + 1
                 g_skins2.append([name,score_adj])
             if i.hole3score != 0:
@@ -357,7 +357,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole3score - 2
 	        elif (hdcp_adj / golfcourse.hole3handicap) >= 1:
 	       	    score_adj = i.hole3score - 1
-	        elif (hdcp_adj / golfcourse.hole3handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole3handicap) < 1:
 		    score_adj = i.hole3score + 1
                 g_skins3.append([name,score_adj])
             if i.hole4score != 0:
@@ -366,7 +366,7 @@ def leaderboard(request, id):
 	       	    score_adj = i.hole4score - 2
 	        elif (hdcp_adj / golfcourse.hole4handicap) >= 1:
 		    score_adj = i.hole4score - 1
-	        elif (hdcp_adj / golfcourse.hole4handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole4handicap) < 1:
 		    score_adj = i.hole4score + 1
                 g_skins4.append([name,score_adj])
             if i.hole5score != 0:
@@ -375,7 +375,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole5score - 2
 	        elif (hdcp_adj / golfcourse.hole5handicap) >= 1:
 		    score_adj = i.hole5score - 1
-	        elif (hdcp_adj / golfcourse.hole5handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole5handicap) < 1:
 		    score_adj = i.hole5score + 1
                 g_skins5.append([name,score_adj])
             if i.hole6score != 0:
@@ -384,7 +384,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole6score - 2
 	        elif (hdcp_adj / golfcourse.hole6handicap) >= 1:
 		    score_adj = i.hole6score - 1
-	        elif (hdcp_adj / golfcourse.hole6handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole6handicap) < 1:
 		    score_adj = i.hole6score + 1
                 g_skins6.append([name,score_adj])
             if i.hole7score != 0:
@@ -393,7 +393,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole7score - 2
 	        elif (hdcp_adj / golfcourse.hole7handicap) >= 1:
 		    score_adj = i.hole7score - 1
-	        elif (hdcp_adj / golfcourse.hole7handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole7handicap) < 1:
 	    	    score_adj = i.hole7score + 1
                 g_skins7.append([name,score_adj])
             if i.hole8score != 0:
@@ -402,7 +402,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole8score - 2
 	        elif (hdcp_adj / golfcourse.hole8handicap) >= 1:
 		    score_adj = i.hole8score - 1
-	        elif (hdcp_adj / golfcourse.hole8handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole8handicap) < 1:
 		    score_adj = i.hole8score + 1
                 g_skins8.append([name,score_adj])
             if i.hole9score != 0:
@@ -411,7 +411,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole9score - 2
 	        elif (hdcp_adj / golfcourse.hole9handicap) >= 1:
 		    score_adj = i.hole9score - 1
-	        elif (hdcp_adj / golfcourse.hole9handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole9handicap) < 1:
 		    score_adj = i.hole9score + 1
                 g_skins9.append([name,score_adj])
             if i.hole10score != 0:
@@ -420,7 +420,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole10score - 2
 	        elif (hdcp_adj / golfcourse.hole10handicap) >= 1:
 		    score_adj = i.hole10score - 1
-	        elif (hdcp_adj / golfcourse.hole10handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole10handicap) < 1:
 		    score_adj = i.hole10score + 1
                 g_skins10.append([name,score_adj])
             if i.hole11score != 0:
@@ -429,7 +429,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole11score - 2
 	        elif (hdcp_adj / golfcourse.hole11handicap) >= 1:
 		    score_adj = i.hole11score - 1
-	        elif (hdcp_adj / golfcourse.hole11handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole11handicap) < 1:
 		    score_adj = i.hole11score + 1
                 g_skins11.append([name,score_adj])
             if i.hole12score != 0:
@@ -438,7 +438,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole12score - 2
 	        elif (hdcp_adj / golfcourse.hole12handicap) >= 1:
 		    score_adj = i.hole12score - 1
-	        elif (hdcp_adj / golfcourse.hole12handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole12handicap) < 1:
 		    score_adj = i.hole12score + 1
                 g_skins12.append([name,score_adj])
             if i.hole13score != 0:
@@ -447,7 +447,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole13score - 2
 	        elif (hdcp_adj / golfcourse.hole13handicap) >= 1:
 		    score_adj = i.hole13score - 1
-	        elif (hdcp_adj / golfcourse.hole13handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole13handicap) < 1:
 		    score_adj = i.hole13score + 1
                 g_skins13.append([name,score_adj])
             if i.hole14score != 0:
@@ -456,7 +456,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole14score - 2
 	        elif (hdcp_adj / golfcourse.hole14handicap) >= 1:
 		    score_adj = i.hole14score - 1
-	        elif (hdcp_adj / golfcourse.hole14handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole14handicap) < 1:
 		    score_adj = i.hole14score + 1
                 g_skins14.append([name,score_adj])
             if i.hole15score != 0:
@@ -465,7 +465,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole15score - 2
 	        elif (hdcp_adj / golfcourse.hole15handicap) >= 1:
 		    score_adj = i.hole15score - 1
-	        elif (hdcp_adj / golfcourse.hole15handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole15handicap) < 1:
 		    score_adj = i.hole15score + 1
                 g_skins15.append([name,score_adj])
             if i.hole16score != 0:
@@ -474,7 +474,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole16score - 2
 	        elif (hdcp_adj / golfcourse.hole16handicap) >= 1:
 		    score_adj = i.hole16score - 1
-	        elif (hdcp_adj / golfcourse.hole16handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole16handicap) < 1:
 		    score_adj = i.hole16score + 1
                 g_skins16.append([name,score_adj])
             if i.hole17score != 0:
@@ -483,7 +483,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole17score - 2
 	        elif (hdcp_adj / golfcourse.hole17handicap) >= 1:
 		    score_adj = i.hole17score - 1
-	        elif (hdcp_adj / golfcourse.hole17handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole17handicap) < 1:
 		    score_adj = i.hole17score + 1
                 g_skins17.append([name,score_adj])
             if i.hole18score != 0:
@@ -492,7 +492,7 @@ def leaderboard(request, id):
 		    score_adj = i.hole18score - 2
 	        elif (hdcp_adj / golfcourse.hole18handicap) >= 1:
 		    score_adj = i.hole18score - 1
-	        elif (hdcp_adj / golfcourse.hole18handicap) <= -1:
+	        elif ((18 + hdcp_adj) / golfcourse.hole18handicap) < 1:
 		    score_adj = i.hole18score + 1
                 g_skins18.append([name,score_adj])
     #sort all holes to find skins
@@ -528,7 +528,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole1score - 2
         elif (hdcp_adj / golfcourse.hole1handicap) >= 1:
 	    score_adj = i.hole1score - 1
-        elif (hdcp_adj / golfcourse.hole1handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole1handicap) < 1:
 	    score_adj = i.hole1score + 1
 	hole1_adj = score_adj
 	if i.hole1score == 0:
@@ -546,7 +546,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole2score - 2
         elif (hdcp_adj / golfcourse.hole2handicap) >= 1:
 	    score_adj = i.hole2score - 1
-        elif (hdcp_adj / golfcourse.hole2handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole2handicap) < 1:
 	    score_adj = i.hole2score + 1
 	hole2_adj = score_adj
 	if i.hole2score == 0:
@@ -564,7 +564,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole3score - 2
         elif (hdcp_adj / golfcourse.hole3handicap) >= 1:
 	    score_adj = i.hole3score - 1
-        elif (hdcp_adj / golfcourse.hole3handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole3handicap) < 1:
 	    score_adj = i.hole3score + 1
 	hole3_adj = score_adj
 	if i.hole3score == 0:
@@ -582,7 +582,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole4score - 2
         elif (hdcp_adj / golfcourse.hole4handicap) >= 1:
 	    score_adj = i.hole4score - 1
-        elif (hdcp_adj / golfcourse.hole4handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole4handicap) < 1:
 	    score_adj = i.hole4score + 1
 	hole4_adj = score_adj
 	if i.hole4score == 0:
@@ -600,7 +600,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole5score - 2
         elif (hdcp_adj / golfcourse.hole5handicap) >= 1:
 	    score_adj = i.hole5score - 1
-        elif (hdcp_adj / golfcourse.hole5handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole5handicap) < 1:
 	    score_adj = i.hole5score + 1
 	hole5_adj = score_adj
 	if i.hole5score == 0:
@@ -618,7 +618,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole6score - 2
         elif (hdcp_adj / golfcourse.hole6handicap) >= 1:
 	    score_adj = i.hole6score - 1
-        elif (hdcp_adj / golfcourse.hole6handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole6handicap) < 1:
 	    score_adj = i.hole6score + 1
 	hole6_adj = score_adj
 	if i.hole6score == 0:
@@ -636,7 +636,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole7score - 2
         elif (hdcp_adj / golfcourse.hole7handicap) >= 1:
 	    score_adj = i.hole7score - 1
-        elif (hdcp_adj / golfcourse.hole7handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole7handicap) < 1:
 	    score_adj = i.hole7score + 1
 	hole7_adj = score_adj
 	if i.hole7score == 0:
@@ -654,7 +654,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole8score - 2
         elif (hdcp_adj / golfcourse.hole8handicap) >= 1:
 	    score_adj = i.hole8score - 1
-        elif (hdcp_adj / golfcourse.hole8handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole8handicap) < 1:
 	    score_adj = i.hole8score + 1
 	hole8_adj = score_adj
 	if i.hole8score == 0:
@@ -672,7 +672,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole9score - 2
         elif (hdcp_adj / golfcourse.hole9handicap) >= 1:
 	    score_adj = i.hole9score - 1
-        elif (hdcp_adj / golfcourse.hole9handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole9handicap) < 1:
 	    score_adj = i.hole9score + 1
 	hole9_adj = score_adj
 	if i.hole9score == 0:
@@ -690,7 +690,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole10score - 2
         elif (hdcp_adj / golfcourse.hole10handicap) >= 1:
 	    score_adj = i.hole10score - 1
-        elif (hdcp_adj / golfcourse.hole10handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole10handicap) < 1:
 	    score_adj = i.hole10score + 1
 	hole10_adj = score_adj
 	if i.hole10score == 0:
@@ -708,7 +708,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole11score - 2
         elif (hdcp_adj / golfcourse.hole11handicap) >= 1:
 	    score_adj = i.hole11score - 1
-        elif (hdcp_adj / golfcourse.hole11handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole11handicap) < 1:
 	    score_adj = i.hole11score + 1
 	hole11_adj = score_adj
 	if i.hole11score == 0:
@@ -726,7 +726,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole12score - 2
         elif (hdcp_adj / golfcourse.hole12handicap) >= 1:
 	    score_adj = i.hole12score - 1
-        elif (hdcp_adj / golfcourse.hole12handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole12handicap) < 1:
 	    score_adj = i.hole12score + 1
 	hole12_adj = score_adj
 	if i.hole12score == 0:
@@ -744,7 +744,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole13score - 2
         elif (hdcp_adj / golfcourse.hole13handicap) >= 1:
 	    score_adj = i.hole13score - 1
-        elif (hdcp_adj / golfcourse.hole13handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole13handicap) < 1:
 	    score_adj = i.hole13score + 1
 	hole13_adj = score_adj
 	if i.hole13score == 0:
@@ -762,7 +762,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole14score - 2
         elif (hdcp_adj / golfcourse.hole14handicap) >= 1:
 	    score_adj = i.hole14score - 1
-        elif (hdcp_adj / golfcourse.hole14handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole14handicap) < 1:
 	    score_adj = i.hole14score + 1
 	hole14_adj = score_adj
 	if i.hole14score == 0:
@@ -780,7 +780,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole15score - 2
         elif (hdcp_adj / golfcourse.hole15handicap) >= 1:
 	    score_adj = i.hole15score - 1
-        elif (hdcp_adj / golfcourse.hole15handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole15handicap) < 1:
 	    score_adj = i.hole15score + 1
 	hole15_adj = score_adj
 	if i.hole15score == 0:
@@ -798,7 +798,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole16score - 2
         elif (hdcp_adj / golfcourse.hole16handicap) >= 1:
 	    score_adj = i.hole16score - 1
-        elif (hdcp_adj / golfcourse.hole16handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole16handicap) < 1:
 	    score_adj = i.hole16score + 1
 	hole16_adj = score_adj
 	if i.hole16score == 0:
@@ -816,7 +816,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole17score - 2
         elif (hdcp_adj / golfcourse.hole17handicap) >= 1:
 	    score_adj = i.hole17score - 1
-        elif (hdcp_adj / golfcourse.hole17handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole17handicap) < 1:
 	    score_adj = i.hole17score + 1
 	hole17_adj = score_adj
 	if i.hole17score == 0:
@@ -834,7 +834,7 @@ def leaderboard(request, id):
 	    score_adj = i.hole18score - 2
         elif (hdcp_adj / golfcourse.hole18handicap) >= 1:
 	    score_adj = i.hole18score - 1
-        elif (hdcp_adj / golfcourse.hole18handicap) <= -1:
+        elif ((18 + hdcp_adj) / golfcourse.hole18handicap) < 1:
 	    score_adj = i.hole18score + 1
 	hole18_adj = score_adj
 	if i.hole18score == 0:
