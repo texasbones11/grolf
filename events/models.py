@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+from django.contrib.auth.models import User
 
 # Create your models here.
 class GolfCourse(models.Model):
@@ -56,14 +57,14 @@ class Tee(models.Model):
     class Meta:
         verbose_name_plural = "Tees"
 
-class Player(models.Model):
-    name = models.CharField(max_length=40)
+class Handicap(models.Model):
+    name = models.ForeignKey(User, unique=True)
     handicap = models.FloatField()
-    email = models.EmailField()
+    date = models.DateField(default=date.today)
     def __str__(self):
-        return self.name
+        return self.name.username + " - " +  str(self.date)
     class Meta:
-        verbose_name_plural = "Players"
+        verbose_name_plural = "Handicap"
 
 class Events(models.Model):
     tag = models.CharField(max_length=40, default="")
@@ -80,7 +81,7 @@ class Events(models.Model):
 
 class Leaderboard(models.Model):
     event = models.ForeignKey(Events, on_delete=models.CASCADE)
-    name = models.ForeignKey(Player, on_delete=models.CASCADE)
+    name = models.ForeignKey(Handicap, unique=True)
     hole1score = models.SmallIntegerField(blank=True,default=0)
     hole2score = models.SmallIntegerField(blank=True,default=0)
     hole3score = models.SmallIntegerField(blank=True,default=0)
