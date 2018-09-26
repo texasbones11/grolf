@@ -116,7 +116,6 @@ class TeamLeaderboard(models.Model):
     teamname = models.CharField(max_length=40)
     player1 = models.ForeignKey(Leaderboard, on_delete=models.CASCADE, related_name='first_player')
     player2 = models.ForeignKey(Leaderboard, on_delete=models.CASCADE, related_name='second_player')
-    handicap = models.SmallIntegerField(blank=True,default=0)
     def __str__(self):
         return str(self.event) + " - " + str(self.teamname)
     class Meta:
