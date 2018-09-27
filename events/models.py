@@ -62,7 +62,7 @@ class Handicap(models.Model):
     handicap = models.FloatField()
     date = models.DateField(default=date.today)
     def __str__(self):
-        return self.name.username + " - " +  str(self.date)
+        return self.name.username + " - " + str(self.date)
     class Meta:
         verbose_name_plural = "Handicap"
 

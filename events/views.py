@@ -3,7 +3,7 @@ from models import Events, Leaderboard, GolfCourse, TeamLeaderboard
 from django.db.models import F
 from forms import ScorecardForm
 from django.forms.formsets import formset_factory
-from django.forms import modelformset_factory
+from django.forms import modelformset_factory, HiddenInput
 
 # Create your views here.
 def index(request):
@@ -1750,7 +1750,7 @@ def scorecard(request, id):
     for x in range(len(loaded_list)):
         print("test")
         print(loaded_list[x]['name'])
-    SCFormset = modelformset_factory(Leaderboard, fields=('id','name','hole1score','hole2score','hole3score','hole4score', 'hole5score', 'hole6score', 'hole7score', 'hole8score','hole9score','hole10score','hole11score','hole12score', 'hole13score','hole14score','hole15score','hole16score', 'hole17score', 'hole18score'), extra=0)
+    SCFormset = modelformset_factory(Leaderboard, fields=('id','name','hole1score','hole2score','hole3score','hole4score', 'hole5score', 'hole6score', 'hole7score', 'hole8score','hole9score','hole10score','hole11score','hole12score', 'hole13score','hole14score','hole15score','hole16score', 'hole17score', 'hole18score'), extra=0, widgets={'name': HiddenInput(), 'id': HiddenInput()})
     if request.method == 'POST':
         next_page = request.POST.get('value')
         request.session['value'] = next_page
