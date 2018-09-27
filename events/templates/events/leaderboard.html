@@ -18,6 +18,11 @@
                 <a class="nav-link" data-toggle="tab" href="#bestball">Teams</a>
         </li>
 	{% endif %}
+	{% if netteamscoring %}
+	<li class="nav-itemi bg-light">
+                <a class="nav-link" data-toggle="tab" href="#netbestball">Net Teams</a>
+        </li>
+	{% endif %}
 </ul>
 <form method='POST'>
 	{% csrf_token %}
@@ -298,6 +303,92 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="tab-pane panel" id="netbestball">
+			<table class="table table-bordered table-light">
+				<thead class="thead-dark">
+					<tr>
+						<th></th>
+						<th>Hole</th>
+						<th>1</th>
+						<th>2</th>
+						<th>3</th>
+						<th>4</th>
+						<th>5</th>
+						<th>6</th>
+						<th>7</th>
+						<th>8</th>
+						<th>9</th>
+						<th>FRONT</th>
+						<th>10</th>
+						<th>11</th>
+						<th>12</th>
+						<th>13</th>
+						<th>14</th>
+						<th>15</th>
+						<th>16</th>
+						<th>17</th>
+						<th>18</th>
+						<th>BACK</th>
+						<th>GROSS</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th></th>
+						<th>Par</th>
+						<td>{{golfcourse.hole1par}}</td>
+						<td>{{golfcourse.hole2par}}</td>
+						<td>{{golfcourse.hole3par}}</td>
+						<td>{{golfcourse.hole4par}}</td>
+						<td>{{golfcourse.hole5par}}</td>
+						<td>{{golfcourse.hole6par}}</td>
+						<td>{{golfcourse.hole7par}}</td>
+						<td>{{golfcourse.hole8par}}</td>
+						<td>{{golfcourse.hole9par}}</td>
+						<td>{{front_par}}</td>
+						<td>{{golfcourse.hole10par}}</td>
+						<td>{{golfcourse.hole11par}}</td>
+						<td>{{golfcourse.hole12par}}</td>
+						<td>{{golfcourse.hole13par}}</td>
+						<td>{{golfcourse.hole14par}}</td>
+						<td>{{golfcourse.hole15par}}</td>
+						<td>{{golfcourse.hole16par}}</td>
+						<td>{{golfcourse.hole17par}}</td>
+						<td>{{golfcourse.hole18par}}</td>
+						<td>{{back_par}}</td>
+						<td>{{total_par}}</td>
+					</tr>
+					<tr>
+						<th>Rank</th>
+						<th>Team</th>
+						<td>{{golfcourse.hole1handicap}}</td>
+						<td>{{golfcourse.hole2handicap}}</td>
+						<td>{{golfcourse.hole3handicap}}</td>
+						<td>{{golfcourse.hole4handicap}}</td>
+						<td>{{golfcourse.hole5handicap}}</td>
+						<td>{{golfcourse.hole6handicap}}</td>
+						<td>{{golfcourse.hole7handicap}}</td>
+						<td>{{golfcourse.hole8handicap}}</td>
+						<td>{{golfcourse.hole9handicap}}</td>
+						<td></td>
+						<td>{{golfcourse.hole10handicap}}</td>
+						<td>{{golfcourse.hole11handicap}}</td>
+						<td>{{golfcourse.hole12handicap}}</td>
+						<td>{{golfcourse.hole13handicap}}</td>
+						<td>{{golfcourse.hole14handicap}}</td>
+						<td>{{golfcourse.hole15handicap}}</td>
+						<td>{{golfcourse.hole16handicap}}</td>
+						<td>{{golfcourse.hole17handicap}}</td>
+						<td>{{golfcourse.hole18handicap}}</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						{{output_netbestball|safe}}
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	{% if not event.lock %}
 		<button type="submit" class="btn btn-dark btn-sm"&gt>Keep Score</button>
@@ -306,3 +397,4 @@
 </form>
 </div>
 {% endblock %}
+

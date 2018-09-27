@@ -20,16 +20,19 @@ def leaderboard(request, id):
     leaderboard = Leaderboard.objects.filter(event__id=id)
     teamleaderboard = TeamLeaderboard.objects.filter(event__id=id)
     teamscoring = event.teamscoring
+    netteamscoring = event.netteamscoring
     netscoring = event.netscoring
     output = ''
     g_output = ''
     bb_output = ''
+    nbb_output = ''
     front_par = golfcourse.hole1par + golfcourse.hole2par + golfcourse.hole3par + golfcourse.hole4par + golfcourse.hole5par + golfcourse.hole6par + golfcourse.hole7par + golfcourse.hole8par + golfcourse.hole9par
     back_par = golfcourse.hole10par + golfcourse.hole11par + golfcourse.hole12par + golfcourse.hole13par + golfcourse.hole14par + golfcourse.hole15par + golfcourse.hole16par + golfcourse.hole17par + golfcourse.hole18par
     total_par = front_par + back_par
     arr = []
     g_arr = []
     bb_arr = []
+    nbb_arr = []
     cell_start = "<td>"
     cell_highlight_green = "<td class=table-success>"
     cell_highlight_yellow = "<td class=table-warning>"
@@ -1168,6 +1171,534 @@ def leaderboard(request, id):
 	    rank = count
 	prev = line[0]
 	bb_output += '<tr>' + '<td>' + str(rank)+ '</td>' + line[1] + '</tr>'
+    for i in teamleaderboard:
+	nbb_finished_flag = 1
+	nbb_front_finished_flag = 1
+	nbb_back_finished_flag = 1
+        teamscore = 0
+        teamfront = 0
+        teamback = 0
+	nbb_overtotal = 0
+        nbb_row = '<td>' + str(i.teamname) + '</td>'
+	p1_hdcp_adj = int(round(i.player1.tee.teeslope * i.player1.name.handicap / 113))
+	p2_hdcp_adj = int(round(i.player2.tee.teeslope * i.player2.name.handicap / 113))
+	p1_score_adj = i.player1.hole1score
+	p2_score_adj = i.player2.hole1score
+        if (p1_hdcp_adj - 18) / golfcourse.hole1handicap >= 1:
+	    score_adj = i.player1.hole1score - 2
+        elif (p1_hdcp_adj / golfcourse.hole1handicap) >= 1:
+	    score_adj = i.player1.hole1score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole1handicap) < 1:
+	    p1_score_adj = i.player1.hole1score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole1handicap >= 1:
+	    score_adj = i.player2.hole1score - 2
+        elif (p2_hdcp_adj / golfcourse.hole1handicap) >= 1:
+	    score_adj = i.player2.hole1score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole1handicap) < 1:
+	    p2_score_adj = i.player2.hole1score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole1score != 0 or i.player2.hole1score == 0:
+	    nbb_hole1 = p1_score_adj
+        else:
+	    nbb_hole1 = p2_score_adj
+	if nbb_hole1 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole1 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole1) + '</td>'
+	teamscore += nbb_hole1
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole2score
+	p2_score_adj = i.player2.hole2score
+        if (p1_hdcp_adj - 18) / golfcourse.hole2handicap >= 1:
+	    score_adj = i.player1.hole2score - 2
+        elif (p1_hdcp_adj / golfcourse.hole2handicap) >= 1:
+	    score_adj = i.player1.hole2score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole2handicap) < 1:
+	    p1_score_adj = i.player1.hole2score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole2handicap >= 1:
+	    score_adj = i.player2.hole2score - 2
+        elif (p2_hdcp_adj / golfcourse.hole2handicap) >= 1:
+	    score_adj = i.player2.hole2score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole2handicap) < 1:
+	    p2_score_adj = i.player2.hole2score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole2score != 0 or i.player2.hole2score == 0:
+	    nbb_hole2 = p1_score_adj
+        else:
+	    nbb_hole2 = p2_score_adj
+	if nbb_hole2 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole2 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole2) + '</td>'
+	teamscore += nbb_hole2
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole3score
+	p2_score_adj = i.player2.hole3score
+        if (p1_hdcp_adj - 18) / golfcourse.hole3handicap >= 1:
+	    score_adj = i.player1.hole3score - 2
+        elif (p1_hdcp_adj / golfcourse.hole3handicap) >= 1:
+	    score_adj = i.player1.hole3score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole3handicap) < 1:
+	    p1_score_adj = i.player1.hole3score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole3handicap >= 1:
+	    score_adj = i.player2.hole3score - 2
+        elif (p2_hdcp_adj / golfcourse.hole3handicap) >= 1:
+	    score_adj = i.player2.hole3score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole3handicap) < 1:
+	    p2_score_adj = i.player2.hole3score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole3score != 0 or i.player2.hole3score == 0:
+	    nbb_hole3 = p1_score_adj
+        else:
+	    nbb_hole3 = p2_score_adj
+	if nbb_hole3 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole3 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole3) + '</td>'
+	teamscore += nbb_hole3
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole4score
+	p2_score_adj = i.player2.hole4score
+        if (p1_hdcp_adj - 18) / golfcourse.hole4handicap >= 1:
+	    score_adj = i.player1.hole4score - 2
+        elif (p1_hdcp_adj / golfcourse.hole4handicap) >= 1:
+	    score_adj = i.player1.hole4score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole4handicap) < 1:
+	    p1_score_adj = i.player1.hole4score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole4handicap >= 1:
+	    score_adj = i.player2.hole4score - 2
+        elif (p2_hdcp_adj / golfcourse.hole4handicap) >= 1:
+	    score_adj = i.player2.hole4score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole4handicap) < 1:
+	    p2_score_adj = i.player2.hole4score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole4score != 0 or i.player2.hole4score == 0:
+	    nbb_hole4 = p1_score_adj
+        else:
+	    nbb_hole4 = p2_score_adj
+	if nbb_hole4 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole4 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole4) + '</td>'
+	teamscore += nbb_hole4
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole5score
+	p2_score_adj = i.player2.hole5score
+        if (p1_hdcp_adj - 18) / golfcourse.hole5handicap >= 1:
+	    score_adj = i.player1.hole5score - 2
+        elif (p1_hdcp_adj / golfcourse.hole5handicap) >= 1:
+	    score_adj = i.player1.hole5score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole5handicap) < 1:
+	    p1_score_adj = i.player1.hole5score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole5handicap >= 1:
+	    score_adj = i.player2.hole5score - 2
+        elif (p2_hdcp_adj / golfcourse.hole5handicap) >= 1:
+	    score_adj = i.player2.hole5score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole5handicap) < 1:
+	    p2_score_adj = i.player2.hole5score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole5score != 0 or i.player2.hole5score == 0:
+	    nbb_hole5 = p1_score_adj
+        else:
+	    nbb_hole5 = p2_score_adj
+	if nbb_hole5 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole5 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole5) + '</td>'
+	teamscore += nbb_hole5
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole6score
+	p2_score_adj = i.player2.hole6score
+        if (p1_hdcp_adj - 18) / golfcourse.hole6handicap >= 1:
+	    score_adj = i.player1.hole6score - 2
+        elif (p1_hdcp_adj / golfcourse.hole6handicap) >= 1:
+	    score_adj = i.player1.hole6score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole6handicap) < 1:
+	    p1_score_adj = i.player1.hole6score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole6handicap >= 1:
+	    score_adj = i.player2.hole6score - 2
+        elif (p2_hdcp_adj / golfcourse.hole6handicap) >= 1:
+	    score_adj = i.player2.hole6score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole6handicap) < 1:
+	    p2_score_adj = i.player2.hole6score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole6score != 0 or i.player2.hole6score == 0:
+	    nbb_hole6 = p1_score_adj
+        else:
+	    nbb_hole6 = p2_score_adj
+	if nbb_hole6 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole6 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole6) + '</td>'
+	teamscore += nbb_hole6
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole7score
+	p2_score_adj = i.player2.hole7score
+        if (p1_hdcp_adj - 18) / golfcourse.hole7handicap >= 1:
+	    score_adj = i.player1.hole7score - 2
+        elif (p1_hdcp_adj / golfcourse.hole7handicap) >= 1:
+	    score_adj = i.player1.hole7score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole7handicap) < 1:
+	    p1_score_adj = i.player1.hole7score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole7handicap >= 1:
+	    score_adj = i.player2.hole7score - 2
+        elif (p2_hdcp_adj / golfcourse.hole7handicap) >= 1:
+	    score_adj = i.player2.hole7score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole7handicap) < 1:
+	    p2_score_adj = i.player2.hole7score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole7score != 0 or i.player2.hole7score == 0:
+	    nbb_hole7 = p1_score_adj
+        else:
+	    nbb_hole7 = p2_score_adj
+	if nbb_hole7 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole7 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole7) + '</td>'
+	teamscore += nbb_hole7
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole8score
+	p2_score_adj = i.player2.hole8score
+        if (p1_hdcp_adj - 18) / golfcourse.hole8handicap >= 1:
+	    score_adj = i.player1.hole8score - 2
+        elif (p1_hdcp_adj / golfcourse.hole8handicap) >= 1:
+	    score_adj = i.player1.hole8score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole8handicap) < 1:
+	    p1_score_adj = i.player1.hole8score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole8handicap >= 1:
+	    score_adj = i.player2.hole8score - 2
+        elif (p2_hdcp_adj / golfcourse.hole8handicap) >= 1:
+	    score_adj = i.player2.hole8score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole8handicap) < 1:
+	    p2_score_adj = i.player2.hole8score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole8score != 0 or i.player2.hole8score == 0:
+	    nbb_hole8 = p1_score_adj
+        else:
+	    nbb_hole8 = p2_score_adj
+	if nbb_hole8 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole8 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole8) + '</td>'
+	teamscore += nbb_hole8
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole9score
+	p2_score_adj = i.player2.hole9score
+        if (p1_hdcp_adj - 18) / golfcourse.hole9handicap >= 1:
+	    score_adj = i.player1.hole9score - 2
+        elif (p1_hdcp_adj / golfcourse.hole9handicap) >= 1:
+	    score_adj = i.player1.hole9score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole9handicap) < 1:
+	    p1_score_adj = i.player1.hole9score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole9handicap >= 1:
+	    score_adj = i.player2.hole9score - 2
+        elif (p2_hdcp_adj / golfcourse.hole9handicap) >= 1:
+	    score_adj = i.player2.hole9score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole9handicap) < 1:
+	    p2_score_adj = i.player2.hole9score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole9score != 0 or i.player2.hole9score == 0:
+	    nbb_hole9 = p1_score_adj
+        else:
+	    nbb_hole9 = p2_score_adj
+	if nbb_hole9 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole9 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole9) + '</td>'
+	teamscore += nbb_hole9
+        teamfront = teamscore
+	if nbb_front_finished_flag == 1:
+            nbb_row += '<td>' + str(teamfront) + '</td>'
+	else:
+	    nbb_row += '<td></td>'
+	p1_score_adj = i.player1.hole10score
+	p2_score_adj = i.player2.hole10score
+        if (p1_hdcp_adj - 18) / golfcourse.hole10handicap >= 1:
+	    score_adj = i.player1.hole10score - 2
+        elif (p1_hdcp_adj / golfcourse.hole10handicap) >= 1:
+	    score_adj = i.player1.hole10score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole10handicap) < 1:
+	    p1_score_adj = i.player1.hole10score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole10handicap >= 1:
+	    score_adj = i.player2.hole10score - 2
+        elif (p2_hdcp_adj / golfcourse.hole10handicap) >= 1:
+	    score_adj = i.player2.hole10score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole10handicap) < 1:
+	    p2_score_adj = i.player2.hole10score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole10score != 0 or i.player2.hole10score == 0:
+	    nbb_hole10 = p1_score_adj
+        else:
+	    nbb_hole10 = p2_score_adj
+	if nbb_hole10 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole10 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole10) + '</td>'
+	teamscore += nbb_hole10
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole11score
+	p2_score_adj = i.player2.hole11score
+        if (p1_hdcp_adj - 18) / golfcourse.hole11handicap >= 1:
+	    score_adj = i.player1.hole11score - 2
+        elif (p1_hdcp_adj / golfcourse.hole11handicap) >= 1:
+	    score_adj = i.player1.hole11score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole11handicap) < 1:
+	    p1_score_adj = i.player1.hole11score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole11handicap >= 1:
+	    score_adj = i.player2.hole11score - 2
+        elif (p2_hdcp_adj / golfcourse.hole11handicap) >= 1:
+	    score_adj = i.player2.hole11score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole11handicap) < 1:
+	    p2_score_adj = i.player2.hole11score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole11score != 0 or i.player2.hole11score == 0:
+	    nbb_hole11 = p1_score_adj
+        else:
+	    nbb_hole11 = p2_score_adj
+	if nbb_hole11 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole11 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole11) + '</td>'
+	teamscore += nbb_hole11
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole12score
+	p2_score_adj = i.player2.hole12score
+        if (p1_hdcp_adj - 18) / golfcourse.hole12handicap >= 1:
+	    score_adj = i.player1.hole12score - 2
+        elif (p1_hdcp_adj / golfcourse.hole12handicap) >= 1:
+	    score_adj = i.player1.hole12score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole12handicap) < 1:
+	    p1_score_adj = i.player1.hole12score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole12handicap >= 1:
+	    score_adj = i.player2.hole12score - 2
+        elif (p2_hdcp_adj / golfcourse.hole12handicap) >= 1:
+	    score_adj = i.player2.hole12score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole12handicap) < 1:
+	    p2_score_adj = i.player2.hole12score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole12score != 0 or i.player2.hole12score == 0:
+	    nbb_hole12 = p1_score_adj
+        else:
+	    nbb_hole12 = p2_score_adj
+	if nbb_hole12 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole12 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole12) + '</td>'
+	teamscore += nbb_hole12
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole13score
+	p2_score_adj = i.player2.hole13score
+        if (p1_hdcp_adj - 18) / golfcourse.hole13handicap >= 1:
+	    score_adj = i.player1.hole13score - 2
+        elif (p1_hdcp_adj / golfcourse.hole13handicap) >= 1:
+	    score_adj = i.player1.hole13score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole13handicap) < 1:
+	    p1_score_adj = i.player1.hole13score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole13handicap >= 1:
+	    score_adj = i.player2.hole13score - 2
+        elif (p2_hdcp_adj / golfcourse.hole13handicap) >= 1:
+	    score_adj = i.player2.hole13score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole13handicap) < 1:
+	    p2_score_adj = i.player2.hole13score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole13score != 0 or i.player2.hole13score == 0:
+	    nbb_hole13 = p1_score_adj
+        else:
+	    nbb_hole13 = p2_score_adj
+	if nbb_hole13 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole13 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole13) + '</td>'
+	teamscore += nbb_hole13
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole14score
+	p2_score_adj = i.player2.hole14score
+        if (p1_hdcp_adj - 18) / golfcourse.hole14handicap >= 1:
+	    score_adj = i.player1.hole14score - 2
+        elif (p1_hdcp_adj / golfcourse.hole14handicap) >= 1:
+	    score_adj = i.player1.hole14score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole14handicap) < 1:
+	    p1_score_adj = i.player1.hole14score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole14handicap >= 1:
+	    score_adj = i.player2.hole14score - 2
+        elif (p2_hdcp_adj / golfcourse.hole14handicap) >= 1:
+	    score_adj = i.player2.hole14score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole14handicap) < 1:
+	    p2_score_adj = i.player2.hole14score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole14score != 0 or i.player2.hole14score == 0:
+	    nbb_hole14 = p1_score_adj
+        else:
+	    nbb_hole14 = p2_score_adj
+	if nbb_hole14 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole14 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole14) + '</td>'
+	teamscore += nbb_hole14
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole15score
+	p2_score_adj = i.player2.hole15score
+        if (p1_hdcp_adj - 18) / golfcourse.hole15handicap >= 1:
+	    score_adj = i.player1.hole15score - 2
+        elif (p1_hdcp_adj / golfcourse.hole15handicap) >= 1:
+	    score_adj = i.player1.hole15score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole15handicap) < 1:
+	    p1_score_adj = i.player1.hole15score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole15handicap >= 1:
+	    score_adj = i.player2.hole15score - 2
+        elif (p2_hdcp_adj / golfcourse.hole15handicap) >= 1:
+	    score_adj = i.player2.hole15score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole15handicap) < 1:
+	    p2_score_adj = i.player2.hole15score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole15score != 0 or i.player2.hole15score == 0:
+	    nbb_hole15 = p1_score_adj
+        else:
+	    nbb_hole15 = p2_score_adj
+	if nbb_hole15 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole15 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole15) + '</td>'
+	teamscore += nbb_hole15
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole16score
+	p2_score_adj = i.player2.hole16score
+        if (p1_hdcp_adj - 18) / golfcourse.hole16handicap >= 1:
+	    score_adj = i.player1.hole16score - 2
+        elif (p1_hdcp_adj / golfcourse.hole16handicap) >= 1:
+	    score_adj = i.player1.hole16score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole16handicap) < 1:
+	    p1_score_adj = i.player1.hole16score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole16handicap >= 1:
+	    score_adj = i.player2.hole16score - 2
+        elif (p2_hdcp_adj / golfcourse.hole16handicap) >= 1:
+	    score_adj = i.player2.hole16score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole16handicap) < 1:
+	    p2_score_adj = i.player2.hole16score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole16score != 0 or i.player2.hole16score == 0:
+	    nbb_hole16 = p1_score_adj
+        else:
+	    nbb_hole16 = p2_score_adj
+	if nbb_hole16 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole16 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole16) + '</td>'
+	teamscore += nbb_hole16
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole17score
+	p2_score_adj = i.player2.hole17score
+        if (p1_hdcp_adj - 18) / golfcourse.hole17handicap >= 1:
+	    score_adj = i.player1.hole17score - 2
+        elif (p1_hdcp_adj / golfcourse.hole17handicap) >= 1:
+	    score_adj = i.player1.hole17score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole17handicap) < 1:
+	    p1_score_adj = i.player1.hole17score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole17handicap >= 1:
+	    score_adj = i.player2.hole17score - 2
+        elif (p2_hdcp_adj / golfcourse.hole17handicap) >= 1:
+	    score_adj = i.player2.hole17score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole17handicap) < 1:
+	    p2_score_adj = i.player2.hole17score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole17score != 0 or i.player2.hole17score == 0:
+	    nbb_hole17 = p1_score_adj
+        else:
+	    nbb_hole17 = p2_score_adj
+	if nbb_hole17 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole17 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole17) + '</td>'
+	teamscore += nbb_hole17
+        teamfront = teamscore
+	p1_score_adj = i.player1.hole18score
+	p2_score_adj = i.player2.hole18score
+        if (p1_hdcp_adj - 18) / golfcourse.hole18handicap >= 1:
+	    score_adj = i.player1.hole18score - 2
+        elif (p1_hdcp_adj / golfcourse.hole18handicap) >= 1:
+	    score_adj = i.player1.hole18score - 1
+        elif ((18 + p1_hdcp_adj) / golfcourse.hole18handicap) < 1:
+	    p1_score_adj = i.player1.hole18score + 1
+        if (p2_hdcp_adj - 18) / golfcourse.hole18handicap >= 1:
+	    score_adj = i.player2.hole18score - 2
+        elif (p2_hdcp_adj / golfcourse.hole18handicap) >= 1:
+	    score_adj = i.player2.hole18score - 1
+        elif ((18 + p2_hdcp_adj) / golfcourse.hole18handicap) < 1:
+	    p2_score_adj = i.player2.hole18score + 1
+        if p1_score_adj < p2_score_adj and i.player1.hole18score != 0 or i.player2.hole18score == 0:
+	    nbb_hole18 = p1_score_adj
+        else:
+	    nbb_hole18 = p2_score_adj
+	if nbb_hole18 == 0:
+	    nbb_finished_flag = 0
+	    nbb_front_finished_flag = 0
+            nbb_row += '<td></td>'
+	else:
+	    nbb_overtotal += nbb_hole18 - golfcourse.hole1par
+            nbb_row += '<td>' + str(nbb_hole18) + '</td>'
+	teamscore += nbb_hole18
+        teamfront = teamscore
+	if nbb_back_finished_flag == 1:
+            nbb_row += '<td>' + str(teamback) + '</td>'
+	else:
+	    nbb_row += '<td></td>'
+	if nbb_finished_flag == 1:
+            if nbb_overtotal < 0:
+                nbb_row += '<td class="text-danger">' + str(teamscore) + '</td>'
+            else:
+	        nbb_row += '<td>' + str(teamscore) + '</td>'
+        elif nbb_overtotal > 0:
+	    nbb_row += cell_start + "+" + str(nbb_overtotal) + cell_end
+        elif nbb_overtotal < 0:
+	    nbb_row += '<td class="text-danger">' + str(nbb_overtotal) + cell_end
+	elif nbb_overtotal == 0:
+	    nbb_row += cell_start + "E" + cell_end
+        nbb_arr.append([nbb_overtotal,nbb_row])
+    #sort the leaderboard
+    nbb_arr.sort(key=lambda x: x[0])
+    rank = 1
+    count = 0
+    prev = 0
+    for line in nbb_arr:
+	count += 1
+	if line[0] != prev:
+	    rank = count
+	prev = line[0]
+	nbb_output += '<tr>' + '<td>' + str(rank)+ '</td>' + line[1] + '</tr>'
     context = {
             'front_par': front_par,
             'back_par': back_par,
@@ -1178,8 +1709,10 @@ def leaderboard(request, id):
             'output_gross': output,
             'output_net': g_output,
             'output_bestball': bb_output,
+            'output_netbestball': nbb_output,
             'netscoring': netscoring,
             'teamscoring': teamscoring,
+            'netteamscoring': netteamscoring,
     }
     return render(request, 'events/leaderboard.html', context)
 
@@ -1191,9 +1724,9 @@ def scorecard(request, id):
     z = request.session['dl']
     loaded_list = [] 
     tester = leaderboard.values('id', 'name')
-    selected_leaders = leaderboard.filter(name__name__in=z)
+    selected_leaders = leaderboard.filter(name__name__username__in=z)
     for guy in z:
-        man = list(Leaderboard.objects.filter(name__name=guy).values('id', 'name'))
+        man = list(Leaderboard.objects.filter(name__name__username=guy).values('id', 'name'))
         loaded_list += man
     print(len(loaded_list))
     for x in range(len(loaded_list)):

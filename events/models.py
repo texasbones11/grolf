@@ -71,6 +71,7 @@ class Events(models.Model):
     title = models.ForeignKey(GolfCourse, on_delete=models.CASCADE)
     date = models.DateField(default=date.today)
     teamscoring = models.BooleanField(default=False)
+    netteamscoring = models.BooleanField(default=False)
     netscoring = models.BooleanField(default=False)
     lock = models.BooleanField(default=False)
     password = models.CharField(max_length=20, default="")
