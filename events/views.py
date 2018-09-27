@@ -1201,6 +1201,7 @@ def leaderboard(request, id):
         else:
 	    nbb_hole1 = p2_score_adj
 	if nbb_hole1 <= 0:
+	    nbb_hole1 = 0
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1228,6 +1229,7 @@ def leaderboard(request, id):
         else:
 	    nbb_hole2 = p2_score_adj
 	if nbb_hole2 <= 0:
+	    nbb_hole2 = 0
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1255,6 +1257,7 @@ def leaderboard(request, id):
         else:
 	    nbb_hole3 = p2_score_adj
 	if nbb_hole3 <= 0:
+	    nbb_hole3 = 0
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1282,6 +1285,7 @@ def leaderboard(request, id):
         else:
 	    nbb_hole4 = p2_score_adj
 	if nbb_hole4 <= 0:
+	    nbb_hole4 = 0
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1309,6 +1313,7 @@ def leaderboard(request, id):
         else:
 	    nbb_hole5 = p2_score_adj
 	if nbb_hole5 <= 0:
+	    nbb_hole5 = 0
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1336,6 +1341,7 @@ def leaderboard(request, id):
         else:
 	    nbb_hole6 = p2_score_adj
 	if nbb_hole6 <= 0:
+	    nbb_hole6 = 0
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1363,6 +1369,7 @@ def leaderboard(request, id):
         else:
 	    nbb_hole7 = p2_score_adj
 	if nbb_hole7 <= 0:
+	    nbb_hole7 = 0
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1390,6 +1397,7 @@ def leaderboard(request, id):
         else:
 	    nbb_hole8 = p2_score_adj
 	if nbb_hole8 <= 0:
+	    nbb_hole8 = 0
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1417,6 +1425,7 @@ def leaderboard(request, id):
         else:
 	    nbb_hole9 = p2_score_adj
 	if nbb_hole9 <= 0:
+	    nbb_hole9 = 0
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1448,14 +1457,15 @@ def leaderboard(request, id):
         else:
 	    nbb_hole10 = p2_score_adj
 	if nbb_hole10 <= 0:
+	    nbb_hole10 = 0
 	    nbb_finished_flag = 0
-	    nbb_front_finished_flag = 0
+	    nbb_back_finished_flag = 0
             nbb_row += '<td></td>'
 	else:
 	    nbb_overtotal += nbb_hole10 - golfcourse.hole1par
             nbb_row += '<td>' + str(nbb_hole10) + '</td>'
 	teamscore += nbb_hole10
-        teamfront = teamscore
+        teamback = teamscore - teamfront
 	p1_score_adj = i.player1.hole11score
 	p2_score_adj = i.player2.hole11score
         if (p1_hdcp_adj - 18) / golfcourse.hole11handicap >= 1:
@@ -1475,14 +1485,15 @@ def leaderboard(request, id):
         else:
 	    nbb_hole11 = p2_score_adj
 	if nbb_hole11 <= 0:
+	    nbb_hole11 = 0
 	    nbb_finished_flag = 0
-	    nbb_front_finished_flag = 0
+	    nbb_back_finished_flag = 0
             nbb_row += '<td></td>'
 	else:
 	    nbb_overtotal += nbb_hole11 - golfcourse.hole1par
             nbb_row += '<td>' + str(nbb_hole11) + '</td>'
 	teamscore += nbb_hole11
-        teamfront = teamscore
+        teamback = teamscore - teamfront
 	p1_score_adj = i.player1.hole12score
 	p2_score_adj = i.player2.hole12score
         if (p1_hdcp_adj - 18) / golfcourse.hole12handicap >= 1:
@@ -1502,14 +1513,15 @@ def leaderboard(request, id):
         else:
 	    nbb_hole12 = p2_score_adj
 	if nbb_hole12 <= 0:
+	    nbb_hole12 = 0
 	    nbb_finished_flag = 0
-	    nbb_front_finished_flag = 0
+	    nbb_back_finished_flag = 0
             nbb_row += '<td></td>'
 	else:
 	    nbb_overtotal += nbb_hole12 - golfcourse.hole1par
             nbb_row += '<td>' + str(nbb_hole12) + '</td>'
 	teamscore += nbb_hole12
-        teamfront = teamscore
+        teamback = teamscore - teamfront
 	p1_score_adj = i.player1.hole13score
 	p2_score_adj = i.player2.hole13score
         if (p1_hdcp_adj - 18) / golfcourse.hole13handicap >= 1:
@@ -1529,14 +1541,15 @@ def leaderboard(request, id):
         else:
 	    nbb_hole13 = p2_score_adj
 	if nbb_hole13 <= 0:
+	    nbb_hole13 = 0
 	    nbb_finished_flag = 0
-	    nbb_front_finished_flag = 0
+	    nbb_back_finished_flag = 0
             nbb_row += '<td></td>'
 	else:
 	    nbb_overtotal += nbb_hole13 - golfcourse.hole1par
             nbb_row += '<td>' + str(nbb_hole13) + '</td>'
 	teamscore += nbb_hole13
-        teamfront = teamscore
+        teamback = teamscore - teamfront
 	p1_score_adj = i.player1.hole14score
 	p2_score_adj = i.player2.hole14score
         if (p1_hdcp_adj - 18) / golfcourse.hole14handicap >= 1:
@@ -1556,14 +1569,15 @@ def leaderboard(request, id):
         else:
 	    nbb_hole14 = p2_score_adj
 	if nbb_hole14 <= 0:
+	    nbb_hole14 = 0
 	    nbb_finished_flag = 0
-	    nbb_front_finished_flag = 0
+	    nbb_back_finished_flag = 0
             nbb_row += '<td></td>'
 	else:
 	    nbb_overtotal += nbb_hole14 - golfcourse.hole1par
             nbb_row += '<td>' + str(nbb_hole14) + '</td>'
 	teamscore += nbb_hole14
-        teamfront = teamscore
+        teamback = teamscore - teamfront
 	p1_score_adj = i.player1.hole15score
 	p2_score_adj = i.player2.hole15score
         if (p1_hdcp_adj - 18) / golfcourse.hole15handicap >= 1:
@@ -1583,14 +1597,15 @@ def leaderboard(request, id):
         else:
 	    nbb_hole15 = p2_score_adj
 	if nbb_hole15 <= 0:
+	    nbb_hole15 = 0
 	    nbb_finished_flag = 0
-	    nbb_front_finished_flag = 0
+	    nbb_back_finished_flag = 0
             nbb_row += '<td></td>'
 	else:
 	    nbb_overtotal += nbb_hole15 - golfcourse.hole1par
             nbb_row += '<td>' + str(nbb_hole15) + '</td>'
 	teamscore += nbb_hole15
-        teamfront = teamscore
+        teamback = teamscore - teamfront
 	p1_score_adj = i.player1.hole16score
 	p2_score_adj = i.player2.hole16score
         if (p1_hdcp_adj - 18) / golfcourse.hole16handicap >= 1:
@@ -1610,14 +1625,15 @@ def leaderboard(request, id):
         else:
 	    nbb_hole16 = p2_score_adj
 	if nbb_hole16 <= 0:
+	    nbb_hole16 = 0
 	    nbb_finished_flag = 0
-	    nbb_front_finished_flag = 0
+	    nbb_back_finished_flag = 0
             nbb_row += '<td></td>'
 	else:
 	    nbb_overtotal += nbb_hole16 - golfcourse.hole1par
             nbb_row += '<td>' + str(nbb_hole16) + '</td>'
 	teamscore += nbb_hole16
-        teamfront = teamscore
+        teamback = teamscore - teamfront
 	p1_score_adj = i.player1.hole17score
 	p2_score_adj = i.player2.hole17score
         if (p1_hdcp_adj - 18) / golfcourse.hole17handicap >= 1:
@@ -1637,14 +1653,15 @@ def leaderboard(request, id):
         else:
 	    nbb_hole17 = p2_score_adj
 	if nbb_hole17 <= 0:
+	    nbb_hole17 = 0
 	    nbb_finished_flag = 0
-	    nbb_front_finished_flag = 0
+	    nbb_back_finished_flag = 0
             nbb_row += '<td></td>'
 	else:
 	    nbb_overtotal += nbb_hole17 - golfcourse.hole1par
             nbb_row += '<td>' + str(nbb_hole17) + '</td>'
 	teamscore += nbb_hole17
-        teamfront = teamscore
+        teamback = teamscore - teamfront
 	p1_score_adj = i.player1.hole18score
 	p2_score_adj = i.player2.hole18score
         if (p1_hdcp_adj - 18) / golfcourse.hole18handicap >= 1:
@@ -1664,14 +1681,15 @@ def leaderboard(request, id):
         else:
 	    nbb_hole18 = p2_score_adj
 	if nbb_hole18 <= 0:
+	    nbb_hole18 = 0
 	    nbb_finished_flag = 0
-	    nbb_front_finished_flag = 0
+	    nbb_back_finished_flag = 0
             nbb_row += '<td></td>'
 	else:
 	    nbb_overtotal += nbb_hole18 - golfcourse.hole1par
             nbb_row += '<td>' + str(nbb_hole18) + '</td>'
 	teamscore += nbb_hole18
-        teamfront = teamscore
+        teamback = teamscore - teamfront
 	if nbb_back_finished_flag == 1:
             nbb_row += '<td>' + str(teamback) + '</td>'
 	else:
