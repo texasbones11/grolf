@@ -1185,22 +1185,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole1score
 	p2_score_adj = i.player2.hole1score
         if (p1_hdcp_adj - 18) / golfcourse.hole1handicap >= 1:
-	    score_adj = i.player1.hole1score - 2
+	    p1_score_adj = i.player1.hole1score - 2
         elif (p1_hdcp_adj / golfcourse.hole1handicap) >= 1:
-	    score_adj = i.player1.hole1score - 1
+	    p1_score_adj = i.player1.hole1score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole1handicap) < 1:
 	    p1_score_adj = i.player1.hole1score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole1handicap >= 1:
-	    score_adj = i.player2.hole1score - 2
+	    p2_score_adj = i.player2.hole1score - 2
         elif (p2_hdcp_adj / golfcourse.hole1handicap) >= 1:
-	    score_adj = i.player2.hole1score - 1
+	    p2_score_adj = i.player2.hole1score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole1handicap) < 1:
 	    p2_score_adj = i.player2.hole1score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole1score != 0 or i.player2.hole1score == 0:
 	    nbb_hole1 = p1_score_adj
         else:
 	    nbb_hole1 = p2_score_adj
-	if nbb_hole1 == 0:
+	if nbb_hole1 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1212,22 +1212,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole2score
 	p2_score_adj = i.player2.hole2score
         if (p1_hdcp_adj - 18) / golfcourse.hole2handicap >= 1:
-	    score_adj = i.player1.hole2score - 2
+	    p1_score_adj = i.player1.hole2score - 2
         elif (p1_hdcp_adj / golfcourse.hole2handicap) >= 1:
-	    score_adj = i.player1.hole2score - 1
+	    p1_score_adj = i.player1.hole2score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole2handicap) < 1:
 	    p1_score_adj = i.player1.hole2score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole2handicap >= 1:
-	    score_adj = i.player2.hole2score - 2
+	    p2_score_adj = i.player2.hole2score - 2
         elif (p2_hdcp_adj / golfcourse.hole2handicap) >= 1:
-	    score_adj = i.player2.hole2score - 1
+	    p2_score_adj = i.player2.hole2score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole2handicap) < 1:
 	    p2_score_adj = i.player2.hole2score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole2score != 0 or i.player2.hole2score == 0:
 	    nbb_hole2 = p1_score_adj
         else:
 	    nbb_hole2 = p2_score_adj
-	if nbb_hole2 == 0:
+	if nbb_hole2 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1239,22 +1239,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole3score
 	p2_score_adj = i.player2.hole3score
         if (p1_hdcp_adj - 18) / golfcourse.hole3handicap >= 1:
-	    score_adj = i.player1.hole3score - 2
+	    p1_score_adj = i.player1.hole3score - 2
         elif (p1_hdcp_adj / golfcourse.hole3handicap) >= 1:
-	    score_adj = i.player1.hole3score - 1
+	    p1_score_adj = i.player1.hole3score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole3handicap) < 1:
 	    p1_score_adj = i.player1.hole3score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole3handicap >= 1:
-	    score_adj = i.player2.hole3score - 2
+	    p2_score_adj = i.player2.hole3score - 2
         elif (p2_hdcp_adj / golfcourse.hole3handicap) >= 1:
-	    score_adj = i.player2.hole3score - 1
+	    p2_score_adj = i.player2.hole3score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole3handicap) < 1:
 	    p2_score_adj = i.player2.hole3score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole3score != 0 or i.player2.hole3score == 0:
 	    nbb_hole3 = p1_score_adj
         else:
 	    nbb_hole3 = p2_score_adj
-	if nbb_hole3 == 0:
+	if nbb_hole3 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1266,22 +1266,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole4score
 	p2_score_adj = i.player2.hole4score
         if (p1_hdcp_adj - 18) / golfcourse.hole4handicap >= 1:
-	    score_adj = i.player1.hole4score - 2
+	    p1_score_adj = i.player1.hole4score - 2
         elif (p1_hdcp_adj / golfcourse.hole4handicap) >= 1:
-	    score_adj = i.player1.hole4score - 1
+	    p1_score_adj = i.player1.hole4score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole4handicap) < 1:
 	    p1_score_adj = i.player1.hole4score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole4handicap >= 1:
-	    score_adj = i.player2.hole4score - 2
+	    p2_score_adj = i.player2.hole4score - 2
         elif (p2_hdcp_adj / golfcourse.hole4handicap) >= 1:
-	    score_adj = i.player2.hole4score - 1
+	    p2_score_adj = i.player2.hole4score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole4handicap) < 1:
 	    p2_score_adj = i.player2.hole4score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole4score != 0 or i.player2.hole4score == 0:
 	    nbb_hole4 = p1_score_adj
         else:
 	    nbb_hole4 = p2_score_adj
-	if nbb_hole4 == 0:
+	if nbb_hole4 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1293,22 +1293,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole5score
 	p2_score_adj = i.player2.hole5score
         if (p1_hdcp_adj - 18) / golfcourse.hole5handicap >= 1:
-	    score_adj = i.player1.hole5score - 2
+	    p1_score_adj = i.player1.hole5score - 2
         elif (p1_hdcp_adj / golfcourse.hole5handicap) >= 1:
-	    score_adj = i.player1.hole5score - 1
+	    p1_score_adj = i.player1.hole5score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole5handicap) < 1:
 	    p1_score_adj = i.player1.hole5score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole5handicap >= 1:
-	    score_adj = i.player2.hole5score - 2
+	    p2_score_adj = i.player2.hole5score - 2
         elif (p2_hdcp_adj / golfcourse.hole5handicap) >= 1:
-	    score_adj = i.player2.hole5score - 1
+	    p2_score_adj = i.player2.hole5score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole5handicap) < 1:
 	    p2_score_adj = i.player2.hole5score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole5score != 0 or i.player2.hole5score == 0:
 	    nbb_hole5 = p1_score_adj
         else:
 	    nbb_hole5 = p2_score_adj
-	if nbb_hole5 == 0:
+	if nbb_hole5 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1320,22 +1320,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole6score
 	p2_score_adj = i.player2.hole6score
         if (p1_hdcp_adj - 18) / golfcourse.hole6handicap >= 1:
-	    score_adj = i.player1.hole6score - 2
+	    p1_score_adj = i.player1.hole6score - 2
         elif (p1_hdcp_adj / golfcourse.hole6handicap) >= 1:
-	    score_adj = i.player1.hole6score - 1
+	    p1_score_adj = i.player1.hole6score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole6handicap) < 1:
 	    p1_score_adj = i.player1.hole6score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole6handicap >= 1:
-	    score_adj = i.player2.hole6score - 2
+	    p2_score_adj = i.player2.hole6score - 2
         elif (p2_hdcp_adj / golfcourse.hole6handicap) >= 1:
-	    score_adj = i.player2.hole6score - 1
+	    p2_score_adj = i.player2.hole6score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole6handicap) < 1:
 	    p2_score_adj = i.player2.hole6score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole6score != 0 or i.player2.hole6score == 0:
 	    nbb_hole6 = p1_score_adj
         else:
 	    nbb_hole6 = p2_score_adj
-	if nbb_hole6 == 0:
+	if nbb_hole6 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1347,22 +1347,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole7score
 	p2_score_adj = i.player2.hole7score
         if (p1_hdcp_adj - 18) / golfcourse.hole7handicap >= 1:
-	    score_adj = i.player1.hole7score - 2
+	    p1_score_adj = i.player1.hole7score - 2
         elif (p1_hdcp_adj / golfcourse.hole7handicap) >= 1:
-	    score_adj = i.player1.hole7score - 1
+	    p1_score_adj = i.player1.hole7score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole7handicap) < 1:
 	    p1_score_adj = i.player1.hole7score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole7handicap >= 1:
-	    score_adj = i.player2.hole7score - 2
+	    p2_score_adj = i.player2.hole7score - 2
         elif (p2_hdcp_adj / golfcourse.hole7handicap) >= 1:
-	    score_adj = i.player2.hole7score - 1
+	    p2_score_adj = i.player2.hole7score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole7handicap) < 1:
 	    p2_score_adj = i.player2.hole7score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole7score != 0 or i.player2.hole7score == 0:
 	    nbb_hole7 = p1_score_adj
         else:
 	    nbb_hole7 = p2_score_adj
-	if nbb_hole7 == 0:
+	if nbb_hole7 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1374,22 +1374,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole8score
 	p2_score_adj = i.player2.hole8score
         if (p1_hdcp_adj - 18) / golfcourse.hole8handicap >= 1:
-	    score_adj = i.player1.hole8score - 2
+	    p1_score_adj = i.player1.hole8score - 2
         elif (p1_hdcp_adj / golfcourse.hole8handicap) >= 1:
-	    score_adj = i.player1.hole8score - 1
+	    p1_score_adj = i.player1.hole8score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole8handicap) < 1:
 	    p1_score_adj = i.player1.hole8score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole8handicap >= 1:
-	    score_adj = i.player2.hole8score - 2
+	    p2_score_adj = i.player2.hole8score - 2
         elif (p2_hdcp_adj / golfcourse.hole8handicap) >= 1:
-	    score_adj = i.player2.hole8score - 1
+	    p2_score_adj = i.player2.hole8score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole8handicap) < 1:
 	    p2_score_adj = i.player2.hole8score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole8score != 0 or i.player2.hole8score == 0:
 	    nbb_hole8 = p1_score_adj
         else:
 	    nbb_hole8 = p2_score_adj
-	if nbb_hole8 == 0:
+	if nbb_hole8 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1401,22 +1401,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole9score
 	p2_score_adj = i.player2.hole9score
         if (p1_hdcp_adj - 18) / golfcourse.hole9handicap >= 1:
-	    score_adj = i.player1.hole9score - 2
+	    p1_score_adj = i.player1.hole9score - 2
         elif (p1_hdcp_adj / golfcourse.hole9handicap) >= 1:
-	    score_adj = i.player1.hole9score - 1
+	    p1_score_adj = i.player1.hole9score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole9handicap) < 1:
 	    p1_score_adj = i.player1.hole9score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole9handicap >= 1:
-	    score_adj = i.player2.hole9score - 2
+	    p2_score_adj = i.player2.hole9score - 2
         elif (p2_hdcp_adj / golfcourse.hole9handicap) >= 1:
-	    score_adj = i.player2.hole9score - 1
+	    p2_score_adj = i.player2.hole9score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole9handicap) < 1:
 	    p2_score_adj = i.player2.hole9score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole9score != 0 or i.player2.hole9score == 0:
 	    nbb_hole9 = p1_score_adj
         else:
 	    nbb_hole9 = p2_score_adj
-	if nbb_hole9 == 0:
+	if nbb_hole9 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1432,22 +1432,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole10score
 	p2_score_adj = i.player2.hole10score
         if (p1_hdcp_adj - 18) / golfcourse.hole10handicap >= 1:
-	    score_adj = i.player1.hole10score - 2
+	    p1_score_adj = i.player1.hole10score - 2
         elif (p1_hdcp_adj / golfcourse.hole10handicap) >= 1:
-	    score_adj = i.player1.hole10score - 1
+	    p1_score_adj = i.player1.hole10score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole10handicap) < 1:
 	    p1_score_adj = i.player1.hole10score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole10handicap >= 1:
-	    score_adj = i.player2.hole10score - 2
+	    p2_score_adj = i.player2.hole10score - 2
         elif (p2_hdcp_adj / golfcourse.hole10handicap) >= 1:
-	    score_adj = i.player2.hole10score - 1
+	    p2_score_adj = i.player2.hole10score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole10handicap) < 1:
 	    p2_score_adj = i.player2.hole10score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole10score != 0 or i.player2.hole10score == 0:
 	    nbb_hole10 = p1_score_adj
         else:
 	    nbb_hole10 = p2_score_adj
-	if nbb_hole10 == 0:
+	if nbb_hole10 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1459,22 +1459,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole11score
 	p2_score_adj = i.player2.hole11score
         if (p1_hdcp_adj - 18) / golfcourse.hole11handicap >= 1:
-	    score_adj = i.player1.hole11score - 2
+	    p1_score_adj = i.player1.hole11score - 2
         elif (p1_hdcp_adj / golfcourse.hole11handicap) >= 1:
-	    score_adj = i.player1.hole11score - 1
+	    p1_score_adj = i.player1.hole11score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole11handicap) < 1:
 	    p1_score_adj = i.player1.hole11score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole11handicap >= 1:
-	    score_adj = i.player2.hole11score - 2
+	    p2_score_adj = i.player2.hole11score - 2
         elif (p2_hdcp_adj / golfcourse.hole11handicap) >= 1:
-	    score_adj = i.player2.hole11score - 1
+	    p2_score_adj = i.player2.hole11score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole11handicap) < 1:
 	    p2_score_adj = i.player2.hole11score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole11score != 0 or i.player2.hole11score == 0:
 	    nbb_hole11 = p1_score_adj
         else:
 	    nbb_hole11 = p2_score_adj
-	if nbb_hole11 == 0:
+	if nbb_hole11 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1486,22 +1486,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole12score
 	p2_score_adj = i.player2.hole12score
         if (p1_hdcp_adj - 18) / golfcourse.hole12handicap >= 1:
-	    score_adj = i.player1.hole12score - 2
+	    p1_score_adj = i.player1.hole12score - 2
         elif (p1_hdcp_adj / golfcourse.hole12handicap) >= 1:
-	    score_adj = i.player1.hole12score - 1
+	    p1_score_adj = i.player1.hole12score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole12handicap) < 1:
 	    p1_score_adj = i.player1.hole12score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole12handicap >= 1:
-	    score_adj = i.player2.hole12score - 2
+	    p2_score_adj = i.player2.hole12score - 2
         elif (p2_hdcp_adj / golfcourse.hole12handicap) >= 1:
-	    score_adj = i.player2.hole12score - 1
+	    p2_score_adj = i.player2.hole12score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole12handicap) < 1:
 	    p2_score_adj = i.player2.hole12score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole12score != 0 or i.player2.hole12score == 0:
 	    nbb_hole12 = p1_score_adj
         else:
 	    nbb_hole12 = p2_score_adj
-	if nbb_hole12 == 0:
+	if nbb_hole12 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1513,22 +1513,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole13score
 	p2_score_adj = i.player2.hole13score
         if (p1_hdcp_adj - 18) / golfcourse.hole13handicap >= 1:
-	    score_adj = i.player1.hole13score - 2
+	    p1_score_adj = i.player1.hole13score - 2
         elif (p1_hdcp_adj / golfcourse.hole13handicap) >= 1:
-	    score_adj = i.player1.hole13score - 1
+	    p1_score_adj = i.player1.hole13score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole13handicap) < 1:
 	    p1_score_adj = i.player1.hole13score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole13handicap >= 1:
-	    score_adj = i.player2.hole13score - 2
+	    p2_score_adj = i.player2.hole13score - 2
         elif (p2_hdcp_adj / golfcourse.hole13handicap) >= 1:
-	    score_adj = i.player2.hole13score - 1
+	    p2_score_adj = i.player2.hole13score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole13handicap) < 1:
 	    p2_score_adj = i.player2.hole13score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole13score != 0 or i.player2.hole13score == 0:
 	    nbb_hole13 = p1_score_adj
         else:
 	    nbb_hole13 = p2_score_adj
-	if nbb_hole13 == 0:
+	if nbb_hole13 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1540,22 +1540,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole14score
 	p2_score_adj = i.player2.hole14score
         if (p1_hdcp_adj - 18) / golfcourse.hole14handicap >= 1:
-	    score_adj = i.player1.hole14score - 2
+	    p1_score_adj = i.player1.hole14score - 2
         elif (p1_hdcp_adj / golfcourse.hole14handicap) >= 1:
-	    score_adj = i.player1.hole14score - 1
+	    p1_score_adj = i.player1.hole14score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole14handicap) < 1:
 	    p1_score_adj = i.player1.hole14score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole14handicap >= 1:
-	    score_adj = i.player2.hole14score - 2
+	    p2_score_adj = i.player2.hole14score - 2
         elif (p2_hdcp_adj / golfcourse.hole14handicap) >= 1:
-	    score_adj = i.player2.hole14score - 1
+	    p2_score_adj = i.player2.hole14score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole14handicap) < 1:
 	    p2_score_adj = i.player2.hole14score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole14score != 0 or i.player2.hole14score == 0:
 	    nbb_hole14 = p1_score_adj
         else:
 	    nbb_hole14 = p2_score_adj
-	if nbb_hole14 == 0:
+	if nbb_hole14 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1567,22 +1567,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole15score
 	p2_score_adj = i.player2.hole15score
         if (p1_hdcp_adj - 18) / golfcourse.hole15handicap >= 1:
-	    score_adj = i.player1.hole15score - 2
+	    p1_score_adj = i.player1.hole15score - 2
         elif (p1_hdcp_adj / golfcourse.hole15handicap) >= 1:
-	    score_adj = i.player1.hole15score - 1
+	    p1_score_adj = i.player1.hole15score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole15handicap) < 1:
 	    p1_score_adj = i.player1.hole15score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole15handicap >= 1:
-	    score_adj = i.player2.hole15score - 2
+	    p2_score_adj = i.player2.hole15score - 2
         elif (p2_hdcp_adj / golfcourse.hole15handicap) >= 1:
-	    score_adj = i.player2.hole15score - 1
+	    p2_score_adj = i.player2.hole15score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole15handicap) < 1:
 	    p2_score_adj = i.player2.hole15score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole15score != 0 or i.player2.hole15score == 0:
 	    nbb_hole15 = p1_score_adj
         else:
 	    nbb_hole15 = p2_score_adj
-	if nbb_hole15 == 0:
+	if nbb_hole15 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1594,22 +1594,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole16score
 	p2_score_adj = i.player2.hole16score
         if (p1_hdcp_adj - 18) / golfcourse.hole16handicap >= 1:
-	    score_adj = i.player1.hole16score - 2
+	    p1_score_adj = i.player1.hole16score - 2
         elif (p1_hdcp_adj / golfcourse.hole16handicap) >= 1:
-	    score_adj = i.player1.hole16score - 1
+	    p1_score_adj = i.player1.hole16score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole16handicap) < 1:
 	    p1_score_adj = i.player1.hole16score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole16handicap >= 1:
-	    score_adj = i.player2.hole16score - 2
+	    p2_score_adj = i.player2.hole16score - 2
         elif (p2_hdcp_adj / golfcourse.hole16handicap) >= 1:
-	    score_adj = i.player2.hole16score - 1
+	    p2_score_adj = i.player2.hole16score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole16handicap) < 1:
 	    p2_score_adj = i.player2.hole16score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole16score != 0 or i.player2.hole16score == 0:
 	    nbb_hole16 = p1_score_adj
         else:
 	    nbb_hole16 = p2_score_adj
-	if nbb_hole16 == 0:
+	if nbb_hole16 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1621,22 +1621,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole17score
 	p2_score_adj = i.player2.hole17score
         if (p1_hdcp_adj - 18) / golfcourse.hole17handicap >= 1:
-	    score_adj = i.player1.hole17score - 2
+	    p1_score_adj = i.player1.hole17score - 2
         elif (p1_hdcp_adj / golfcourse.hole17handicap) >= 1:
-	    score_adj = i.player1.hole17score - 1
+	    p1_score_adj = i.player1.hole17score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole17handicap) < 1:
 	    p1_score_adj = i.player1.hole17score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole17handicap >= 1:
-	    score_adj = i.player2.hole17score - 2
+	    p2_score_adj = i.player2.hole17score - 2
         elif (p2_hdcp_adj / golfcourse.hole17handicap) >= 1:
-	    score_adj = i.player2.hole17score - 1
+	    p2_score_adj = i.player2.hole17score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole17handicap) < 1:
 	    p2_score_adj = i.player2.hole17score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole17score != 0 or i.player2.hole17score == 0:
 	    nbb_hole17 = p1_score_adj
         else:
 	    nbb_hole17 = p2_score_adj
-	if nbb_hole17 == 0:
+	if nbb_hole17 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
@@ -1648,22 +1648,22 @@ def leaderboard(request, id):
 	p1_score_adj = i.player1.hole18score
 	p2_score_adj = i.player2.hole18score
         if (p1_hdcp_adj - 18) / golfcourse.hole18handicap >= 1:
-	    score_adj = i.player1.hole18score - 2
+	    p1_score_adj = i.player1.hole18score - 2
         elif (p1_hdcp_adj / golfcourse.hole18handicap) >= 1:
-	    score_adj = i.player1.hole18score - 1
+	    p1_score_adj = i.player1.hole18score - 1
         elif ((18 + p1_hdcp_adj) / golfcourse.hole18handicap) < 1:
 	    p1_score_adj = i.player1.hole18score + 1
         if (p2_hdcp_adj - 18) / golfcourse.hole18handicap >= 1:
-	    score_adj = i.player2.hole18score - 2
+	    p2_score_adj = i.player2.hole18score - 2
         elif (p2_hdcp_adj / golfcourse.hole18handicap) >= 1:
-	    score_adj = i.player2.hole18score - 1
+	    p2_score_adj = i.player2.hole18score - 1
         elif ((18 + p2_hdcp_adj) / golfcourse.hole18handicap) < 1:
 	    p2_score_adj = i.player2.hole18score + 1
         if p1_score_adj < p2_score_adj and i.player1.hole18score != 0 or i.player2.hole18score == 0:
 	    nbb_hole18 = p1_score_adj
         else:
 	    nbb_hole18 = p2_score_adj
-	if nbb_hole18 == 0:
+	if nbb_hole18 <= 0:
 	    nbb_finished_flag = 0
 	    nbb_front_finished_flag = 0
             nbb_row += '<td></td>'
