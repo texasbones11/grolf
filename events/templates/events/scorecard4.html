@@ -15,9 +15,10 @@
 		{{ formset.management_form }}
 		{% for form in formset %}
 		<tr>
-			<td>{{form.name}}</td>
-			<td>{{form.hole4score}}</td>
+			<td>{{form.instance.name.name.username}}</td>
+			<td>{{form.hole1score}}</td>
 			<td>{{form.id}}</td>
+			<td>{{form.name}}</td>
 		</tr>
 		{% endfor %}
 		</tbody>
