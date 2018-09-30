@@ -82,7 +82,7 @@ class Events(models.Model):
 
 class Leaderboard(models.Model):
     event = models.ForeignKey(Events, on_delete=models.CASCADE)
-    name = models.ForeignKey(Handicap, unique=True)
+    name = models.ForeignKey(Handicap)
     hole1score = models.SmallIntegerField(blank=True,default=0)
     hole2score = models.SmallIntegerField(blank=True,default=0)
     hole3score = models.SmallIntegerField(blank=True,default=0)
